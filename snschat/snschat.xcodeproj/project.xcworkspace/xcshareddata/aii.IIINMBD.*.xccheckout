@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>AAB78886-957F-49A2-9DEC-5598A5E9F6DD</string>
+	<key>IDESourceControlProjectName</key>
+	<string>aii.IIINMBD.*</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>8BDD0AEC7BD5E36C774B9ABB049825E37022FF83</key>
+		<string>https://github.com/kamikazekip/iOS_snschat.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>snschat/aii.IIINMBD.*.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>8BDD0AEC7BD5E36C774B9ABB049825E37022FF83</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/kamikazekip/iOS_snschat.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>8BDD0AEC7BD5E36C774B9ABB049825E37022FF83</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8BDD0AEC7BD5E36C774B9ABB049825E37022FF83</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iOS_snschat</string>
+		</dict>
+	</array>
+</dict>
+</plist>
