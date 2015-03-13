@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		526864511AB2EA4B00166FF4 /* WachtwoordVergetenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526864501AB2EA4B00166FF4 /* WachtwoordVergetenController.swift */; };
+		526864531AB2F09200166FF4 /* ChatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526864521AB2F09200166FF4 /* ChatsController.swift */; };
+		526864541AB2F24D00166FF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E086361AB197CC00419BB2 /* Main.storyboard */; };
 		52E086331AB197CC00419BB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086321AB197CC00419BB2 /* AppDelegate.swift */; };
 		52E086351AB197CC00419BB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086341AB197CC00419BB2 /* ViewController.swift */; };
-		52E086381AB197CC00419BB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E086361AB197CC00419BB2 /* Main.storyboard */; };
 		52E0863A1AB197CC00419BB2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E086391AB197CC00419BB2 /* Images.xcassets */; };
 		52E0863D1AB197CC00419BB2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E0863B1AB197CC00419BB2 /* LaunchScreen.xib */; };
 		52E086491AB197CC00419BB2 /* snschatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086481AB197CC00419BB2 /* snschatTests.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		526864501AB2EA4B00166FF4 /* WachtwoordVergetenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WachtwoordVergetenController.swift; sourceTree = "<group>"; };
+		526864521AB2F09200166FF4 /* ChatsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsController.swift; sourceTree = "<group>"; };
 		52E0862D1AB197CC00419BB2 /* snschat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = snschat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E086311AB197CC00419BB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52E086321AB197CC00419BB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -89,6 +93,8 @@
 				52E0863B1AB197CC00419BB2 /* LaunchScreen.xib */,
 				52E086301AB197CC00419BB2 /* Supporting Files */,
 				52E086521AB1DBBE00419BB2 /* RegistrerenController.swift */,
+				526864501AB2EA4B00166FF4 /* WachtwoordVergetenController.swift */,
+				526864521AB2F09200166FF4 /* ChatsController.swift */,
 			);
 			path = snschat;
 			sourceTree = "<group>";
@@ -198,10 +204,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52E086381AB197CC00419BB2 /* Main.storyboard in Resources */,
 				CE45D2931AB240B400321B0D /* Default-568h@2x.png in Resources */,
 				52E0863D1AB197CC00419BB2 /* LaunchScreen.xib in Resources */,
 				52E0863A1AB197CC00419BB2 /* Images.xcassets in Resources */,
+				526864541AB2F24D00166FF4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,6 +228,8 @@
 				52E086351AB197CC00419BB2 /* ViewController.swift in Sources */,
 				52E086531AB1DBBE00419BB2 /* RegistrerenController.swift in Sources */,
 				52E086331AB197CC00419BB2 /* AppDelegate.swift in Sources */,
+				526864511AB2EA4B00166FF4 /* WachtwoordVergetenController.swift in Sources */,
+				526864531AB2F09200166FF4 /* ChatsController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

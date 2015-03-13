@@ -19,9 +19,19 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationItem.title = "Inloggen"
+    }
+    
     @IBAction func onScrollTap(sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "inloggenKnop"){
+            self.navigationItem.title = "Uitloggen"
+        }
     }
 }
 
