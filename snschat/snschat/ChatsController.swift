@@ -17,7 +17,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         self.chat.addObject("This is some text")
-        self.chat.addObject("This is also some text, but then some larger so whe can test this application :D some text also in here to make this line a lot lot longer :D")
+        self.chat.addObject("This is some text")
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
@@ -30,6 +30,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.chat.count
+ 
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -37,7 +38,9 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         let cell: UITableViewCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as UITableViewCell
         cell.textLabel?.text = chat.objectAtIndex(indexPath.row) as? String
         //cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
-        //cell.detailTextLabel?.text = "Hallo :)"
+        cell.detailTextLabel?.numberOfLines = 0;
+        cell.detailTextLabel?.setTranslatesAutoresizingMaskIntoConstraints(true);
+        cell.detailTextLabel?.text = "This is also some text, but then some larger so whe can test this application :D some text also in here to make this line a lot lot longer :D"
         return cell
     }
     
