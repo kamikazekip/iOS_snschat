@@ -57,7 +57,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="L3M-qd-EAT" kind="show" identifier="inloggenKnop" id="T4u-NI-nnp"/>
+                                            <segue destination="L3M-qd-EAT" kind="show" identifier="" id="T4u-NI-nnp"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wachtwoord:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ETg-mz-4u3">
@@ -99,7 +99,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <segue destination="DeQ-If-Ww7" kind="show" id="iY6-RZ-top"/>
+                                            <segue destination="ymC-Gv-7Vl" kind="show" identifier="inloggenKnop" id="Jj8-vC-1Bi"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -167,66 +167,86 @@
             </objects>
             <point key="canvasLocation" x="2096" y="433"/>
         </scene>
-        <!--Chats-->
-        <scene sceneID="xSB-We-jzk">
+        <!--Mijn chats-->
+        <scene sceneID="CYJ-Hm-4uG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7iJ-Tr-Y3p" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="wOG-Mz-qoj">
-                    <connections>
-                        <action selector="onTapMainView:" destination="DeQ-If-Ww7" id="glH-ff-Mmw"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <viewController id="DeQ-If-Ww7" customClass="ChatsController" customModule="snschat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="roY-C2-7AQ" customClass="ChatsController" customModule="snschat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="I8v-me-iKk"/>
-                        <viewControllerLayoutGuide type="bottom" id="Oii-0B-hGq"/>
+                        <viewControllerLayoutGuide type="top" id="pMj-pr-S1p"/>
+                        <viewControllerLayoutGuide type="bottom" id="9Eg-EI-sjT"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZLO-xZ-Ylu">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="zqy-PV-2j8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gsJ-76-QRg">
-                                <rect key="frame" x="0.0" y="64" width="600" height="49"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <tabBarItem title="Chats" image="ChatIcon" id="6MT-wF-NLz"/>
-                                    <tabBarItem title="FAQ" image="FAQIcon" id="BfY-U9-CFa"/>
-                                    <tabBarItem title="Account" image="AccountIcon" id="zOU-BM-jFB"/>
-                                    <tabBarItem title="Uitloggen" image="AccountIcon" id="I1L-8b-1mw"/>
-                                </items>
-                            </tabBar>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Q7s-NT-i7K">
-                                <rect key="frame" x="0.0" y="113" width="600" height="44"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="VZ5-wd-yoM">
+                                <rect key="frame" x="0.0" y="108" width="600" height="443"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="umr-pV-AjR" style="IBUITableViewCellStyleDefault" id="xkM-hS-QNf">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xkM-hS-QNf" id="GQm-Qi-Ocy">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="umr-pV-AjR">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="roY-C2-7AQ" id="SJH-0n-gPf"/>
+                                    <outlet property="delegate" destination="roY-C2-7AQ" id="qiY-re-gDf"/>
+                                </connections>
+                            </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Z5M-zb-fJP">
+                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JuH-L7-zOb">
-                                <rect key="frame" x="16" y="157" width="46" height="30"/>
-                                <state key="normal" title="Button">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="JuH-L7-zOb" firstAttribute="top" secondItem="Q7s-NT-i7K" secondAttribute="bottom" id="3Cj-vv-Ojv"/>
-                            <constraint firstItem="gsJ-76-QRg" firstAttribute="top" secondItem="I8v-me-iKk" secondAttribute="bottom" id="7U7-C8-pCt"/>
-                            <constraint firstItem="JuH-L7-zOb" firstAttribute="leading" secondItem="ZLO-xZ-Ylu" secondAttribute="leadingMargin" id="8mm-yI-DYu"/>
-                            <constraint firstItem="gsJ-76-QRg" firstAttribute="leading" secondItem="ZLO-xZ-Ylu" secondAttribute="leading" id="CEu-7q-rn2"/>
-                            <constraint firstItem="Q7s-NT-i7K" firstAttribute="leading" secondItem="gsJ-76-QRg" secondAttribute="leading" id="N8X-2b-XBt"/>
-                            <constraint firstItem="Q7s-NT-i7K" firstAttribute="trailing" secondItem="gsJ-76-QRg" secondAttribute="trailing" id="XSU-hY-4tz"/>
-                            <constraint firstItem="Q7s-NT-i7K" firstAttribute="top" secondItem="gsJ-76-QRg" secondAttribute="bottom" id="ZLG-s3-nPx"/>
-                            <constraint firstAttribute="trailing" secondItem="gsJ-76-QRg" secondAttribute="trailing" id="sLo-hd-Ek0"/>
+                            <constraint firstItem="VZ5-wd-yoM" firstAttribute="bottom" secondItem="9Eg-EI-sjT" secondAttribute="top" id="6f4-3d-vf2"/>
+                            <constraint firstItem="Z5M-zb-fJP" firstAttribute="top" secondItem="pMj-pr-S1p" secondAttribute="bottom" id="Lg2-TF-YzR"/>
+                            <constraint firstAttribute="trailing" secondItem="VZ5-wd-yoM" secondAttribute="trailing" id="VAv-qX-u0x"/>
+                            <constraint firstItem="VZ5-wd-yoM" firstAttribute="top" secondItem="Z5M-zb-fJP" secondAttribute="bottom" id="Zts-rd-koJ"/>
+                            <constraint firstItem="VZ5-wd-yoM" firstAttribute="leading" secondItem="Z5M-zb-fJP" secondAttribute="leading" id="f6U-Tc-6SM"/>
+                            <constraint firstItem="Z5M-zb-fJP" firstAttribute="leading" secondItem="zqy-PV-2j8" secondAttribute="leading" id="zUN-Qz-l7c"/>
+                            <constraint firstItem="VZ5-wd-yoM" firstAttribute="trailing" secondItem="Z5M-zb-fJP" secondAttribute="trailing" id="zVj-F3-52z"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="wOG-Mz-qoj" appends="YES" id="zEW-8H-YE8"/>
-                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Chats" id="Xtw-3f-aUb"/>
+                    <tabBarItem key="tabBarItem" title="Mijn chats" image="ChatIcon" id="5zJ-a4-tSH"/>
+                    <connections>
+                        <outlet property="tableView" destination="VZ5-wd-yoM" id="flU-9l-34d"/>
+                    </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jtu-AS-b4W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2823" y="433"/>
+            <point key="canvasLocation" x="3554" y="101"/>
+        </scene>
+        <!--FAQ-->
+        <scene sceneID="KhC-IB-m3g">
+            <objects>
+                <viewController id="8eO-iR-DT1" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WJB-5b-xfd"/>
+                        <viewControllerLayoutGuide type="bottom" id="mES-hc-Qm7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DPa-47-3RF">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="FAQ" image="FAQIcon" id="eyb-Lg-Mmj"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BNB-GR-gZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3554" y="768"/>
         </scene>
         <!--Wachtwoord vergeten-->
         <scene sceneID="JRR-qZ-h3s">
@@ -465,9 +485,27 @@
             </objects>
             <point key="canvasLocation" x="1252" y="445"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="trw-aA-wea">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ymC-Gv-7Vl" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" itemPositioning="fill" id="jt9-81-AOy">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="roY-C2-7AQ" kind="relationship" relationship="viewControllers" id="FlC-uh-rYO"/>
+                        <segue destination="8eO-iR-DT1" kind="relationship" relationship="viewControllers" id="Zk2-bv-KPU"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YSX-kJ-MdH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2837" y="433"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="AccountIcon" width="30" height="30"/>
         <image name="ChatIcon" width="30" height="30"/>
         <image name="FAQIcon" width="30" height="30"/>
     </resources>
