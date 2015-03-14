@@ -13,11 +13,14 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBOutlet weak var tableView: UITableView!
     
     var chat: NSMutableArray! = NSMutableArray()
+    var subtitles: NSMutableArray! = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.chat.addObject("This is some text")
-        self.chat.addObject("This is some text")
+        self.chat.addObject("Waarom kan ik niet connecten?")
+        self.chat.addObject("Deze telefoon gaat niet meer aan")
+        self.subtitles.addObject("Probeer eens om wi-fi aan en uit te zetten.")
+        self.subtitles.addObject("Wacht eens, hoe kun je dan nu chatten?")
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 44.0
@@ -26,6 +29,11 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    @IBAction func onTapMainView(sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,11 +48,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         //cell.textLabel?.lineBreakMode = NSLineBreakMode.ByWordWrapping
         cell.detailTextLabel?.numberOfLines = 0;
         cell.detailTextLabel?.setTranslatesAutoresizingMaskIntoConstraints(true);
-        cell.detailTextLabel?.text = "This is also some text, but then some larger so whe can test this application :D some text also in here to make this line a lot lot longer :D"
+        cell.detailTextLabel?.text = subtitles.objectAtIndex(indexPath.row) as? String
         return cell
-    }
-    
-    @IBAction func onTapMainView(sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
     }
 }
