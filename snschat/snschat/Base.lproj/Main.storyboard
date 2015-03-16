@@ -167,7 +167,7 @@
             </objects>
             <point key="canvasLocation" x="2096" y="433"/>
         </scene>
-        <!--Mijn chats-->
+        <!--Chats-->
         <scene sceneID="CYJ-Hm-4uG">
             <objects>
                 <viewController id="roY-C2-7AQ" customClass="ChatsController" customModule="snschat" customModuleProvider="target" sceneMemberID="viewController">
@@ -230,6 +230,7 @@
                         </connections>
                     </view>
                     <tabBarItem key="tabBarItem" title="Mijn chats" image="ChatIcon" id="5zJ-a4-tSH"/>
+                    <navigationItem key="navigationItem" title="Chats" id="K4Y-Cg-zAy"/>
                     <connections>
                         <outlet property="tableView" destination="VZ5-wd-yoM" id="flU-9l-34d"/>
                     </connections>
@@ -257,6 +258,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="FAQ" image="FAQIcon" id="eyb-Lg-Mmj"/>
+                    <navigationItem key="navigationItem" title="FAQ" id="xGD-2j-0tu"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" translucent="NO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNB-GR-gZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -500,10 +502,10 @@
             </objects>
             <point key="canvasLocation" x="1252" y="445"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Chats-->
         <scene sceneID="trw-aA-wea">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="ymC-Gv-7Vl" sceneMemberID="viewController">
+                <tabBarController title="Chats" automaticallyAdjustsScrollViewInsets="NO" id="ymC-Gv-7Vl" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" itemPositioning="fill" id="jt9-81-AOy">
