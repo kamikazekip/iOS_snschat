@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wp8-Ly-ytg">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Wp8-Ly-ytg">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -229,7 +229,7 @@
                             <outletCollection property="gestureRecognizers" destination="tu7-pQ-ady" appends="YES" id="Tg3-ly-d2O"/>
                         </connections>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Mijn chats" image="ChatIcon" id="5zJ-a4-tSH"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Chats" image="ChatIcon" id="5zJ-a4-tSH"/>
                     <navigationItem key="navigationItem" title="Chats" id="K4Y-Cg-zAy"/>
                     <connections>
                         <outlet property="tableView" destination="VZ5-wd-yoM" id="flU-9l-34d"/>
@@ -242,7 +242,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3554" y="101"/>
+            <point key="canvasLocation" x="3554" y="-225"/>
         </scene>
         <!--FAQ-->
         <scene sceneID="KhC-IB-m3g">
@@ -263,7 +263,27 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNB-GR-gZ2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3554" y="768"/>
+            <point key="canvasLocation" x="3554" y="433"/>
+        </scene>
+        <!--Account-->
+        <scene sceneID="K7V-ha-Ade">
+            <objects>
+                <viewController id="jn7-PX-yaS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bbC-b8-RWa"/>
+                        <viewControllerLayoutGuide type="bottom" id="QiA-2G-Dif"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5eC-MU-Wy8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Account" image="AccountIcon" id="28v-bG-K6K"/>
+                    <navigationItem key="navigationItem" title="Account" id="YkR-z9-b8D"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KxH-BZ-Tib" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3554" y="1179"/>
         </scene>
         <!--Wachtwoord vergeten-->
         <scene sceneID="JRR-qZ-h3s">
@@ -515,6 +535,7 @@
                     <connections>
                         <segue destination="roY-C2-7AQ" kind="relationship" relationship="viewControllers" id="FlC-uh-rYO"/>
                         <segue destination="8eO-iR-DT1" kind="relationship" relationship="viewControllers" id="Zk2-bv-KPU"/>
+                        <segue destination="jn7-PX-yaS" kind="relationship" relationship="viewControllers" id="OtO-cE-6M6"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSX-kJ-MdH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -523,6 +544,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AccountIcon" width="30" height="30"/>
         <image name="ChatIcon" width="30" height="30"/>
         <image name="FAQIcon" width="30" height="30"/>
     </resources>
