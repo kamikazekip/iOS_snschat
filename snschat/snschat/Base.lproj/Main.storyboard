@@ -544,8 +544,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AccountIcon" width="30" height="30"/>
-        <image name="ChatIcon" width="30" height="30"/>
-        <image name="FAQIcon" width="30" height="30"/>
+        <image name="AccountIcon" width="25" height="25"/>
+        <image name="ChatIcon" width="25" height="25"/>
+        <image name="FAQIcon" width="25" height="25"/>
     </resources>
 </document>

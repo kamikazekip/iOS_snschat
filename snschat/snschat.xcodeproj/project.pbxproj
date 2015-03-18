@@ -17,7 +17,7 @@
 		52E086491AB197CC00419BB2 /* snschatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086481AB197CC00419BB2 /* snschatTests.swift */; };
 		52E086531AB1DBBE00419BB2 /* RegistrerenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086521AB1DBBE00419BB2 /* RegistrerenController.swift */; };
 		52FA2FC71AB32A7F00DF3B98 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2FC61AB32A7F00DF3B98 /* Chat.swift */; };
-		CE45D2931AB240B400321B0D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE45D2921AB240B400321B0D /* Default-568h@2x.png */; };
+		CEA371951AB9D3FD00A84CA6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +45,7 @@
 		52E086481AB197CC00419BB2 /* snschatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = snschatTests.swift; sourceTree = "<group>"; };
 		52E086521AB1DBBE00419BB2 /* RegistrerenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrerenController.swift; sourceTree = "<group>"; };
 		52FA2FC61AB32A7F00DF3B98 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
-		CE45D2921AB240B400321B0D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,7 +87,7 @@
 		52E0862F1AB197CC00419BB2 /* snschat */ = {
 			isa = PBXGroup;
 			children = (
-				CE45D2921AB240B400321B0D /* Default-568h@2x.png */,
+				CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */,
 				52E086321AB197CC00419BB2 /* AppDelegate.swift */,
 				52E086341AB197CC00419BB2 /* ViewController.swift */,
 				52E086361AB197CC00419BB2 /* Main.storyboard */,
@@ -207,8 +207,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CE45D2931AB240B400321B0D /* Default-568h@2x.png in Resources */,
 				52E0863D1AB197CC00419BB2 /* LaunchScreen.xib in Resources */,
+				CEA371951AB9D3FD00A84CA6 /* Default-568h@2x.png in Resources */,
 				52E0863A1AB197CC00419BB2 /* Images.xcassets in Resources */,
 				526864541AB2F24D00166FF4 /* Main.storyboard in Resources */,
 			);

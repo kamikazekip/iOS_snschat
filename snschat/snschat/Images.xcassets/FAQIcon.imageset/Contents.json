@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "flag-7.png"
+      "filename" : "faq@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "flag-7-1.png"
+      "filename" : "faq@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "flag-7-2.png"
+      "filename" : "faq@3x.png"
     }
   ],
   "info" : {
