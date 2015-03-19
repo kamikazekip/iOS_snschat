@@ -1,14 +1,14 @@
 //
-//  WachtwoordVergetenController.swift
+//  ChatAanmakenController.swift
 //  snschat
 //
-//  Created by Erik Brandsma on 13/03/15.
+//  Created by Erik Brandsma on 19/03/15.
 //  Copyright (c) 2015 Erik Brandsma. All rights reserved.
 //
 
 import UIKit
 
-class WachtwoordVergetenController: UIViewController {
+class ChatAanmakenController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,10 +22,6 @@ class WachtwoordVergetenController: UIViewController {
     }
     
 
-    @IBAction func onTapMainView(sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
-        println("Test")
-    }
     /*
     // MARK: - Navigation
 
