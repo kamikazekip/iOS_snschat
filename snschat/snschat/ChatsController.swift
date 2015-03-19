@@ -17,6 +17,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     @IBOutlet weak var chatSearch: UISearchBar!
     
+    var overlay : UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +38,18 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     func searchBarTextDidBeginEditing(searchBar: UISearchBar!)
     {
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true) //or animated: false
+    
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = UIColor.blackColor()
+        overlay!.alpha = 0.5
+        
+        self.tableView.addSubview(overlay!)
     }
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar!)
     {
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true) //or animated: false
+        overlay?.removeFromSuperview()
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
