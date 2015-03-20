@@ -33,5 +33,8 @@ class ViewController: UIViewController {
             self.navigationItem.title = "Uitloggen"
         }
     }
+    @IBAction func inloggen(sender: AnyObject) {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 }
 

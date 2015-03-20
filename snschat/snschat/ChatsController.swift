@@ -17,10 +17,13 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     @IBOutlet weak var chatSearch: UISearchBar!
     
-    var overlay : UIView?
+    var overlay: UIView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.performSegueWithIdentifier("toLogin", sender: self)
+        
         self.tableView.rowHeight = UITableViewAutomaticDimension
         var nib = UINib(nibName: "ChatCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: "cell")
@@ -38,6 +41,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     func searchBarTextDidBeginEditing(searchBar: UISearchBar!)
     {
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true) //or animated: false
+        
+        searchBar.layer.borderColor = UIColor.clearColor().CGColor
     
         overlay = UIView(frame: view.frame)
         overlay!.backgroundColor = UIColor.blackColor()
@@ -62,7 +67,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell:ChatCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as ChatCell
+        var cell: ChatCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as ChatCell
         cell.title.text = titles[indexPath.row]
         cell.message.text = messages[indexPath.row]
         cell.date.text = dates[indexPath.row]
