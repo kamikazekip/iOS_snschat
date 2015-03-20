@@ -14,6 +14,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     var titles: [String] = ["Jip", "Erik", "Sven", "Gideon"]
     var dates: [String] = ["Today", "Yesterday", "20-01-2015", "Tommorrow"]
     var messages: [String] = ["Bericht 1 van Jip :) die heeeeeeeeeeel erg lang is, waarom weet ik ook niet, maar hij is in ieder geval heel erg lang", "Bericht 2 van Erik :)", "Bericht 3 van Sven :)", "Bericht 4 van Gideon :)"]
+    var clickedButton: String!
     
     @IBOutlet weak var chatSearch: UISearchBar!
     
@@ -53,6 +54,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func searchBarTextDidEndEditing(searchBar: UISearchBar!)
     {
+        self.view.endEditing(true)
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true) //or animated: false
         overlay?.removeFromSuperview()
     }
@@ -65,6 +67,13 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         return 66.0
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        clickedButton = titles[indexPath.row]
+        self.performSegueWithIdentifier("toChat", sender: self)
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell: ChatCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as ChatCell
@@ -72,5 +81,12 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         cell.message.text = messages[indexPath.row]
         cell.date.text = dates[indexPath.row]
         return cell
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "toChat"){
+            var chatc = segue.destinationViewController as ChatController
+            chatc.receivedTitle = clickedButton
+        }
     }
 }

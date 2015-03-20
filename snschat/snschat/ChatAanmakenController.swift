@@ -10,9 +10,25 @@ import UIKit
 
 class ChatAanmakenController: UIViewController {
 
+    @IBOutlet weak var categoryPicker: UIPickerView!
+    @IBOutlet weak var subcategoryPicker: UIPickerView!
+    
+    var categoryController: CategorieController!
+    var subcategoryController: SubcategorieController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        categoryController = CategorieController()
+        
+        categoryPicker.dataSource = categoryController
+        categoryPicker.delegate = categoryController
 
+        subcategoryController = SubcategorieController()
+        
+        subcategoryPicker.dataSource = subcategoryController
+        subcategoryPicker.delegate = subcategoryController
+        
         // Do any additional setup after loading the view.
     }
 
