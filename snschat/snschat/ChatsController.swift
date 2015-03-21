@@ -14,14 +14,16 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     var titles: [String] = ["Jip", "Erik", "Sven", "Gideon"]
     var dates: [String] = ["Today", "Yesterday", "20-01-2015", "Tommorrow"]
     var messages: [String] = ["Bericht 1 van Jip :) die heeeeeeeeeeel erg lang is, waarom weet ik ook niet, maar hij is in ieder geval heel erg lang", "Bericht 2 van Erik :)", "Bericht 3 van Sven :)", "Bericht 4 van Gideon :)"]
-    var clickedButton: String!
     
     @IBOutlet weak var chatSearch: UISearchBar!
     
     var overlay: UIView?
+    let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tapRec.addTarget(self, action: "tappedOverlay")
         
         self.performSegueWithIdentifier("toLogin", sender: self)
         
@@ -41,7 +43,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func searchBarTextDidBeginEditing(searchBar: UISearchBar!)
     {
-        navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true) //or animated: false
+        navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
         
         searchBar.layer.borderColor = UIColor.clearColor().CGColor
     
@@ -49,13 +51,14 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         overlay!.backgroundColor = UIColor.blackColor()
         overlay!.alpha = 0.5
         
+        overlay!.addGestureRecognizer(tapRec)
+        
         self.tableView.addSubview(overlay!)
     }
     
-    func searchBarTextDidEndEditing(searchBar: UISearchBar!)
-    {
+    func tappedOverlay() {
         self.view.endEditing(true)
-        navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true) //or animated: false
+        navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
         overlay?.removeFromSuperview()
     }
     
@@ -68,10 +71,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        clickedButton = titles[indexPath.row]
-        self.performSegueWithIdentifier("toChat", sender: self)
+        self.performSegueWithIdentifier("toChat", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -86,7 +87,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "toChat"){
             var chatc = segue.destinationViewController as ChatController
-            chatc.receivedTitle = clickedButton
+            var chatCell = sender as ChatCell
+            chatc.receivedTitle = chatCell.title.text
         }
     }
 }
