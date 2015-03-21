@@ -37,6 +37,9 @@ class ChatAanmakenController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func onTapMainView(sender: AnyObject) {
+        self.view.endEditing(true)
+    }
 
     /*
     // MARK: - Navigation

@@ -24,6 +24,7 @@ class SubcategorieController: UIViewController, UIPickerViewDelegate, UIPickerVi
     
     func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
     {
-        println("External Controller:" + String(row + 1))
+        pickerView.superview?.endEditing(true)
+        //Pickerview did select row
     }
 }

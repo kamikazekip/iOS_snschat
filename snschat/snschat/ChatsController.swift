@@ -46,6 +46,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
         
         searchBar.layer.borderColor = UIColor.clearColor().CGColor
+        searchBar.setShowsCancelButton(true, animated: true)
     
         overlay = UIView(frame: view.frame)
         overlay!.backgroundColor = UIColor.blackColor()
@@ -56,8 +57,13 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.tableView.addSubview(overlay!)
     }
     
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        tappedOverlay()
+    }
+    
     func tappedOverlay() {
         self.view.endEditing(true)
+        chatSearch.setShowsCancelButton(false, animated: true);
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
         overlay?.removeFromSuperview()
     }
