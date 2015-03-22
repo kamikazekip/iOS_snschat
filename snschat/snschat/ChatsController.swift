@@ -11,9 +11,9 @@ import UIKit
 class ChatsController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    var titles: [String] = ["Jip", "Erik", "Sven", "Gideon"]
-    var dates: [String] = ["Today", "Yesterday", "20-01-2015", "Tommorrow"]
-    var messages: [String] = ["Bericht 1 van Jip :) die heeeeeeeeeeel erg lang is, waarom weet ik ook niet, maar hij is in ieder geval heel erg lang", "Bericht 2 van Erik :)", "Bericht 3 van Sven :)", "Bericht 4 van Gideon :)"]
+    var titles: [String] = ["Bas", "Tom", "Sven", "Thomas"]
+    var dates: [String] = ["Vandaag", "Gisteren", "20-01-2015", "18:39"]
+    var messages: [String] = ["Pasje wordt geweigerd, Ik zal kijken waarom dit het geval is", "Heeft u geprobeerd het aan en uit te zetten?", "Weet u zeker dat de stekker er in zit?", "Ik ga mijn best voor u doen om dit op te lossen!"]
     
     @IBOutlet weak var chatSearch: UISearchBar!
     
