@@ -12,8 +12,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
 
     @IBOutlet weak var tableView: UITableView!
     var titles: [String] = ["Bas", "Tom", "Sven", "Thomas"]
-    var dates: [String] = ["Vandaag", "Gisteren", "20-01-2015", "18:39"]
-    var messages: [String] = ["Pasje wordt geweigerd, Ik zal kijken waarom dit het geval is", "Heeft u geprobeerd het aan en uit te zetten?", "Weet u zeker dat de stekker er in zit?", "Ik ga mijn best voor u doen om dit op te lossen!"]
+    var dates: [String] = ["07-04-2014", "Gisteren", "20-01-2015", "18:39"]
+    var messages: [String] = ["Wat is dan uw probleem?", "Heeft u geprobeerd het aan en uit te zetten?", "Weet u zeker dat de stekker er in zit?", "Ik ga mijn best voor u doen om dit op te lossen!"]
     
     @IBOutlet weak var chatSearch: UISearchBar!
     
@@ -95,6 +95,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             var chatc = segue.destinationViewController as ChatController
             var chatCell = sender as ChatCell
             chatc.receivedTitle = chatCell.title.text
+            chatc.hidesBottomBarWhenPushed = true;
         }
     }
 }

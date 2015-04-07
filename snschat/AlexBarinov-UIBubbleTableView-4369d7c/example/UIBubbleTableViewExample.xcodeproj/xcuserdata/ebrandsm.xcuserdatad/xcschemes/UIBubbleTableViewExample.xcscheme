@@ -14,24 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52E0862C1AB197CB00419BB2"
-               BuildableName = "snschat.app"
-               BlueprintName = "snschat"
-               ReferencedContainer = "container:snschat.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52E086411AB197CC00419BB2"
-               BuildableName = "snschatTests.xctest"
-               BlueprintName = "snschatTests"
-               ReferencedContainer = "container:snschat.xcodeproj">
+               BlueprintIdentifier = "76ED205D15BF096C00E186D3"
+               BuildableName = "UIBubbleTableViewExample.app"
+               BlueprintName = "UIBubbleTableViewExample"
+               ReferencedContainer = "container:UIBubbleTableViewExample.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,24 +28,14 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "52E086411AB197CC00419BB2"
-               BuildableName = "snschatTests.xctest"
-               BlueprintName = "snschatTests"
-               ReferencedContainer = "container:snschat.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52E0862C1AB197CB00419BB2"
-            BuildableName = "snschat.app"
-            BlueprintName = "snschat"
-            ReferencedContainer = "container:snschat.xcodeproj">
+            BlueprintIdentifier = "76ED205D15BF096C00E186D3"
+            BuildableName = "UIBubbleTableViewExample.app"
+            BlueprintName = "UIBubbleTableViewExample"
+            ReferencedContainer = "container:UIBubbleTableViewExample.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,10 +52,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52E0862C1AB197CB00419BB2"
-            BuildableName = "snschat.app"
-            BlueprintName = "snschat"
-            ReferencedContainer = "container:snschat.xcodeproj">
+            BlueprintIdentifier = "76ED205D15BF096C00E186D3"
+            BuildableName = "UIBubbleTableViewExample.app"
+            BlueprintName = "UIBubbleTableViewExample"
+            ReferencedContainer = "container:UIBubbleTableViewExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,10 +71,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "52E0862C1AB197CB00419BB2"
-            BuildableName = "snschat.app"
-            BlueprintName = "snschat"
-            ReferencedContainer = "container:snschat.xcodeproj">
+            BlueprintIdentifier = "76ED205D15BF096C00E186D3"
+            BuildableName = "UIBubbleTableViewExample.app"
+            BlueprintName = "UIBubbleTableViewExample"
+            ReferencedContainer = "container:UIBubbleTableViewExample.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
