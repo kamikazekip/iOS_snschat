@@ -56,10 +56,10 @@ class ChatController: UIViewController {
     {
         var cell: ChatBubble
         if (self.messages[indexPath.row].name == "Erik") {
-            cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleRight") as ChatBubble
+            cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleRight") as! ChatBubble
         }
         else {
-            cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleLeft") as ChatBubble
+            cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleLeft") as! ChatBubble
             cell.name.text = self.messages[indexPath.row].name
         }
         cell.message.text = self.messages[indexPath.row].message

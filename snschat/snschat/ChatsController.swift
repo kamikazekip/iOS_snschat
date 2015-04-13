@@ -83,7 +83,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell: ChatCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as ChatCell
+        var cell: ChatCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! ChatCell
         cell.title.text = titles[indexPath.row]
         cell.message.text = messages[indexPath.row]
         cell.date.text = dates[indexPath.row]
@@ -92,8 +92,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "toChat"){
-            var chatc = segue.destinationViewController as ChatController
-            var chatCell = sender as ChatCell
+            var chatc = segue.destinationViewController as! ChatController
+            var chatCell = sender as! ChatCell
             chatc.receivedTitle = chatCell.title.text
             chatc.hidesBottomBarWhenPushed = true;
         }
