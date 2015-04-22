@@ -14,6 +14,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     var titles: [String] = ["Bas", "Tom", "Sven", "Thomas"]
     var dates: [String] = ["07-04-2014", "Gisteren", "20-01-2015", "18:39"]
     var messages: [String] = ["Wat is dan uw probleem?", "Heeft u geprobeerd het aan en uit te zetten?", "Weet u zeker dat de stekker er in zit?", "Ik ga mijn best voor u doen om dit op te lossen!"]
+    var selectedIndex: NSIndexPath?
     
     @IBOutlet weak var chatSearch: UISearchBar!
     
@@ -31,6 +32,13 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         var nib = UINib(nibName: "ChatCell", bundle: nil)
         self.tableView.registerNib(nib, forCellReuseIdentifier: "cell")
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        if(selectedIndex != nil){
+            tableView.deselectRowAtIndexPath(selectedIndex!, animated: true)
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -41,7 +49,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.view.endEditing(true)
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar!)
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar)
     {
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
         
@@ -77,6 +85,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedIndex = indexPath
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.performSegueWithIdentifier("toChat", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
