@@ -18,9 +18,8 @@
 		526864531AB2F09200166FF4 /* ChatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526864521AB2F09200166FF4 /* ChatsController.swift */; };
 		526864541AB2F24D00166FF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E086361AB197CC00419BB2 /* Main.storyboard */; };
 		5268AEE91AE8D50900C4BEE5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5268AEE81AE8D50900C4BEE5 /* User.swift */; };
-		5268AEEB1AE8E91C00C4BEE5 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5268AEEA1AE8E91C00C4BEE5 /* Reachability.swift */; };
 		52E086331AB197CC00419BB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086321AB197CC00419BB2 /* AppDelegate.swift */; };
-		52E086351AB197CC00419BB2 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086341AB197CC00419BB2 /* LoginController.swift */; };
+		52E086351AB197CC00419BB2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086341AB197CC00419BB2 /* ViewController.swift */; };
 		52E0863A1AB197CC00419BB2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52E086391AB197CC00419BB2 /* Images.xcassets */; };
 		52E0863D1AB197CC00419BB2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E0863B1AB197CC00419BB2 /* LaunchScreen.xib */; };
 		52E086491AB197CC00419BB2 /* snschatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086481AB197CC00419BB2 /* snschatTests.swift */; };
@@ -53,11 +52,10 @@
 		526864501AB2EA4B00166FF4 /* WachtwoordVergetenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WachtwoordVergetenController.swift; sourceTree = "<group>"; };
 		526864521AB2F09200166FF4 /* ChatsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsController.swift; sourceTree = "<group>"; };
 		5268AEE81AE8D50900C4BEE5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		5268AEEA1AE8E91C00C4BEE5 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		52E0862D1AB197CC00419BB2 /* snschat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = snschat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52E086311AB197CC00419BB2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		52E086321AB197CC00419BB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		52E086341AB197CC00419BB2 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		52E086341AB197CC00419BB2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		52E086371AB197CC00419BB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		52E086391AB197CC00419BB2 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		52E0863C1AB197CC00419BB2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -94,7 +92,6 @@
 			isa = PBXGroup;
 			children = (
 				5268AEE81AE8D50900C4BEE5 /* User.swift */,
-				5268AEEA1AE8E91C00C4BEE5 /* Reachability.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -125,7 +122,7 @@
 				526550551ABAFDC0007C7CA3 /* ChatCell.xib */,
 				CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */,
 				52E086321AB197CC00419BB2 /* AppDelegate.swift */,
-				52E086341AB197CC00419BB2 /* LoginController.swift */,
+				52E086341AB197CC00419BB2 /* ViewController.swift */,
 				52E086361AB197CC00419BB2 /* Main.storyboard */,
 				52E086391AB197CC00419BB2 /* Images.xcassets */,
 				52E0863B1AB197CC00419BB2 /* LaunchScreen.xib */,
@@ -273,7 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				52E086351AB197CC00419BB2 /* LoginController.swift in Sources */,
+				52E086351AB197CC00419BB2 /* ViewController.swift in Sources */,
 				52FA2FC71AB32A7F00DF3B98 /* Chat.swift in Sources */,
 				52E086531AB1DBBE00419BB2 /* RegistrerenController.swift in Sources */,
 				526550561ABAFDC0007C7CA3 /* ChatCell.swift in Sources */,
@@ -284,7 +281,6 @@
 				EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */,
 				52184F8E1AD3DA84009E7F7D /* ChatBubble.swift in Sources */,
 				526864531AB2F09200166FF4 /* ChatsController.swift in Sources */,
-				5268AEEB1AE8E91C00C4BEE5 /* Reachability.swift in Sources */,
 				EC0CFFE81ABC5FBC00E264AE /* SubcategorieController.swift in Sources */,
 				5265504D1ABAEBCC007C7CA3 /* ChatAanmakenController.swift in Sources */,
 				EC0CFFE61ABC545700E264AE /* CategorieController.swift in Sources */,
