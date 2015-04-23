@@ -15,7 +15,6 @@ class User: NSObject, NSURLConnectionDelegate {
     var email: String!
     var password: String!
     var registerController: RegistrerenController?
-    var loginController: LoginController?
     var defaults = NSUserDefaults.standardUserDefaults()
     var server: String!
     
@@ -29,6 +28,7 @@ class User: NSObject, NSURLConnectionDelegate {
         self.registerController = registerController
         
         // create the request
+        println(server)
         let url = NSURL(string: "\(server)/api/users")
         let request = NSMutableURLRequest(URL: url!)
         request.HTTPMethod = "POST"
@@ -42,28 +42,11 @@ class User: NSObject, NSURLConnectionDelegate {
         }
     }
     
-    func login(loginController: LoginController!){
-        self.loginController = loginController
-        
-        // create the request
-        let url = NSURL(string: "\(server)/login")
-        let request = NSMutableURLRequest(URL: url!)
-        request.HTTPMethod = "POST"
-        let postString = "_id=" + self.email + "&password=" + self.password
-        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
-        lastOperation = "login"
-        if(Reachability.isConnectedToNetwork()){
-            let urlConnection = NSURLConnection(request: request, delegate: self)
-        } else {
-            loginController.error("U bent niet verbonden met het internet!")
-        }
-    }
-    
     //NSURLConnection delegate method
     func connection(connection: NSURLConnection, didFailWithError error: NSError) {
         println("Failed with error:\(error.localizedDescription)")
         if(lastOperation == "register" && error.localizedDescription == "The request timed out." ){
-            registerController!.error("De server is offline, probeer het later nog eens!")
+            registerController!.error("De server is offline")
         }
     }
     
@@ -86,22 +69,12 @@ class User: NSObject, NSURLConnectionDelegate {
             switch(lastOperation){
             case "register":
                 afterRegister()
-            case "login":
-                afterLogin()
             default:
                 println("Default case called in lastOperation switch")
             }
-        } else if (self.lastStatusCode == 409) {
-            if(lastOperation == "register"){
-                registerController!.error("Het e-mailadres is al in gebruik!")
-                registerController!.clearInputs()
-            }
         } else {
-            var errorMessage = "Er is iets misgegaan op de server, probeer het later nog eens!"
             if(lastOperation == "register"){
-                registerController!.error(errorMessage)
-            } else if (lastOperation == "login") {
-                loginController!.error(errorMessage)
+                registerController!.error("Er is iets misgegaan op de server, probeer het later nog eens!")
             }
             println(data)
             println(lastStatusCode)
@@ -111,11 +84,5 @@ class User: NSObject, NSURLConnectionDelegate {
     
     func afterRegister(){
         self.registerController?.afterRegister()
-    }
-    
-    func afterLogin() {
-        self.loginController?.afterLogin()
-        
-        
     }
 }

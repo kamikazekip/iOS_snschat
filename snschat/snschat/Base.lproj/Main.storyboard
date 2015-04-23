@@ -90,7 +90,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
-                                            <action selector="inloggen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rTH-nu-vs0"/>
+                                            <action selector="inloggen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ns9-VF-9uG"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q0I-hY-lMY">
@@ -116,6 +116,10 @@
                                             <segue destination="7QK-oa-4AV" kind="show" id="J4F-tn-gg0"/>
                                         </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vSg-mS-qms">
+                                        <rect key="frame" x="282" y="174" width="37" height="37"/>
+                                        <color key="color" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -125,8 +129,10 @@
                                     <constraint firstItem="zVy-19-u2s" firstAttribute="trailing" secondItem="BGH-dH-NVP" secondAttribute="trailingMargin" id="B1N-GX-Vzm"/>
                                     <constraint firstItem="H13-VX-Oeb" firstAttribute="leading" secondItem="4ZO-cX-RJr" secondAttribute="leading" id="EUR-bi-iZl"/>
                                     <constraint firstItem="4ZO-cX-RJr" firstAttribute="centerX" secondItem="BGH-dH-NVP" secondAttribute="centerX" id="ErC-Kc-utc"/>
+                                    <constraint firstItem="vSg-mS-qms" firstAttribute="centerX" secondItem="zVy-19-u2s" secondAttribute="centerX" id="G0U-kX-B0C"/>
                                     <constraint firstItem="Zfs-8a-Ck2" firstAttribute="centerY" secondItem="H13-VX-Oeb" secondAttribute="centerY" id="HsE-V4-m78"/>
                                     <constraint firstItem="q0I-hY-lMY" firstAttribute="trailing" secondItem="CPc-JF-COV" secondAttribute="trailing" id="IXl-TW-EHV"/>
+                                    <constraint firstItem="vSg-mS-qms" firstAttribute="top" secondItem="H13-VX-Oeb" secondAttribute="top" id="IeY-Ju-aGJ"/>
                                     <constraint firstItem="waZ-D9-Z6U" firstAttribute="leading" secondItem="q0I-hY-lMY" secondAttribute="leading" id="IsY-ys-6MJ"/>
                                     <constraint firstItem="d42-9v-ZSZ" firstAttribute="trailing" secondItem="zVy-19-u2s" secondAttribute="trailing" id="QbT-nC-wRH"/>
                                     <constraint firstItem="zVy-19-u2s" firstAttribute="leading" secondItem="H13-VX-Oeb" secondAttribute="leading" id="SBM-fE-x9Y"/>
@@ -164,8 +170,10 @@
                     </view>
                     <navigationItem key="navigationItem" title="Inloggen" id="5Xw-hf-7aD"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="vSg-mS-qms" id="c3f-vD-Uxd"/>
                         <outlet property="debugField" destination="q0I-hY-lMY" id="zi8-Hy-KRE"/>
                         <outlet property="emailField" destination="d42-9v-ZSZ" id="nhN-Ig-dYO"/>
+                        <outlet property="loginButton" destination="4ZO-cX-RJr" id="Q1h-Od-Ewf"/>
                         <outlet property="passwordField" destination="zVy-19-u2s" id="Ei2-hD-sGT"/>
                     </connections>
                 </viewController>
@@ -1066,6 +1074,7 @@
                         <outlet property="emailField" destination="c5s-3i-KGH" id="LmK-L0-1x6"/>
                         <outlet property="passwordField" destination="lHy-Hu-8UT" id="exk-sc-iZD"/>
                         <outlet property="passwordField2" destination="Mdk-lk-Cj4" id="UqZ-Ms-zgU"/>
+                        <outlet property="registerButton" destination="SHW-FV-h7D" id="2cT-gw-D8P"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMK-1Z-CLg" userLabel="First Responder" sceneMemberID="firstResponder"/>

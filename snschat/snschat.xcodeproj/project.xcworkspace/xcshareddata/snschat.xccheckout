@@ -7,14 +7,14 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>82D8842F-AA0F-42FF-A7E0-0DE4CCE22737</string>
 	<key>IDESourceControlProjectName</key>
-	<string>snschat</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>8BDD0AEC7BD5E36C774B9ABB049825E37022FF83</key>
 		<string>https://github.com/kamikazekip/iOS_snschat.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>snschat/snschat.xcodeproj</string>
+	<string>snschat/snschat.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>8BDD0AEC7BD5E36C774B9ABB049825E37022FF83</key>

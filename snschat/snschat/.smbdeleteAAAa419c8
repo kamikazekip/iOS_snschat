@@ -14,15 +14,11 @@ class LoginController: UIViewController {
     @IBOutlet weak var debugField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var loginButton: UIButton!
-    
     var defaults = NSUserDefaults.standardUserDefaults()
-    var alertHelper: AlertHelper!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        alertHelper = AlertHelper(viewController: self)
+        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,34 +56,7 @@ class LoginController: UIViewController {
             newController.loginController = self
         }
     }
-    @IBAction func inloggen(sender: UIButton) {
-        var email = emailField.text
-        var password = passwordField.text
-        if(email.isEmpty || password.isEmpty){
-            alertHelper.message("Oeps", message: "Alle velden moeten ingevuld zijn!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
-            passwordField.text = ""
-        }
-        else if(count(password) < 3 || count(email) < 3){
-            alertHelper.message("Oeps", message: "Email en wachtwoord moeten beide 3 of meer karakters bevatten!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
-        }
-        else {
-            self.loginButton.enabled = false
-            self.view.endEditing(true)
-            activityIndicator.hidden = false
-            var user = User(email: emailField.text, password: passwordField.text)
-            user.login(self);
-        }
-    }
-    
-    func error(text: String){
-        alertHelper.message("Oeps", message: text, style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
-        activityIndicator.hidden = true
-        self.loginButton.enabled = true
-    }
-    
-    func afterLogin() {
-        activityIndicator.hidden = true
-        self.loginButton.enabled = true
+    @IBAction func inloggen(sender: AnyObject) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
