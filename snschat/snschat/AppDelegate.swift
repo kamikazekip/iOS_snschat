@@ -48,7 +48,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             .stringByTrimmingCharactersInSet(characterSet)
             .stringByReplacingOccurrencesOfString(" ", withString: "") as String
         myDeviceToken = deviceTokenString
-        var subscribeDictionary : [[String:String!]] = [["user" : "iOS_Demo_2","type":"ios","token":myDeviceToken]]
+        println(myDeviceToken)
+        var subscribeDictionary : [String:String!] = ["user" : "iOS_Demo_2","type":"ios","token":"\(myDeviceToken)"]
         PostRequest.HTTPPostJSON("http://snspush.compuplex.nl/subscribe", jsonObj: subscribeDictionary, callback: { (data, error) -> Void in
             print(data)
         })
