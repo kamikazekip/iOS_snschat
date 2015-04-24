@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Socket_IO_Client_Swift
 
 class ChatController: UIViewController {
 
@@ -18,6 +19,8 @@ class ChatController: UIViewController {
     @IBOutlet weak var sendButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
+
+	let socket = SocketIOClient(socketURL: "localhost:10040")
     
     var messages: [Message]!
     
@@ -31,6 +34,16 @@ class ChatController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 160.0
+
+		/*
+		 *	Socket callbacks
+		 */
+
+		socket.on("connect") {data, ack in
+			println("socket connected")
+		}
+
+		socket.connect()
     }
     
     func keyboardWillShow(sender: NSNotification) {
