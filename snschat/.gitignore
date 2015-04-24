@@ -1,0 +1,10 @@
+# OSX rommel
+.DS_Store
+
+# Cocoapods crap
+Podfile.lock
+Pods/
+
+# Generated shit
+snschat.xcodeproj/*
+snschat.xcworkspace/
