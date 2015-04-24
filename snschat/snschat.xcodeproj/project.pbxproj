@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2BFD188844461A94EBE468E7 /* Pods_snschat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D521CE5AF8891F6335E9A3F /* Pods_snschat.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		52184F8E1AD3DA84009E7F7D /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52184F8D1AD3DA84009E7F7D /* ChatBubble.swift */; };
 		52184F901AD3DD91009E7F7D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52184F8F1AD3DD91009E7F7D /* Message.swift */; };
 		524A0C651AE90A95001CD22D /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A0C641AE90A95001CD22D /* AlertHelper.swift */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1D521CE5AF8891F6335E9A3F /* Pods_snschat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_snschat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52184F8D1AD3DA84009E7F7D /* ChatBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
 		52184F8F1AD3DD91009E7F7D /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		524A0C641AE90A95001CD22D /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
@@ -72,6 +74,8 @@
 		52E086481AB197CC00419BB2 /* snschatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = snschatTests.swift; sourceTree = "<group>"; };
 		52E086521AB1DBBE00419BB2 /* RegistrerenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrerenController.swift; sourceTree = "<group>"; };
 		52FA2FC61AB32A7F00DF3B98 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		7418B6B78800AB9359E0AA68 /* Pods-snschat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-snschat.release.xcconfig"; path = "Pods/Target Support Files/Pods-snschat/Pods-snschat.release.xcconfig"; sourceTree = "<group>"; };
+		91EE125091CBAF59E389F5AE /* Pods-snschat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-snschat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-snschat/Pods-snschat.debug.xcconfig"; sourceTree = "<group>"; };
 		CE3089061AEA73D700513566 /* GetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRequest.swift; sourceTree = "<group>"; };
 		CE3089071AEA73D700513566 /* HttpsendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpsendRequest.swift; sourceTree = "<group>"; };
 		CE3089081AEA73D700513566 /* PostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
@@ -87,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2BFD188844461A94EBE468E7 /* Pods_snschat.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,6 +105,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2EE94F8200694CB90BF86F8B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D521CE5AF8891F6335E9A3F /* Pods_snschat.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		5268AEE71AE8D4EB00C4BEE5 /* model */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +128,8 @@
 				52E0862F1AB197CC00419BB2 /* snschat */,
 				52E086451AB197CC00419BB2 /* snschatTests */,
 				52E0862E1AB197CC00419BB2 /* Products */,
+				58C94D84AC772A24EE07F8DF /* Pods */,
+				2EE94F8200694CB90BF86F8B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -184,6 +199,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		58C94D84AC772A24EE07F8DF /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				91EE125091CBAF59E389F5AE /* Pods-snschat.debug.xcconfig */,
+				7418B6B78800AB9359E0AA68 /* Pods-snschat.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		ECA8C16A1AEA686700A8CD46 /* Communication */ = {
 			isa = PBXGroup;
 			children = (
@@ -209,9 +233,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 52E0864C1AB197CC00419BB2 /* Build configuration list for PBXNativeTarget "snschat" */;
 			buildPhases = (
+				2FBB6AC681C61A51744BF025 /* Check Pods Manifest.lock */,
 				52E086291AB197CB00419BB2 /* Sources */,
 				52E0862A1AB197CB00419BB2 /* Frameworks */,
 				52E0862B1AB197CB00419BB2 /* Resources */,
+				6B3F1D40382654D1A7D19BF8 /* Embed Pods Frameworks */,
+				75E521692DC70B625D32E59A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -299,6 +326,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2FBB6AC681C61A51744BF025 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6B3F1D40382654D1A7D19BF8 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-snschat/Pods-snschat-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		75E521692DC70B625D32E59A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-snschat/Pods-snschat-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		52E086291AB197CB00419BB2 /* Sources */ = {
@@ -449,11 +524,12 @@
 		};
 		52E0864D1AB197CC00419BB2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 91EE125091CBAF59E389F5AE /* Pods-snschat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = snschat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = snschat;
 			};
@@ -461,11 +537,12 @@
 		};
 		52E0864E1AB197CC00419BB2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7418B6B78800AB9359E0AA68 /* Pods-snschat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = snschat/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = snschat;
 			};
