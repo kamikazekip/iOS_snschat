@@ -27,6 +27,10 @@
 		52E086491AB197CC00419BB2 /* snschatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086481AB197CC00419BB2 /* snschatTests.swift */; };
 		52E086531AB1DBBE00419BB2 /* RegistrerenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086521AB1DBBE00419BB2 /* RegistrerenController.swift */; };
 		52FA2FC71AB32A7F00DF3B98 /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FA2FC61AB32A7F00DF3B98 /* Chat.swift */; };
+		CE3089091AEA73D700513566 /* GetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3089061AEA73D700513566 /* GetRequest.swift */; };
+		CE30890A1AEA73D700513566 /* HttpsendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3089071AEA73D700513566 /* HttpsendRequest.swift */; };
+		CE30890B1AEA73D700513566 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3089081AEA73D700513566 /* PostRequest.swift */; };
+		CE30890D1AEA73ED00513566 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30890C1AEA73ED00513566 /* JSONParser.swift */; };
 		CEA371951AB9D3FD00A84CA6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */; };
 		EC0CFFE61ABC545700E264AE /* CategorieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE51ABC545700E264AE /* CategorieController.swift */; };
 		EC0CFFE81ABC5FBC00E264AE /* SubcategorieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE71ABC5FBC00E264AE /* SubcategorieController.swift */; };
@@ -68,6 +72,10 @@
 		52E086481AB197CC00419BB2 /* snschatTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = snschatTests.swift; sourceTree = "<group>"; };
 		52E086521AB1DBBE00419BB2 /* RegistrerenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrerenController.swift; sourceTree = "<group>"; };
 		52FA2FC61AB32A7F00DF3B98 /* Chat.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		CE3089061AEA73D700513566 /* GetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRequest.swift; sourceTree = "<group>"; };
+		CE3089071AEA73D700513566 /* HttpsendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpsendRequest.swift; sourceTree = "<group>"; };
+		CE3089081AEA73D700513566 /* PostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
+		CE30890C1AEA73ED00513566 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EC0CFFE51ABC545700E264AE /* CategorieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorieController.swift; sourceTree = "<group>"; };
 		EC0CFFE71ABC5FBC00E264AE /* SubcategorieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcategorieController.swift; sourceTree = "<group>"; };
@@ -122,6 +130,8 @@
 		52E0862F1AB197CC00419BB2 /* snschat */ = {
 			isa = PBXGroup;
 			children = (
+				ECA8C1711AEA68A000A8CD46 /* JSON Helpers */,
+				ECA8C16A1AEA686700A8CD46 /* Communication */,
 				5268AEE71AE8D4EB00C4BEE5 /* model */,
 				526550541ABAFDC0007C7CA3 /* ChatCell.swift */,
 				526550551ABAFDC0007C7CA3 /* ChatCell.xib */,
@@ -172,6 +182,24 @@
 				52E086471AB197CC00419BB2 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ECA8C16A1AEA686700A8CD46 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				CE3089061AEA73D700513566 /* GetRequest.swift */,
+				CE3089071AEA73D700513566 /* HttpsendRequest.swift */,
+				CE3089081AEA73D700513566 /* PostRequest.swift */,
+			);
+			name = Communication;
+			sourceTree = "<group>";
+		};
+		ECA8C1711AEA68A000A8CD46 /* JSON Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				CE30890C1AEA73ED00513566 /* JSONParser.swift */,
+			);
+			name = "JSON Helpers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,15 +307,19 @@
 			files = (
 				52E086351AB197CC00419BB2 /* LoginController.swift in Sources */,
 				52FA2FC71AB32A7F00DF3B98 /* Chat.swift in Sources */,
+				CE30890A1AEA73D700513566 /* HttpsendRequest.swift in Sources */,
 				52E086531AB1DBBE00419BB2 /* RegistrerenController.swift in Sources */,
 				526550561ABAFDC0007C7CA3 /* ChatCell.swift in Sources */,
 				5268AEE91AE8D50900C4BEE5 /* User.swift in Sources */,
+				CE3089091AEA73D700513566 /* GetRequest.swift in Sources */,
 				52E086331AB197CC00419BB2 /* AppDelegate.swift in Sources */,
 				524A0C651AE90A95001CD22D /* AlertHelper.swift in Sources */,
 				5265504B1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift in Sources */,
 				526864511AB2EA4B00166FF4 /* WachtwoordVergetenController.swift in Sources */,
+				CE30890B1AEA73D700513566 /* PostRequest.swift in Sources */,
 				EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */,
 				52184F8E1AD3DA84009E7F7D /* ChatBubble.swift in Sources */,
+				CE30890D1AEA73ED00513566 /* JSONParser.swift in Sources */,
 				526864531AB2F09200166FF4 /* ChatsController.swift in Sources */,
 				5268AEEB1AE8E91C00C4BEE5 /* Reachability.swift in Sources */,
 				EC0CFFE81ABC5FBC00E264AE /* SubcategorieController.swift in Sources */,
