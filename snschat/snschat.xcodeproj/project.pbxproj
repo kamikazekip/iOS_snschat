@@ -31,6 +31,10 @@
 		EC0CFFE61ABC545700E264AE /* CategorieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE51ABC545700E264AE /* CategorieController.swift */; };
 		EC0CFFE81ABC5FBC00E264AE /* SubcategorieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE71ABC5FBC00E264AE /* SubcategorieController.swift */; };
 		EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE91ABC669D00E264AE /* ChatController.swift */; };
+		ECA8C16C1AEA688500A8CD46 /* GetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8C16B1AEA688500A8CD46 /* GetRequest.swift */; };
+		ECA8C16F1AEA689A00A8CD46 /* HttpsendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8C16D1AEA689A00A8CD46 /* HttpsendRequest.swift */; };
+		ECA8C1701AEA689A00A8CD46 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8C16E1AEA689A00A8CD46 /* PostRequest.swift */; };
+		ECA8C1731AEA68BE00A8CD46 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA8C1721AEA68BE00A8CD46 /* JSONParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +76,10 @@
 		EC0CFFE51ABC545700E264AE /* CategorieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorieController.swift; sourceTree = "<group>"; };
 		EC0CFFE71ABC5FBC00E264AE /* SubcategorieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcategorieController.swift; sourceTree = "<group>"; };
 		EC0CFFE91ABC669D00E264AE /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
+		ECA8C16B1AEA688500A8CD46 /* GetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GetRequest.swift; path = "../../../../Downloads/TrainSpot-master/SpotApp/GetRequest.swift"; sourceTree = "<group>"; };
+		ECA8C16D1AEA689A00A8CD46 /* HttpsendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HttpsendRequest.swift; path = "../../../../Downloads/TrainSpot-master/SpotApp/HttpsendRequest.swift"; sourceTree = "<group>"; };
+		ECA8C16E1AEA689A00A8CD46 /* PostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostRequest.swift; path = "../../../../Downloads/TrainSpot-master/SpotApp/PostRequest.swift"; sourceTree = "<group>"; };
+		ECA8C1721AEA68BE00A8CD46 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JSONParser.swift; path = "../../../../Downloads/TrainSpot-master/SpotApp/JSONParser.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +130,8 @@
 		52E0862F1AB197CC00419BB2 /* snschat */ = {
 			isa = PBXGroup;
 			children = (
+				ECA8C1711AEA68A000A8CD46 /* JSON Helpers */,
+				ECA8C16A1AEA686700A8CD46 /* Communication */,
 				5268AEE71AE8D4EB00C4BEE5 /* model */,
 				526550541ABAFDC0007C7CA3 /* ChatCell.swift */,
 				526550551ABAFDC0007C7CA3 /* ChatCell.xib */,
@@ -172,6 +182,24 @@
 				52E086471AB197CC00419BB2 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		ECA8C16A1AEA686700A8CD46 /* Communication */ = {
+			isa = PBXGroup;
+			children = (
+				ECA8C16B1AEA688500A8CD46 /* GetRequest.swift */,
+				ECA8C16D1AEA689A00A8CD46 /* HttpsendRequest.swift */,
+				ECA8C16E1AEA689A00A8CD46 /* PostRequest.swift */,
+			);
+			name = Communication;
+			sourceTree = "<group>";
+		};
+		ECA8C1711AEA68A000A8CD46 /* JSON Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				ECA8C1721AEA68BE00A8CD46 /* JSONParser.swift */,
+			);
+			name = "JSON Helpers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52E086351AB197CC00419BB2 /* LoginController.swift in Sources */,
+				ECA8C1701AEA689A00A8CD46 /* PostRequest.swift in Sources */,
 				52FA2FC71AB32A7F00DF3B98 /* Chat.swift in Sources */,
 				52E086531AB1DBBE00419BB2 /* RegistrerenController.swift in Sources */,
 				526550561ABAFDC0007C7CA3 /* ChatCell.swift in Sources */,
@@ -286,11 +315,14 @@
 				524A0C651AE90A95001CD22D /* AlertHelper.swift in Sources */,
 				5265504B1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift in Sources */,
 				526864511AB2EA4B00166FF4 /* WachtwoordVergetenController.swift in Sources */,
+				ECA8C16C1AEA688500A8CD46 /* GetRequest.swift in Sources */,
 				EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */,
 				52184F8E1AD3DA84009E7F7D /* ChatBubble.swift in Sources */,
 				526864531AB2F09200166FF4 /* ChatsController.swift in Sources */,
+				ECA8C1731AEA68BE00A8CD46 /* JSONParser.swift in Sources */,
 				5268AEEB1AE8E91C00C4BEE5 /* Reachability.swift in Sources */,
 				EC0CFFE81ABC5FBC00E264AE /* SubcategorieController.swift in Sources */,
+				ECA8C16F1AEA689A00A8CD46 /* HttpsendRequest.swift in Sources */,
 				5265504D1ABAEBCC007C7CA3 /* ChatAanmakenController.swift in Sources */,
 				EC0CFFE61ABC545700E264AE /* CategorieController.swift in Sources */,
 				52184F901AD3DD91009E7F7D /* Message.swift in Sources */,

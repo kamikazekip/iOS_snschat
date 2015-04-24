@@ -15,7 +15,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     var dates: [String] = ["07-04-2014", "Gisteren", "20-01-2015", "18:39"]
     var messages: [String] = ["Wat is dan uw probleem?", "Heeft u geprobeerd het aan en uit te zetten?", "Weet u zeker dat de stekker er in zit?", "Ik ga mijn best voor u doen om dit op te lossen!"]
     var selectedIndex: NSIndexPath?
-    
+    var defaults = NSUserDefaults.standardUserDefaults()
     @IBOutlet weak var chatSearch: UISearchBar!
     
     var overlay: UIView?
@@ -27,6 +27,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         tapRec.addTarget(self, action: "tappedOverlay")
         
         self.performSegueWithIdentifier("toLogin", sender: self)
+        defaults.setBool(false, forKey: "fromLogin");
+        defaults.synchronize()
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
         var nib = UINib(nibName: "ChatCell", bundle: nil)
@@ -37,6 +39,16 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         super.viewWillAppear(true)
         if(selectedIndex != nil){
             tableView.deselectRowAtIndexPath(selectedIndex!, animated: true)
+        }
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if(defaults.boolForKey("fromLogin") == true){
+            println("HALLO")
+            var type = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound
+            var setting = UIUserNotificationSettings(forTypes: type, categories: nil)
+            UIApplication.sharedApplication().registerUserNotificationSettings(setting)
+            UIApplication.sharedApplication().registerForRemoteNotifications()
         }
     }
 

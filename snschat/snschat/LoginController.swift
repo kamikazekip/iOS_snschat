@@ -88,6 +88,7 @@ class LoginController: UIViewController {
     func afterLogin() {
         activityIndicator.hidden = true
         self.loginButton.enabled = true
+        defaults.setBool(true, forKey: "fromLogin")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
