@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ymC-Gv-7Vl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ymC-Gv-7Vl">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -485,73 +485,16 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qg1-y0-3Kf">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <subviews>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kE8-xR-jjm">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                        <gestureRecognizers/>
-                                        <items>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="tXi-xl-0IF"/>
-                                            <barButtonItem title="Categorie" id="g6c-Fj-IyU">
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <connections>
-                                                    <action selector="onTapMainView:" destination="tKx-Ge-YB6" id="ovG-rc-HQL"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="cOe-2v-FW4"/>
-                                        </items>
-                                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="v6D-us-u5t" appends="YES" id="icZ-jK-d6u"/>
-                                        </connections>
-                                    </toolbar>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IaC-E4-9Le">
-                                        <rect key="frame" x="0.0" y="44" width="320" height="162"/>
-                                    </pickerView>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="orb-Yc-Tfb">
-                                        <rect key="frame" x="0.0" y="206" width="320" height="44"/>
-                                        <gestureRecognizers/>
-                                        <items>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="pby-5S-3qc"/>
-                                            <barButtonItem title="Subcategorie" id="McJ-Gj-hsB">
-                                                <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                <connections>
-                                                    <action selector="onTapMainView:" destination="tKx-Ge-YB6" id="kWB-Rp-hf8"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="tuw-IK-3SK"/>
-                                        </items>
-                                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="zNZ-ki-vSo" appends="YES" id="LtI-R4-aCz"/>
-                                        </connections>
-                                    </toolbar>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gqA-rW-S1K">
-                                        <rect key="frame" x="8" y="465" width="304" height="30"/>
+                                        <rect key="frame" x="8" y="171" width="584" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="635-bp-lvZ">
-                                        <rect key="frame" x="0.0" y="412" width="320" height="44"/>
-                                        <gestureRecognizers/>
-                                        <items>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="5tX-Rm-bva"/>
-                                            <barButtonItem title="Titel" id="dSO-Vi-ZOg">
-                                                <connections>
-                                                    <action selector="onTapMainView:" destination="tKx-Ge-YB6" id="V87-J9-ng4"/>
-                                                </connections>
-                                            </barButtonItem>
-                                            <barButtonItem style="plain" systemItem="flexibleSpace" id="ZPy-fH-pHF"/>
-                                        </items>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <outletCollection property="gestureRecognizers" destination="jLs-qZ-Eha" appends="YES" id="mCO-Ka-f56"/>
-                                        </connections>
-                                    </toolbar>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OJ1-u2-8wd">
-                                        <rect key="frame" x="8" y="503" width="304" height="41"/>
+                                        <rect key="frame" x="8" y="214" width="584" height="41"/>
                                         <color key="backgroundColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="41" id="gdK-n5-Tgc"/>
+                                            <constraint firstAttribute="height" constant="41" id="UXN-RB-kER"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal" title="Chat aanmaken">
@@ -564,65 +507,82 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="faG-Vi-rlS">
-                                        <rect key="frame" x="0.0" y="250" width="320" height="162"/>
-                                        <gestureRecognizers/>
-                                    </pickerView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Categorie:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9AK-1V-POq">
+                                        <rect key="frame" x="8" y="8" width="80" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VOC-H8-3Ag">
+                                        <rect key="frame" x="8" y="37" width="584" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subcategorie:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gSy-KO-thC">
+                                        <rect key="frame" x="8" y="75" width="107" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titel:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lKF-cX-mJp">
+                                        <rect key="frame" x="8" y="142" width="37" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C4a-GU-H5n">
+                                        <rect key="frame" x="8" y="104" width="584" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="orb-Yc-Tfb" firstAttribute="top" secondItem="IaC-E4-9Le" secondAttribute="bottom" id="4h7-vf-3Gl"/>
-                                    <constraint firstItem="OJ1-u2-8wd" firstAttribute="trailing" secondItem="gqA-rW-S1K" secondAttribute="trailing" id="6Th-TW-6Yv"/>
-                                    <constraint firstItem="faG-Vi-rlS" firstAttribute="leading" secondItem="635-bp-lvZ" secondAttribute="leading" id="6Zn-iM-ei6"/>
-                                    <constraint firstItem="gqA-rW-S1K" firstAttribute="top" secondItem="635-bp-lvZ" secondAttribute="bottom" constant="9" id="8P6-LW-FX8"/>
-                                    <constraint firstItem="orb-Yc-Tfb" firstAttribute="leading" secondItem="IaC-E4-9Le" secondAttribute="leading" id="9lV-Iq-Gfd"/>
-                                    <constraint firstItem="faG-Vi-rlS" firstAttribute="trailing" secondItem="635-bp-lvZ" secondAttribute="trailing" id="DR1-Px-6SQ"/>
-                                    <constraint firstItem="635-bp-lvZ" firstAttribute="top" secondItem="faG-Vi-rlS" secondAttribute="bottom" id="QY2-ca-2Qd"/>
-                                    <constraint firstItem="orb-Yc-Tfb" firstAttribute="trailing" secondItem="IaC-E4-9Le" secondAttribute="trailing" id="T4p-2x-XUA"/>
-                                    <constraint firstAttribute="trailing" secondItem="faG-Vi-rlS" secondAttribute="trailing" id="TXk-TX-Trt"/>
-                                    <constraint firstItem="IaC-E4-9Le" firstAttribute="leading" secondItem="kE8-xR-jjm" secondAttribute="leading" id="Tbk-KL-cyL"/>
-                                    <constraint firstItem="kE8-xR-jjm" firstAttribute="trailing" secondItem="IaC-E4-9Le" secondAttribute="trailing" id="bBG-Gs-NSm"/>
-                                    <constraint firstItem="635-bp-lvZ" firstAttribute="centerX" secondItem="gqA-rW-S1K" secondAttribute="centerX" id="ddT-Vt-dKi"/>
-                                    <constraint firstItem="OJ1-u2-8wd" firstAttribute="leading" secondItem="qg1-y0-3Kf" secondAttribute="leadingMargin" id="fhg-O9-YH1"/>
-                                    <constraint firstItem="OJ1-u2-8wd" firstAttribute="top" secondItem="gqA-rW-S1K" secondAttribute="bottom" constant="8" symbolic="YES" id="iec-sf-4Tf"/>
-                                    <constraint firstItem="kE8-xR-jjm" firstAttribute="leading" secondItem="qg1-y0-3Kf" secondAttribute="leading" id="kJQ-3N-iMx"/>
-                                    <constraint firstItem="kE8-xR-jjm" firstAttribute="top" secondItem="qg1-y0-3Kf" secondAttribute="top" id="kn6-LW-mKU"/>
-                                    <constraint firstItem="faG-Vi-rlS" firstAttribute="top" secondItem="orb-Yc-Tfb" secondAttribute="bottom" id="nVW-aS-ens"/>
-                                    <constraint firstAttribute="bottom" secondItem="OJ1-u2-8wd" secondAttribute="bottom" constant="24" id="vDS-pD-R84"/>
-                                    <constraint firstItem="gqA-rW-S1K" firstAttribute="leading" secondItem="OJ1-u2-8wd" secondAttribute="leading" id="vlK-Ac-Axo"/>
-                                    <constraint firstItem="IaC-E4-9Le" firstAttribute="top" secondItem="kE8-xR-jjm" secondAttribute="bottom" id="w08-tf-zhB"/>
-                                    <constraint firstItem="faG-Vi-rlS" firstAttribute="leading" secondItem="orb-Yc-Tfb" secondAttribute="leading" id="wZg-w0-46a"/>
+                                    <constraint firstItem="9AK-1V-POq" firstAttribute="leading" secondItem="qg1-y0-3Kf" secondAttribute="leadingMargin" id="0Nu-zI-yUo"/>
+                                    <constraint firstItem="9AK-1V-POq" firstAttribute="top" secondItem="qg1-y0-3Kf" secondAttribute="topMargin" id="62H-mV-zb1"/>
+                                    <constraint firstItem="VOC-H8-3Ag" firstAttribute="top" secondItem="9AK-1V-POq" secondAttribute="bottom" constant="8" symbolic="YES" id="6J2-EF-b7b"/>
+                                    <constraint firstItem="C4a-GU-H5n" firstAttribute="top" secondItem="gSy-KO-thC" secondAttribute="bottom" constant="8" symbolic="YES" id="7PR-dR-Eoe"/>
+                                    <constraint firstItem="OJ1-u2-8wd" firstAttribute="top" secondItem="gqA-rW-S1K" secondAttribute="bottom" constant="13" id="97T-dg-6GI"/>
+                                    <constraint firstItem="gqA-rW-S1K" firstAttribute="leading" secondItem="OJ1-u2-8wd" secondAttribute="leading" id="E4f-VA-ClB"/>
+                                    <constraint firstItem="gSy-KO-thC" firstAttribute="top" secondItem="VOC-H8-3Ag" secondAttribute="bottom" constant="8" symbolic="YES" id="GO9-Tv-KRl"/>
+                                    <constraint firstItem="gSy-KO-thC" firstAttribute="leading" secondItem="C4a-GU-H5n" secondAttribute="leading" id="O7b-Co-VYn"/>
+                                    <constraint firstItem="VOC-H8-3Ag" firstAttribute="trailing" secondItem="qg1-y0-3Kf" secondAttribute="trailingMargin" id="TSa-WB-G0F"/>
+                                    <constraint firstItem="C4a-GU-H5n" firstAttribute="trailing" secondItem="VOC-H8-3Ag" secondAttribute="trailing" id="Txh-qH-SXT"/>
+                                    <constraint firstItem="9AK-1V-POq" firstAttribute="leading" secondItem="VOC-H8-3Ag" secondAttribute="leading" id="Yhn-P7-e5w"/>
+                                    <constraint firstAttribute="bottom" secondItem="OJ1-u2-8wd" secondAttribute="bottom" constant="345" id="auT-I8-HJF"/>
+                                    <constraint firstItem="gqA-rW-S1K" firstAttribute="top" secondItem="lKF-cX-mJp" secondAttribute="bottom" constant="8" symbolic="YES" id="bQ6-xj-rTO"/>
+                                    <constraint firstItem="gqA-rW-S1K" firstAttribute="leading" secondItem="lKF-cX-mJp" secondAttribute="leading" id="baj-C1-isS"/>
+                                    <constraint firstItem="C4a-GU-H5n" firstAttribute="leading" secondItem="lKF-cX-mJp" secondAttribute="leading" id="deP-qq-OpZ"/>
+                                    <constraint firstItem="gqA-rW-S1K" firstAttribute="trailing" secondItem="C4a-GU-H5n" secondAttribute="trailing" id="dib-Z4-Trk"/>
+                                    <constraint firstItem="gSy-KO-thC" firstAttribute="leading" secondItem="VOC-H8-3Ag" secondAttribute="leading" id="g58-jC-ajz"/>
+                                    <constraint firstItem="lKF-cX-mJp" firstAttribute="top" secondItem="C4a-GU-H5n" secondAttribute="bottom" constant="8" symbolic="YES" id="krI-1N-Ida"/>
+                                    <constraint firstItem="OJ1-u2-8wd" firstAttribute="trailing" secondItem="gqA-rW-S1K" secondAttribute="trailing" id="rbL-8i-WAj"/>
+                                    <constraint firstItem="gqA-rW-S1K" firstAttribute="centerX" secondItem="qg1-y0-3Kf" secondAttribute="centerX" id="v3X-6D-FIz"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="VXJ-9n-4g5" appends="YES" id="T2K-s4-jP7"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="qg1-y0-3Kf" firstAttribute="top" secondItem="eqN-qh-cuf" secondAttribute="top" id="5Z0-FR-GMk"/>
-                            <constraint firstAttribute="trailing" secondItem="qg1-y0-3Kf" secondAttribute="trailing" id="FKF-8t-UYB"/>
-                            <constraint firstItem="qg1-y0-3Kf" firstAttribute="bottom" secondItem="4nR-q3-HZe" secondAttribute="top" id="LlE-Xf-NQt"/>
-                            <constraint firstItem="qg1-y0-3Kf" firstAttribute="leading" secondItem="eqN-qh-cuf" secondAttribute="leading" id="cii-UZ-frj"/>
+                            <constraint firstAttribute="trailing" secondItem="qg1-y0-3Kf" secondAttribute="trailing" id="AyU-0I-hSV"/>
+                            <constraint firstItem="qg1-y0-3Kf" firstAttribute="bottom" secondItem="4nR-q3-HZe" secondAttribute="top" id="EhV-57-271"/>
+                            <constraint firstItem="qg1-y0-3Kf" firstAttribute="leading" secondItem="eqN-qh-cuf" secondAttribute="leading" id="SBh-1e-qNJ"/>
+                            <constraint firstItem="qg1-y0-3Kf" firstAttribute="top" secondItem="eqN-qh-cuf" secondAttribute="top" id="sUK-id-4BA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Chat aanmaken" id="UHG-hN-ghz"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="categoryPicker" destination="IaC-E4-9Le" id="KLX-8G-scl"/>
-                        <outlet property="subcategoryPicker" destination="faG-Vi-rlS" id="ScM-Y3-WyC"/>
+                        <outlet property="categoryField" destination="VOC-H8-3Ag" id="WtZ-Aj-mep"/>
+                        <outlet property="subcategoryField" destination="C4a-GU-H5n" id="fik-oP-hah"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eQ0-oM-O0e" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="jLs-qZ-Eha">
+                <tapGestureRecognizer id="VXJ-9n-4g5">
                     <connections>
-                        <action selector="onTapMainView:" destination="tKx-Ge-YB6" id="VKU-ID-xjZ"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="zNZ-ki-vSo">
-                    <connections>
-                        <action selector="onTapMainView:" destination="tKx-Ge-YB6" id="1Mb-sK-uTs"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer id="v6D-us-u5t">
-                    <connections>
-                        <action selector="onTapMainView:" destination="tKx-Ge-YB6" id="n9F-ab-fhG"/>
+                        <action selector="onTapMainView:" destination="tKx-Ge-YB6" id="VO0-d0-ZSM"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>

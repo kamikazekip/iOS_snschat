@@ -128,6 +128,10 @@ class User: NSObject, NSURLConnectionDelegate {
                 registerController!.error("Het e-mailadres is al in gebruik!")
                 registerController!.clearInputs()
             }
+        } else if (self.lastStatusCode == 403) {
+            if(lastOperation == "login"){
+                loginController!.error("Foute e-mail en wachtwoord combinatie!")
+            }
         } else {
             var errorMessage = "Er is iets misgegaan op de server, probeer het later nog eens!"
             if(lastOperation == "register"){
@@ -177,10 +181,13 @@ class User: NSObject, NSURLConnectionDelegate {
 		for role: JSON in json["roles"].arrayValue {
 			self.roles.append(role.stringValue)
 		}
-        println(json)
+        
+        NSUserDefaults.standardUserDefaults().setObject(self._id, forKey: "userID")
+        
+        /*println(json)
         println(self._id)
         println(self.lastLogin)
         println(self.rooms)
-        println(self.roles)
+        println(self.roles)*/
 	}
 }

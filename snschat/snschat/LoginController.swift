@@ -63,7 +63,7 @@ class LoginController: UIViewController {
 
         if(segue.identifier == "inloggenKnop"){
             self.navigationItem.title = "Uitloggen"
-
+  
 			// User doorgeven
 			let chatsController = segue.destinationViewController as! ChatsController
 			chatsController.setCurrentUser(self.user!)
@@ -109,6 +109,7 @@ class LoginController: UIViewController {
         /* TODO
         geef self.chatsController VOOR de segue hieronder alle properties die nodig zijn!
         */
+        self.chatsController.user = self.user
         
         
         self.dismissViewControllerAnimated(true, completion: nil)

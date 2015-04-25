@@ -22,7 +22,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     var overlay: UIView?
     let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
 
-	var user:User?
+	var user: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +51,13 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             var setting = UIUserNotificationSettings(forTypes: type, categories: nil)
             UIApplication.sharedApplication().registerUserNotificationSettings(setting)
             UIApplication.sharedApplication().registerForRemoteNotifications()
+        }
+        if (self.user != nil) {
+            println("rooms:")
+            for room in self.user!.rooms {
+                println(room)
+            }
+            
         }
     }
 
