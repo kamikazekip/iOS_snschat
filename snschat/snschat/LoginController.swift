@@ -15,6 +15,8 @@ class LoginController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loginButton: UIButton!
+    var text: String?
+    var chatsController: ChatsController!
 
 	var user: User?
     
@@ -103,6 +105,12 @@ class LoginController: UIViewController {
         activityIndicator.hidden = true
         self.loginButton.enabled = true
         defaults.setBool(true, forKey: "fromLogin")
+        
+        /* TODO
+        geef self.chatsController VOOR de segue hieronder alle properties die nodig zijn!
+        */
+        
+        
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

@@ -115,16 +115,6 @@ class User: NSObject, NSURLConnectionDelegate {
     func connectionDidFinishLoading(connection: NSURLConnection!) {
 
         if(self.lastStatusCode == 200){
-
-			// Converteer result naar json
-			let json = JSON(data: self.data)
-
-			// Functie om de properties te vullen dmv een JSON object. Reden
-			// voor deze functie is omdat hij op meerdere plekken gebruikt
-			// wordt. Na het opruimen van deze class is het misschien niet
-			// meer nodig.
-			fillProps(json)
-
             switch(lastOperation){
             case "register":
                 afterRegister()
@@ -155,6 +145,14 @@ class User: NSObject, NSURLConnectionDelegate {
     }
     
     func afterLogin() {
+        // Converteer result naar json
+        let json = JSON(data: self.data)
+        
+        // Functie om de properties te vullen dmv een JSON object. Reden
+        // voor deze functie is omdat hij op meerdere plekken gebruikt
+        // wordt. Na het opruimen van deze class is het misschien niet
+        // meer nodig.
+        fillProps(json)
         self.loginController?.afterLogin()
     }
 
@@ -179,5 +177,10 @@ class User: NSObject, NSURLConnectionDelegate {
 		for role: JSON in json["roles"].arrayValue {
 			self.roles.append(role.stringValue)
 		}
+        println(json)
+        println(self._id)
+        println(self.lastLogin)
+        println(self.rooms)
+        println(self.roles)
 	}
 }

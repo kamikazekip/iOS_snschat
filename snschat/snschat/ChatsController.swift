@@ -138,6 +138,10 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             var chatCell = sender as! ChatCell
             chatc.receivedTitle = chatCell.title.text
             chatc.hidesBottomBarWhenPushed = true;
+        } else if(segue.identifier == "toLogin"){
+            var loginNavController: UINavigationController = segue.destinationViewController as! UINavigationController
+            var loginController: LoginController = loginNavController.viewControllers.first as! LoginController
+            loginController.chatsController = self
         }
     }
 
