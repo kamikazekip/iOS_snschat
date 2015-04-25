@@ -7,8 +7,16 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class User: NSObject, NSURLConnectionDelegate {
+
+	// Properties
+	var _id: String?
+	var lastLogin: String?
+	var roles: [String]
+	var rooms: [Room]
+
     var lastStatusCode = 1
     var data: NSMutableData = NSMutableData()
     var lastOperation: String!
@@ -23,7 +31,24 @@ class User: NSObject, NSURLConnectionDelegate {
         self.email = email
         self.password = password
         server = defaults.valueForKey("server") as! String
+
+		self.roles = [String]()
+		self.rooms = [Room]()
     }
+
+	init (jsonUser user: JSON) {
+		self.roles = [String]()
+		self.rooms = [Room]()
+
+		// super.init() hier omdat ie anders gaat janken. Rare shit
+		// Laat even weten als je een oplossing vind, dit is lelijk
+		// en ik ben benieuwd.
+		super.init()
+
+		// Vul die props. Beetje lelijke functie maar komt doordat ie
+		// op meerdere plekken gebruikt moet worden atm.
+		self.fillProps(user)
+	}
     
     func register(registerController: RegistrerenController!){
         self.registerController = registerController
@@ -44,14 +69,21 @@ class User: NSObject, NSURLConnectionDelegate {
     
     func login(loginController: LoginController!){
         self.loginController = loginController
-        
-        // create the request
-        let url = NSURL(string: "\(server)/login")
-        let request = NSMutableURLRequest(URL: url!)
+
+		// create the request
+        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/login")!)
+
+		// Set headers
+		request.setValue("application/json", forHTTPHeaderField:"Accept")
+		request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
+
+		// Set data
         request.HTTPMethod = "POST"
-        let postString = "_id=" + self.email + "&password=" + self.password
+        let postString = "username=" + self.email + "&password=" + self.password
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+
         lastOperation = "login"
+
         if(Reachability.isConnectedToNetwork()){
             let urlConnection = NSURLConnection(request: request, delegate: self)
         } else {
@@ -76,13 +108,23 @@ class User: NSObject, NSURLConnectionDelegate {
     
     //NSURLConnection delegate method
     func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
-        //Append incoming data
         self.data.appendData(data)
     }
     
     //NSURLConnection delegate method
     func connectionDidFinishLoading(connection: NSURLConnection!) {
+
         if(self.lastStatusCode == 200){
+
+			// Converteer result naar json
+			let json = JSON(data: self.data)
+
+			// Functie om de properties te vullen dmv een JSON object. Reden
+			// voor deze functie is omdat hij op meerdere plekken gebruikt
+			// wordt. Na het opruimen van deze class is het misschien niet
+			// meer nodig.
+			fillProps(json)
+
             switch(lastOperation){
             case "register":
                 afterRegister()
@@ -103,7 +145,6 @@ class User: NSObject, NSURLConnectionDelegate {
             } else if (lastOperation == "login") {
                 loginController!.error(errorMessage)
             }
-            println(data)
             println(lastStatusCode)
             println("Something went wrong, statusCode wasn't 200")
         }
@@ -115,7 +156,28 @@ class User: NSObject, NSURLConnectionDelegate {
     
     func afterLogin() {
         self.loginController?.afterLogin()
-        
-        
     }
+
+	func fillProps(json: JSON) {
+
+		// Vul _id
+		if let username = json["_id"].string {
+			self._id = username
+		}
+
+		// Vul lastlogin
+		if let lastLogin = json["lastLogin"].string {
+			self.lastLogin = lastLogin
+		}
+
+		// Vul rooms
+		for room: JSON in json["rooms"].arrayValue {
+			self.rooms.append(Room(jsonRoom: room))
+		}
+
+		// Vul roles
+		for role: JSON in json["roles"].arrayValue {
+			self.roles.append(role.stringValue)
+		}
+	}
 }

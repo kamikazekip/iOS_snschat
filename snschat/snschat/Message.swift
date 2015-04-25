@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class Message {
     
@@ -19,5 +20,8 @@ class Message {
         self.date = date
         self.message = message
     }
-    
+
+	init(message: JSON) {
+		
+	}
 }

@@ -36,6 +36,7 @@
 		EC0CFFE61ABC545700E264AE /* CategorieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE51ABC545700E264AE /* CategorieController.swift */; };
 		EC0CFFE81ABC5FBC00E264AE /* SubcategorieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE71ABC5FBC00E264AE /* SubcategorieController.swift */; };
 		EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE91ABC669D00E264AE /* ChatController.swift */; };
+		F371D2461AEB0CE600E85BDF /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = F371D2451AEB0CE600E85BDF /* Room.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		EC0CFFE51ABC545700E264AE /* CategorieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorieController.swift; sourceTree = "<group>"; };
 		EC0CFFE71ABC5FBC00E264AE /* SubcategorieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcategorieController.swift; sourceTree = "<group>"; };
 		EC0CFFE91ABC669D00E264AE /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
+		F371D2451AEB0CE600E85BDF /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +118,10 @@
 		5268AEE71AE8D4EB00C4BEE5 /* model */ = {
 			isa = PBXGroup;
 			children = (
+				52184F8F1AD3DD91009E7F7D /* Message.swift */,
 				5268AEE81AE8D50900C4BEE5 /* User.swift */,
 				5268AEEA1AE8E91C00C4BEE5 /* Reachability.swift */,
+				F371D2451AEB0CE600E85BDF /* Room.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -168,7 +172,6 @@
 				EC0CFFE71ABC5FBC00E264AE /* SubcategorieController.swift */,
 				EC0CFFE91ABC669D00E264AE /* ChatController.swift */,
 				52184F8D1AD3DA84009E7F7D /* ChatBubble.swift */,
-				52184F8F1AD3DD91009E7F7D /* Message.swift */,
 				524A0C641AE90A95001CD22D /* AlertHelper.swift */,
 			);
 			path = snschat;
@@ -392,6 +395,7 @@
 				5265504B1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift in Sources */,
 				526864511AB2EA4B00166FF4 /* WachtwoordVergetenController.swift in Sources */,
 				CE30890B1AEA73D700513566 /* PostRequest.swift in Sources */,
+				F371D2461AEB0CE600E85BDF /* Room.swift in Sources */,
 				EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */,
 				52184F8E1AD3DA84009E7F7D /* ChatBubble.swift in Sources */,
 				CE30890D1AEA73ED00513566 /* JSONParser.swift in Sources */,

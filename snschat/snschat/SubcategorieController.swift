@@ -22,7 +22,7 @@ class SubcategorieController: UIViewController, UIPickerViewDelegate, UIPickerVi
         return "Subcategorie \(row + 1)"
     }
     
-    func pickerView(pickerView: UIPickerView!, didSelectRow row: Int, inComponent component: Int)
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)
     {
         pickerView.superview?.endEditing(true)
         //Pickerview did select row

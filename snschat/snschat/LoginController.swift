@@ -9,13 +9,14 @@
 import UIKit
 
 class LoginController: UIViewController {
-
     
     @IBOutlet weak var debugField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loginButton: UIButton!
+
+	var user: User?
     
     var defaults = NSUserDefaults.standardUserDefaults()
     var alertHelper: AlertHelper!
@@ -27,7 +28,6 @@ class LoginController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -53,8 +53,19 @@ class LoginController: UIViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+
+		// TODO: Deze lijkt niet af te gaan voor het inloggen, dit moet wel want
+		//		 de functie setCurrentUser (paar regels hieronder) moet uitgevoerd
+		//		 worden. Op het moment wordt de ChatsController dus geopend zonder
+		//		 een user object, wat alles verpest.
+
         if(segue.identifier == "inloggenKnop"){
             self.navigationItem.title = "Uitloggen"
+
+			// User doorgeven
+			let chatsController = segue.destinationViewController as! ChatsController
+			chatsController.setCurrentUser(self.user!)
+
         } else if(segue.identifier == "toRegister"){
             var newController = segue.destinationViewController as! RegistrerenController
             newController.loginController = self
@@ -73,9 +84,12 @@ class LoginController: UIViewController {
         else {
             self.loginButton.enabled = false
             self.view.endEditing(true)
+
             activityIndicator.hidden = false
-            var user = User(email: emailField.text, password: passwordField.text)
-            user.login(self);
+
+			// User aanmaken en laten inloggen
+            self.user = User(email: emailField.text, password: passwordField.text)
+            self.user!.login(self);
         }
     }
     

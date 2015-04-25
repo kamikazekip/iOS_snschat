@@ -21,6 +21,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     var overlay: UIView?
     let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
+
+	var user:User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +47,6 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     override func viewDidAppear(animated: Bool) {
         if(defaults.boolForKey("fromLogin") == true){
-            println("HALLO")
             var type = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound
             var setting = UIUserNotificationSettings(forTypes: type, categories: nil)
             UIApplication.sharedApplication().registerUserNotificationSettings(setting)
@@ -89,7 +90,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.titles.count
+		return self.user != nil ? self.user!.rooms.count : 0
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -105,9 +106,29 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell: ChatCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! ChatCell
-        cell.title.text = titles[indexPath.row]
-        cell.message.text = messages[indexPath.row]
-        cell.date.text = dates[indexPath.row]
+
+		// TODO: Lees eerst de TODO in LoginController.
+		// TODO: Wat hieronder outcomment staat zal waarschijnlijk wel werken, of
+		//		 in ieder geval bijna. Dit moet ook gedaan worden voor de andere
+		//		 velden. Raak je in de war dan kan je spieken in functies zoals
+		//		 init(jsonRoom room: JSON) van Room (model) en nog wat andere
+		//		 modellen. In de numberOfRowsInSection functie (paar regels hierboven)
+		//		 staat al een werkende counter.
+
+//		let room = self.user?.rooms[indexPath.row]
+//
+//		// Titel is 'on hold' wanneer nog geen employee gekoppeld is.
+//		if let employee = room!.employee {
+//			cell.title.text = employee._id
+//		} else {
+//			cell.title.text = "In de wachtrij..."
+//		}
+
+		// Dummy
+		cell.title.text = "ASD"
+		cell.message.text = "ASD"
+		cell.date.text = "ASD"
+
         return cell
     }
     
@@ -119,4 +140,9 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             chatc.hidesBottomBarWhenPushed = true;
         }
     }
+
+	func setCurrentUser(user: User) {
+		self.user = user
+		println(user)
+	}
 }
