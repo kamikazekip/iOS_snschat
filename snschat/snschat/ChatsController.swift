@@ -139,6 +139,12 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         return cell
     }
     
+
+    @IBAction func logOut(sender: UIButton) {
+        self.performSegueWithIdentifier("toLogin", sender: self)
+    }
+    
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "toChat"){
             var chatc = segue.destinationViewController as! ChatController

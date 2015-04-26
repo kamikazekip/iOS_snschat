@@ -182,7 +182,7 @@ class User: NSObject, NSURLConnectionDelegate {
 			self.roles.append(role.stringValue)
 		}
         
-        NSUserDefaults.standardUserDefaults().setObject(self._id, forKey: "userID")
+        defaults.setObject(self._id, forKey: "userID")
         
         /*println(json)
         println(self._id)

@@ -399,9 +399,10 @@
                             <searchBar contentMode="redraw" placeholder="Zoeken" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z5M-zb-fJP">
                                 <rect key="frame" x="0.0" y="64" width="600" height="44"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 <gestureRecognizers/>
                                 <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="roY-C2-7AQ" id="mLF-5G-DsB"/>
                                 </connections>
@@ -429,13 +430,13 @@
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Z5M-zb-fJP" firstAttribute="trailing" secondItem="NVx-PA-q0F" secondAttribute="trailing" id="4ib-4N-o9I"/>
+                            <constraint firstItem="Z5M-zb-fJP" firstAttribute="bottom" secondItem="NVx-PA-q0F" secondAttribute="top" id="7Ka-7l-ePC"/>
                             <constraint firstItem="NVx-PA-q0F" firstAttribute="bottom" secondItem="KGt-R6-rRP" secondAttribute="top" id="AeH-oF-iF8"/>
-                            <constraint firstItem="Z5M-zb-fJP" firstAttribute="leading" secondItem="zqy-PV-2j8" secondAttribute="leading" id="HVg-vm-mbN"/>
-                            <constraint firstItem="Z5M-zb-fJP" firstAttribute="leading" secondItem="NVx-PA-q0F" secondAttribute="leading" id="KOc-4D-h5L"/>
-                            <constraint firstItem="Z5M-zb-fJP" firstAttribute="top" secondItem="f2F-7J-Mv0" secondAttribute="bottom" id="Kq2-wv-fHm"/>
-                            <constraint firstAttribute="trailing" secondItem="Z5M-zb-fJP" secondAttribute="trailing" id="Pof-ZY-2lA"/>
-                            <constraint firstItem="NVx-PA-q0F" firstAttribute="top" secondItem="Z5M-zb-fJP" secondAttribute="bottom" id="u2X-5Q-Q5F"/>
+                            <constraint firstItem="Z5M-zb-fJP" firstAttribute="leading" secondItem="zqy-PV-2j8" secondAttribute="leading" id="FyN-IS-Esl"/>
+                            <constraint firstAttribute="trailing" secondItem="Z5M-zb-fJP" secondAttribute="trailing" id="She-V9-pjZ"/>
+                            <constraint firstItem="Z5M-zb-fJP" firstAttribute="leading" secondItem="NVx-PA-q0F" secondAttribute="leading" id="YaT-cU-Epl"/>
+                            <constraint firstItem="Z5M-zb-fJP" firstAttribute="trailing" secondItem="NVx-PA-q0F" secondAttribute="trailing" id="cNi-gq-Pbh"/>
+                            <constraint firstItem="Z5M-zb-fJP" firstAttribute="top" secondItem="f2F-7J-Mv0" secondAttribute="bottom" id="qaY-6d-0YM"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" tag="1" title="Chats" image="ChatIcon" id="5zJ-a4-tSH"/>
@@ -449,7 +450,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="OSl-Ws-w7e" kind="presentation" id="vkQ-Ra-nRX"/>
+                                    <action selector="logOut:" destination="roY-C2-7AQ" eventType="touchUpInside" id="YB1-n5-95x"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -1114,7 +1115,4 @@
         <image name="ChatIcon" width="25" height="25"/>
         <image name="FAQIcon" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="yTt-g9-8TH"/>
-    </inferredMetricsTieBreakers>
 </document>
