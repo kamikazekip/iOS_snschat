@@ -116,7 +116,7 @@
                                         </connections>
                                     </button>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vSg-mS-qms">
-                                        <rect key="frame" x="282" y="174" width="37" height="37"/>
+                                        <rect key="frame" x="540" y="171" width="37" height="37"/>
                                         <color key="color" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </activityIndicatorView>
                                 </subviews>
@@ -128,10 +128,8 @@
                                     <constraint firstItem="zVy-19-u2s" firstAttribute="trailing" secondItem="BGH-dH-NVP" secondAttribute="trailingMargin" id="B1N-GX-Vzm"/>
                                     <constraint firstItem="H13-VX-Oeb" firstAttribute="leading" secondItem="4ZO-cX-RJr" secondAttribute="leading" id="EUR-bi-iZl"/>
                                     <constraint firstItem="4ZO-cX-RJr" firstAttribute="centerX" secondItem="BGH-dH-NVP" secondAttribute="centerX" id="ErC-Kc-utc"/>
-                                    <constraint firstItem="vSg-mS-qms" firstAttribute="centerX" secondItem="zVy-19-u2s" secondAttribute="centerX" id="G0U-kX-B0C"/>
                                     <constraint firstItem="Zfs-8a-Ck2" firstAttribute="centerY" secondItem="H13-VX-Oeb" secondAttribute="centerY" id="HsE-V4-m78"/>
                                     <constraint firstItem="q0I-hY-lMY" firstAttribute="trailing" secondItem="CPc-JF-COV" secondAttribute="trailing" id="IXl-TW-EHV"/>
-                                    <constraint firstItem="vSg-mS-qms" firstAttribute="top" secondItem="H13-VX-Oeb" secondAttribute="top" id="IeY-Ju-aGJ"/>
                                     <constraint firstItem="waZ-D9-Z6U" firstAttribute="leading" secondItem="q0I-hY-lMY" secondAttribute="leading" id="IsY-ys-6MJ"/>
                                     <constraint firstItem="d42-9v-ZSZ" firstAttribute="trailing" secondItem="zVy-19-u2s" secondAttribute="trailing" id="QbT-nC-wRH"/>
                                     <constraint firstItem="zVy-19-u2s" firstAttribute="leading" secondItem="H13-VX-Oeb" secondAttribute="leading" id="SBM-fE-x9Y"/>
@@ -150,9 +148,11 @@
                                     <constraint firstItem="zVy-19-u2s" firstAttribute="top" secondItem="ETg-mz-4u3" secondAttribute="bottom" constant="8" symbolic="YES" id="pbU-pf-Iu7"/>
                                     <constraint firstAttribute="bottom" secondItem="q0I-hY-lMY" secondAttribute="bottom" constant="206" id="pp6-My-ZK5"/>
                                     <constraint firstItem="H13-VX-Oeb" firstAttribute="top" secondItem="zVy-19-u2s" secondAttribute="bottom" constant="19" id="psz-xg-pZq"/>
+                                    <constraint firstAttribute="trailing" secondItem="vSg-mS-qms" secondAttribute="trailing" constant="23" id="q3P-Sh-9NJ"/>
                                     <constraint firstItem="waZ-D9-Z6U" firstAttribute="top" secondItem="CPc-JF-COV" secondAttribute="bottom" constant="8" symbolic="YES" id="s7e-LH-Oxx"/>
                                     <constraint firstItem="4ZO-cX-RJr" firstAttribute="trailing" secondItem="CPc-JF-COV" secondAttribute="trailing" id="vce-cS-Lm1"/>
                                     <constraint firstItem="4ZO-cX-RJr" firstAttribute="top" secondItem="H13-VX-Oeb" secondAttribute="bottom" constant="18" id="vkp-Qu-Wso"/>
+                                    <constraint firstItem="vSg-mS-qms" firstAttribute="top" secondItem="zVy-19-u2s" secondAttribute="bottom" constant="16" id="yGE-tw-0bb"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="XjI-Z7-Ml3" appends="YES" id="aNO-Qq-48a"/>

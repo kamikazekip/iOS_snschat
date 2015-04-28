@@ -22,6 +22,9 @@ class Message {
     }
 
 	init(message: JSON) {
-		
-	}
+        // Vul _id
+        if let date = message["dateSend"].int {
+            self.date = "\(date)"
+        }
+    }
 }

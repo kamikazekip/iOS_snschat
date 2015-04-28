@@ -53,11 +53,10 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             UIApplication.sharedApplication().registerForRemoteNotifications()
         }
         if (self.user != nil) {
-            println("rooms:")
             for room in self.user!.rooms {
                 println(room)
             }
-            
+            tableView.reloadData()
         }
     }
 
@@ -122,25 +121,24 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
 		//		 modellen. In de numberOfRowsInSection functie (paar regels hierboven)
 		//		 staat al een werkende counter.
 
-//		let room = self.user?.rooms[indexPath.row]
+		let room = self.user?.rooms[indexPath.row]
 //
 //		// Titel is 'on hold' wanneer nog geen employee gekoppeld is.
-//		if let employee = room!.employee {
-//			cell.title.text = employee._id
-//		} else {
-//			cell.title.text = "In de wachtrij..."
-//		}
-
-		// Dummy
-		cell.title.text = "ASD"
-		cell.message.text = "ASD"
-		cell.date.text = "ASD"
+		if let employee = room!.employee {
+			cell.title.text = employee._id
+		} else {
+            cell.title.text = "In de wachtrij..."
+		}
+		cell.message.text = room!.messages![room!.messages!.count - 1].message
+        println(room!.messages![room!.messages!.count - 1])
+		cell.date.text = room!.messages![room!.messages!.count - 1].date
 
         return cell
     }
     
 
     @IBAction func logOut(sender: UIButton) {
+        defaults.removeObjectForKey("userID")
         self.performSegueWithIdentifier("toLogin", sender: self)
     }
     

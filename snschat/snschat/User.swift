@@ -176,6 +176,7 @@ class User: NSObject, NSURLConnectionDelegate {
 		for room: JSON in json["rooms"].arrayValue {
 			self.rooms.append(Room(jsonRoom: room))
 		}
+        println("Hoi: \(self.rooms)")
 
 		// Vul roles
 		for role: JSON in json["roles"].arrayValue {
