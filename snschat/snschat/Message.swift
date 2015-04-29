@@ -11,20 +11,39 @@ import SwiftyJSON
 
 class Message {
     
-    var name: String?
-    var date: String?
-    var message: String?
+    var _id: String?
+    var sender: String?
+    var content: String?
+    var type: String?
+    var status: String?
+    var dateSent: NSDate?
+    var niceDate: String!
     
-    init(name: String, date: String, message: String) {
-        self.name = name
-        self.date = date
-        self.message = message
-    }
-
 	init(message: JSON) {
-        // Vul _id
-        if let date = message["dateSend"].int {
-            self.date = "\(date)"
+        fillProps(message)
+    }
+    
+    func fillProps(message: JSON){
+        if let _id = message["_id"].string {
+            self._id = _id
         }
+        if let sender = message["sender"].string {
+            self.sender = sender
+        }
+        if let content = message["content"].string {
+            self.content = content
+        }
+        if let type = message["type"].string {
+            self.type = type
+        }
+        if let status = message["status"].string {
+            self.status = status
+        }
+        if let dateSent = message["dateSent"].int {
+            self.dateSent = NSDate(timeIntervalSince1970: NSTimeInterval((dateSent / 1000)))
+        }
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        self.niceDate = dateFormatter.stringFromDate(self.dateSent!)
     }
 }

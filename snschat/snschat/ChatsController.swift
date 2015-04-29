@@ -53,9 +53,6 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             UIApplication.sharedApplication().registerForRemoteNotifications()
         }
         if (self.user != nil) {
-            for room in self.user!.rooms {
-                println(room)
-            }
             tableView.reloadData()
         }
     }
@@ -122,18 +119,16 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
 		//		 staat al een werkende counter.
 
 		let room = self.user?.rooms[indexPath.row]
-//
-//		// Titel is 'on hold' wanneer nog geen employee gekoppeld is.
-		/*if let employee = room!.employee {
-            println("employee id \(employee._id)")
-			cell.title.text = employee._id
+        
+//		Titel is 'on hold' wanneer nog geen employee gekoppeld is.
+		if let employee_id = room!.employee!._id {
+			cell.title.text = employee_id
 		} else {
             cell.title.text = "In de wachtrij..."
-		}*/
-        cell.title.text = "Test"
-		cell.message.text = room!.messages![room!.messages!.count - 1].message
+		}
+		cell.message.text = room!.messages![room!.messages!.count - 1].content
         println(room!.messages![room!.messages!.count - 1])
-		cell.date.text = room!.messages![room!.messages!.count - 1].date
+		cell.date.text = room!.messages![room!.messages!.count - 1].niceDate
 
         return cell
     }
@@ -160,6 +155,5 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
 
 	func setCurrentUser(user: User) {
 		self.user = user
-		println(user)
 	}
 }

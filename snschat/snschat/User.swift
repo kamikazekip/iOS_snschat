@@ -73,10 +73,6 @@ class User: NSObject, NSURLConnectionDelegate {
 		// create the request
         let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/login")!)
 
-		// Set headers
-		request.setValue("application/json", forHTTPHeaderField:"Accept")
-		request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField:"Content-Type")
-
 		// Set data
         request.HTTPMethod = "POST"
         let postString = "username=" + self.email + "&password=" + self.password
@@ -176,7 +172,6 @@ class User: NSObject, NSURLConnectionDelegate {
 		for room: JSON in json["rooms"].arrayValue {
 			self.rooms.append(Room(jsonRoom: room))
 		}
-        println("Hoi: \(self.rooms)")
 
 		// Vul roles
 		for role: JSON in json["roles"].arrayValue {
@@ -185,10 +180,5 @@ class User: NSObject, NSURLConnectionDelegate {
         
         defaults.setObject(self._id, forKey: "userID")
         
-        /*println(json)
-        println(self._id)
-        println(self.lastLogin)
-        println(self.rooms)
-        println(self.roles)*/
 	}
 }
