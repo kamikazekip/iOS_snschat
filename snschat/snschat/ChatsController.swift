@@ -124,11 +124,13 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
 		let room = self.user?.rooms[indexPath.row]
 //
 //		// Titel is 'on hold' wanneer nog geen employee gekoppeld is.
-		if let employee = room!.employee {
+		/*if let employee = room!.employee {
+            println("employee id \(employee._id)")
 			cell.title.text = employee._id
 		} else {
             cell.title.text = "In de wachtrij..."
-		}
+		}*/
+        cell.title.text = "Test"
 		cell.message.text = room!.messages![room!.messages!.count - 1].message
         println(room!.messages![room!.messages!.count - 1])
 		cell.date.text = room!.messages![room!.messages!.count - 1].date
