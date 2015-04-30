@@ -12,9 +12,6 @@ import SwiftyJSON
 class ChatsController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
 
     @IBOutlet weak var tableView: UITableView!
-    var titles: [String] = ["Bas", "Tom", "Sven", "Thomas"]
-    var dates: [String] = ["07-04-2014", "Gisteren", "20-01-2015", "18:39"]
-    var messages: [String] = ["Wat is dan uw probleem?", "Heeft u geprobeerd het aan en uit te zetten?", "Weet u zeker dat de stekker er in zit?", "Ik ga mijn best voor u doen om dit op te lossen!"]
     var selectedIndex: NSIndexPath?
     var defaults = NSUserDefaults.standardUserDefaults()
     @IBOutlet weak var chatSearch: UISearchBar!
@@ -124,8 +121,9 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
 		if let employee_id = room!.employee!._id {
 			cell.title.text = employee_id
 		} else {
-            cell.title.text = "In de wachtrij..."
+            cell.title.text = "In de wachtrij"
 		}
+        cell.room = room!
 		cell.message.text = room!.messages![room!.messages!.count - 1].content
         println(room!.messages![room!.messages!.count - 1])
 		cell.date.text = room!.messages![room!.messages!.count - 1].niceDate
@@ -136,6 +134,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
 
     @IBAction func logOut(sender: UIButton) {
         defaults.removeObjectForKey("userID")
+        self.user = nil
+        self.tableView.reloadData()
         self.performSegueWithIdentifier("toLogin", sender: self)
     }
     
@@ -144,7 +144,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         if(segue.identifier == "toChat"){
             var chatc = segue.destinationViewController as! ChatController
             var chatCell = sender as! ChatCell
-            chatc.receivedTitle = chatCell.title.text
+            chatc.room = chatCell.room
             chatc.hidesBottomBarWhenPushed = true;
         } else if(segue.identifier == "toLogin"){
             var loginNavController: UINavigationController = segue.destinationViewController as! UINavigationController

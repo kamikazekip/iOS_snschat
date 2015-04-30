@@ -20,11 +20,14 @@ class ChatController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
 
+    let defaults = NSUserDefaults.standardUserDefaults()
+    
 	let socket = SocketIOClient(socketURL: "localhost:10040")
+    
+    var room: Room!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        titleBarTitle.title = receivedTitle
         self.textField.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
@@ -58,22 +61,21 @@ class ChatController: UIViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.room.messages!.count
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell: ChatBubble
-        //if (self.messages[indexPath.row].name == "Erik") {
+        if (self.room.messages![indexPath.row].sender == defaults.stringForKey("userID")) {
             cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleRight") as! ChatBubble
-        //}
-        //else {
-          //  cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleLeft") as! ChatBubble
-            //cell.name.text = self.messages[indexPath.row].name
-       // }
-        cell.name.text = ""
-        cell.message.text = ""
-        cell.date.text = ""
+        }
+        else {
+            cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleLeft") as! ChatBubble
+            cell.name.text = self.room.messages![indexPath.row].sender
+        }
+        cell.message.text = self.room.messages![indexPath.row].content
+        cell.date.text = self.room.messages![indexPath.row].niceDate
         return cell
     }
     

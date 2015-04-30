@@ -40,8 +40,9 @@ class Room: NSObject {
 		// Vul messages
 		for message: JSON in room["messages"].arrayValue {
 			self.messages?.append(Message(message: message))
-		}
-
+        }
+        self.messages!.sort({ $0.dateSent!.timeIntervalSinceNow < $1.dateSent!.timeIntervalSinceNow })
+        
 		// Vul status
 		if let status = room["status"].string {
 			self.status = status
