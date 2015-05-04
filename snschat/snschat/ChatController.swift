@@ -35,10 +35,7 @@ class ChatController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 160.0
-        
-        self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        self.tableView.layer.borderWidth = 1
-        
+
         self.server = defaults.valueForKey("server") as! String
         
 		/*
@@ -51,6 +48,8 @@ class ChatController: UIViewController {
             self.socket.emit("join", self.room._id)
             
             self.socket.on("message") { message, ack in
+                //println(message)
+                //var test:Message = Message(message: JSON(message!))
                 println(message)
             }
 		}

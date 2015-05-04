@@ -33,11 +33,12 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.tableView.rowHeight = UITableViewAutomaticDimension
         
         self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        self.tableView.layer.borderWidth = 1
+        self.tableView.layer.borderWidth = 0.5
         
         var backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
         self.tableView.backgroundColor = UIColor.clearColor()
+        self.chatSearch.backgroundColor = UIColor.clearColor()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -76,12 +77,16 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         searchBar.setShowsCancelButton(true, animated: true)
     
         overlay = UIView(frame: view.frame)
+        overlay!.frame.origin.x += 1
+        overlay!.alpha = 0.0
         overlay!.backgroundColor = UIColor.blackColor()
-        overlay!.alpha = 0.5
-        
         overlay!.addGestureRecognizer(tapRec)
-        
         self.tableView.addSubview(overlay!)
+        
+        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.overlay!.alpha = 0.5
+            }, completion: { ( finished: Bool) -> Void in
+        })
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
@@ -92,7 +97,14 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.view.endEditing(true)
         chatSearch.setShowsCancelButton(false, animated: true);
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
-        overlay?.removeFromSuperview()
+        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.overlay!.alpha = 0.0
+            }, completion: { ( finished: Bool) -> Void in
+                overlay?.removeFromSuperview()
+        })
+        
+        
+        
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -116,6 +128,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         selectedIndex = indexPath
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        navigationController?.setNavigationBarHidden(false, animated: false)
         self.performSegueWithIdentifier("toChat", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
     
