@@ -31,6 +31,13 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         defaults.synchronize()
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
+        
+        self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.tableView.layer.borderWidth = 1
+        
+        var backgroundView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = backgroundView
+        self.tableView.backgroundColor = UIColor.clearColor()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -41,6 +48,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     override func viewDidAppear(animated: Bool) {
+        self.chatSearch.layer.borderColor = UIColor.whiteColor().CGColor
+        self.chatSearch.layer.borderWidth = 1
         if(defaults.boolForKey("fromLogin") == true){
             var type = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound
             var setting = UIUserNotificationSettings(forTypes: type, categories: nil)
@@ -64,7 +73,6 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     {
         navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
         
-        searchBar.layer.borderColor = UIColor.clearColor().CGColor
         searchBar.setShowsCancelButton(true, animated: true)
     
         overlay = UIView(frame: view.frame)
@@ -88,7 +96,17 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return self.user != nil ? self.user!.rooms.count : 0
+        var label = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+        
+        if (self.user != nil && self.user!.rooms.count == 0) {
+            label.text = "U heeft nog geen chats."
+            label.textAlignment = NSTextAlignment.Center
+            label.numberOfLines = 0
+            self.tableView.backgroundView = label
+            return 0
+        }
+        self.tableView.backgroundView = nil
+        return self.user != nil ? self.user!.rooms.count : 0
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {

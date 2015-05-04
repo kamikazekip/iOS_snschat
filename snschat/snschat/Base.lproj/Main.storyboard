@@ -244,7 +244,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="81" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="CBC-2A-Fc2">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
+                                <rect key="frame" x="-1" y="63" width="602" height="493"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatBubbleLeft" rowHeight="87" id="waF-HJ-Rah" customClass="ChatBubble" customModule="snschat" customModuleProvider="target">
@@ -284,7 +284,7 @@
                                                 <constraint firstItem="gRi-Wb-3Ff" firstAttribute="top" secondItem="vPM-UE-szC" secondAttribute="topMargin" constant="26" id="975-ke-Uv0"/>
                                                 <constraint firstItem="fsh-XD-aWF" firstAttribute="top" secondItem="gRi-Wb-3Ff" secondAttribute="bottom" constant="7" id="Ajw-SR-mDg"/>
                                                 <constraint firstItem="fsh-XD-aWF" firstAttribute="leading" secondItem="gRi-Wb-3Ff" secondAttribute="leading" id="SnX-8B-v0v"/>
-                                                <constraint firstItem="gRi-Wb-3Ff" firstAttribute="trailing" secondItem="vPM-UE-szC" secondAttribute="trailingMargin" id="YKm-S2-dtu"/>
+                                                <constraint firstItem="gRi-Wb-3Ff" firstAttribute="trailing" secondItem="vPM-UE-szC" secondAttribute="trailingMargin" constant="-2" id="YKm-S2-dtu"/>
                                                 <constraint firstItem="7kh-KU-kbc" firstAttribute="leading" secondItem="vPM-UE-szC" secondAttribute="leadingMargin" id="YY8-19-ybF"/>
                                                 <constraint firstItem="gRi-Wb-3Ff" firstAttribute="leading" secondItem="7kh-KU-kbc" secondAttribute="leading" id="ww5-P9-PNc"/>
                                             </constraints>
@@ -329,7 +329,7 @@
                                                 <constraint firstItem="R6B-ce-GGk" firstAttribute="bottom" secondItem="BFc-PL-9o3" secondAttribute="bottomMargin" id="I1V-Yf-VHp"/>
                                                 <constraint firstItem="R6B-ce-GGk" firstAttribute="top" secondItem="R5i-jn-S8e" secondAttribute="bottom" constant="8" symbolic="YES" id="Mb3-b6-Sky"/>
                                                 <constraint firstItem="R5i-jn-S8e" firstAttribute="top" secondItem="BFc-PL-9o3" secondAttribute="topMargin" id="NEg-eH-Ol9"/>
-                                                <constraint firstItem="R6B-ce-GGk" firstAttribute="trailing" secondItem="BFc-PL-9o3" secondAttribute="trailingMargin" id="Q3P-zC-Dwi"/>
+                                                <constraint firstItem="R6B-ce-GGk" firstAttribute="trailing" secondItem="BFc-PL-9o3" secondAttribute="trailingMargin" constant="-2" id="Q3P-zC-Dwi"/>
                                                 <constraint firstItem="R5i-jn-S8e" firstAttribute="leading" secondItem="BFc-PL-9o3" secondAttribute="leadingMargin" id="VJD-Dr-eDb"/>
                                             </constraints>
                                             <variation key="default">
@@ -354,13 +354,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="CBC-2A-Fc2" firstAttribute="leading" secondItem="MwG-lK-WR5" secondAttribute="leading" id="7Ut-CQ-jlL"/>
+                            <constraint firstItem="CBC-2A-Fc2" firstAttribute="leading" secondItem="MwG-lK-WR5" secondAttribute="leading" constant="-1" id="7Ut-CQ-jlL"/>
                             <constraint firstItem="CBC-2A-Fc2" firstAttribute="bottom" secondItem="MwG-lK-WR5" secondAttribute="top" id="98K-pE-SNN"/>
                             <constraint firstItem="MwG-lK-WR5" firstAttribute="bottom" secondItem="LOc-CP-9nF" secondAttribute="top" id="D3D-8q-ZK1"/>
-                            <constraint firstAttribute="trailing" secondItem="CBC-2A-Fc2" secondAttribute="trailing" id="SLy-nB-ESQ"/>
-                            <constraint firstItem="CBC-2A-Fc2" firstAttribute="top" secondItem="nDq-lE-Rk9" secondAttribute="bottom" id="XwF-jR-8Kh"/>
+                            <constraint firstAttribute="trailing" secondItem="CBC-2A-Fc2" secondAttribute="trailing" constant="-1" id="SLy-nB-ESQ"/>
+                            <constraint firstItem="CBC-2A-Fc2" firstAttribute="top" secondItem="nDq-lE-Rk9" secondAttribute="bottom" constant="-1" id="XwF-jR-8Kh"/>
                             <constraint firstItem="MwG-lK-WR5" firstAttribute="leading" secondItem="IZl-t0-XoP" secondAttribute="leading" id="gNh-pA-o4t"/>
-                            <constraint firstItem="CBC-2A-Fc2" firstAttribute="trailing" secondItem="MwG-lK-WR5" secondAttribute="trailing" id="kfl-dn-Sl9"/>
+                            <constraint firstItem="CBC-2A-Fc2" firstAttribute="trailing" secondItem="MwG-lK-WR5" secondAttribute="trailing" constant="1" id="kfl-dn-Sl9"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="2PE-ZI-N9F" appends="YES" id="oaC-Sp-vm8"/>
@@ -400,14 +400,14 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                                 <gestureRecognizers/>
-                                <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                                 <connections>
                                     <outlet property="delegate" destination="roY-C2-7AQ" id="mLF-5G-DsB"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="ajz-DT-EY1">
-                                <rect key="frame" x="0.0" y="108" width="600" height="443"/>
+                                <rect key="frame" x="-1" y="108" width="602" height="444"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatCell" rowHeight="66" id="IL8-FK-TJU" customClass="ChatCell" customModule="snschat" customModuleProvider="target">
@@ -436,13 +436,13 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="kdK-H9-ELv" firstAttribute="leading" secondItem="VQT-0Y-UqV" secondAttribute="leadingMargin" constant="7" id="5gY-WG-Q3u"/>
-                                                <constraint firstItem="ohO-g9-gfw" firstAttribute="trailing" secondItem="VQT-0Y-UqV" secondAttribute="trailingMargin" id="6Wa-5J-wdb"/>
+                                                <constraint firstItem="ohO-g9-gfw" firstAttribute="trailing" secondItem="VQT-0Y-UqV" secondAttribute="trailingMargin" constant="-2" id="6Wa-5J-wdb"/>
                                                 <constraint firstItem="GRJ-LA-lO4" firstAttribute="leading" secondItem="kdK-H9-ELv" secondAttribute="leading" id="6eF-cc-y9L"/>
                                                 <constraint firstItem="kdK-H9-ELv" firstAttribute="top" secondItem="VQT-0Y-UqV" secondAttribute="topMargin" id="IXI-TF-gCn"/>
                                                 <constraint firstItem="GRJ-LA-lO4" firstAttribute="top" secondItem="VQT-0Y-UqV" secondAttribute="topMargin" constant="20" id="Ted-JV-P8s"/>
                                                 <constraint firstItem="ohO-g9-gfw" firstAttribute="leading" secondItem="VQT-0Y-UqV" secondAttribute="leadingMargin" constant="53" id="Vxg-X0-bmb"/>
                                                 <constraint firstItem="ohO-g9-gfw" firstAttribute="top" secondItem="kdK-H9-ELv" secondAttribute="top" id="ZMQ-ZG-JDQ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="kdK-H9-ELv" secondAttribute="trailing" constant="59" id="bHD-Je-f8r"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="kdK-H9-ELv" secondAttribute="trailing" constant="61" id="bHD-Je-f8r"/>
                                                 <constraint firstItem="GRJ-LA-lO4" firstAttribute="trailing" secondItem="ohO-g9-gfw" secondAttribute="trailing" id="cdd-pw-uAy"/>
                                                 <constraint firstItem="ohO-g9-gfw" firstAttribute="bottom" secondItem="kdK-H9-ELv" secondAttribute="bottom" id="dgI-eY-fcp"/>
                                                 <constraint firstAttribute="bottom" secondItem="GRJ-LA-lO4" secondAttribute="bottom" id="etN-I4-eu4"/>
@@ -461,14 +461,14 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="ajz-DT-EY1" firstAttribute="leading" secondItem="zqy-PV-2j8" secondAttribute="leading" id="BYU-d4-2vt"/>
-                            <constraint firstAttribute="trailing" secondItem="ajz-DT-EY1" secondAttribute="trailing" id="Ccq-VR-HrC"/>
-                            <constraint firstItem="ajz-DT-EY1" firstAttribute="trailing" secondItem="Z5M-zb-fJP" secondAttribute="trailing" id="Lfy-MY-GHK"/>
-                            <constraint firstItem="ajz-DT-EY1" firstAttribute="leading" secondItem="Z5M-zb-fJP" secondAttribute="leading" id="MzD-iE-EWx"/>
-                            <constraint firstItem="ajz-DT-EY1" firstAttribute="bottom" secondItem="KGt-R6-rRP" secondAttribute="top" id="cZ9-yP-yio"/>
+                            <constraint firstItem="ajz-DT-EY1" firstAttribute="leading" secondItem="zqy-PV-2j8" secondAttribute="leading" constant="-1" id="BYU-d4-2vt"/>
+                            <constraint firstAttribute="trailing" secondItem="ajz-DT-EY1" secondAttribute="trailing" constant="-1" id="Ccq-VR-HrC"/>
+                            <constraint firstItem="ajz-DT-EY1" firstAttribute="trailing" secondItem="Z5M-zb-fJP" secondAttribute="trailing" constant="1" id="Lfy-MY-GHK"/>
+                            <constraint firstItem="ajz-DT-EY1" firstAttribute="leading" secondItem="Z5M-zb-fJP" secondAttribute="leading" constant="-1" id="MzD-iE-EWx"/>
+                            <constraint firstItem="ajz-DT-EY1" firstAttribute="bottom" secondItem="KGt-R6-rRP" secondAttribute="top" constant="1" id="cZ9-yP-yio"/>
                             <constraint firstItem="Z5M-zb-fJP" firstAttribute="top" secondItem="f2F-7J-Mv0" secondAttribute="bottom" id="cZZ-Ya-UJm"/>
                             <constraint firstItem="ajz-DT-EY1" firstAttribute="top" secondItem="Z5M-zb-fJP" secondAttribute="bottom" id="jcm-r2-wRq"/>
                         </constraints>

@@ -8,6 +8,7 @@
 
 import UIKit
 import Socket_IO_Client_Swift
+import SwiftyJSON
 
 class ChatController: UIViewController {
 
@@ -35,6 +36,9 @@ class ChatController: UIViewController {
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 160.0
         
+        self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        self.tableView.layer.borderWidth = 1
+        
         self.server = defaults.valueForKey("server") as! String
         
 		/*
@@ -45,6 +49,10 @@ class ChatController: UIViewController {
 		socket.on("connect") {data, ack in
 			println("socket connected")
             self.socket.emit("join", self.room._id)
+            
+            self.socket.on("message") { message, ack in
+                println(message)
+            }
 		}
 
 		socket.connect()
@@ -89,8 +97,16 @@ class ChatController: UIViewController {
     }
     
     @IBAction func sendMessage(sender: UIButton) {
-        if(!textField.text.isEmpty){
-            self.socket.emit("message", self.room._id)
+        if(!textField.text.isEmpty) {
+            var user: String! = defaults.stringForKey("userID")
+            
+            var data = ["content": textField.text, "sender": user]
+            
+            var message: String! = "{\'content\': \'\(textField.text)\', \'sender\': \'\(user)\'}"
+            
+            self.socket.emit("message", data)
+            
+            textField.text = ""
         }
     }
 }
