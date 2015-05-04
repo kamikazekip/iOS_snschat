@@ -15,7 +15,6 @@
 		5265504D1ABAEBCC007C7CA3 /* ChatAanmakenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265504C1ABAEBCC007C7CA3 /* ChatAanmakenController.swift */; };
 		5265504F1ABAF0D9007C7CA3 /* FAQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265504E1ABAF0D9007C7CA3 /* FAQController.swift */; };
 		526550561ABAFDC0007C7CA3 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526550541ABAFDC0007C7CA3 /* ChatCell.swift */; };
-		526550571ABAFDC0007C7CA3 /* ChatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 526550551ABAFDC0007C7CA3 /* ChatCell.xib */; };
 		526864511AB2EA4B00166FF4 /* WachtwoordVergetenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526864501AB2EA4B00166FF4 /* WachtwoordVergetenController.swift */; };
 		526864531AB2F09200166FF4 /* ChatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526864521AB2F09200166FF4 /* ChatsController.swift */; };
 		526864541AB2F24D00166FF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E086361AB197CC00419BB2 /* Main.storyboard */; };
@@ -57,7 +56,6 @@
 		5265504C1ABAEBCC007C7CA3 /* ChatAanmakenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatAanmakenController.swift; sourceTree = "<group>"; };
 		5265504E1ABAF0D9007C7CA3 /* FAQController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQController.swift; sourceTree = "<group>"; };
 		526550541ABAFDC0007C7CA3 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatCell.swift; path = ../ChatCell.swift; sourceTree = "<group>"; };
-		526550551ABAFDC0007C7CA3 /* ChatCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChatCell.xib; path = ../ChatCell.xib; sourceTree = "<group>"; };
 		526864501AB2EA4B00166FF4 /* WachtwoordVergetenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WachtwoordVergetenController.swift; sourceTree = "<group>"; };
 		526864521AB2F09200166FF4 /* ChatsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsController.swift; sourceTree = "<group>"; };
 		5268AEE81AE8D50900C4BEE5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				ECA8C16A1AEA686700A8CD46 /* Communication */,
 				5268AEE71AE8D4EB00C4BEE5 /* model */,
 				526550541ABAFDC0007C7CA3 /* ChatCell.swift */,
-				526550551ABAFDC0007C7CA3 /* ChatCell.xib */,
 				CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */,
 				52E086321AB197CC00419BB2 /* AppDelegate.swift */,
 				52E086341AB197CC00419BB2 /* LoginController.swift */,
@@ -312,7 +309,6 @@
 			files = (
 				52E0863D1AB197CC00419BB2 /* LaunchScreen.xib in Resources */,
 				CEA371951AB9D3FD00A84CA6 /* Default-568h@2x.png in Resources */,
-				526550571ABAFDC0007C7CA3 /* ChatCell.xib in Resources */,
 				52E0863A1AB197CC00419BB2 /* Images.xcassets in Resources */,
 				526864541AB2F24D00166FF4 /* Main.storyboard in Resources */,
 			);

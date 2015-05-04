@@ -12,6 +12,7 @@ import SwiftyJSON
 class Room: NSObject {
 
 	// Properties
+    var _id: String!
 	var checked: Int?
 	var customer: User?
 	var employee: User?
@@ -21,7 +22,12 @@ class Room: NSObject {
 	init(jsonRoom room: JSON) {
 
 		self.messages = [Message]()
-
+        
+        // Vul id
+        if let _id = room["_id"].string {
+            self._id = _id
+        }
+        
 		// Vul checked
 		if let checked = room["checked"].number as? Int {
 			self.checked = checked

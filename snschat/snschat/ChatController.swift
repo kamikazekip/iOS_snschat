@@ -22,7 +22,8 @@ class ChatController: UIViewController {
 
     let defaults = NSUserDefaults.standardUserDefaults()
     
-	let socket = SocketIOClient(socketURL: "localhost:10040")
+    var server: String!
+    var socket: SocketIOClient!
     
     var room: Room!
     
@@ -33,13 +34,17 @@ class ChatController: UIViewController {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.estimatedRowHeight = 160.0
-
+        
+        self.server = defaults.valueForKey("server") as! String
+        
 		/*
 		 *	Socket callbacks
 		 */
-
+        
+        self.socket = SocketIOClient(socketURL: "\(self.server)")
 		socket.on("connect") {data, ack in
 			println("socket connected")
+            self.socket.emit("join", self.room._id)
 		}
 
 		socket.connect()
@@ -85,7 +90,7 @@ class ChatController: UIViewController {
     
     @IBAction func sendMessage(sender: UIButton) {
         if(!textField.text.isEmpty){
-            
+            self.socket.emit("message", self.room._id)
         }
     }
 }

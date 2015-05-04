@@ -31,8 +31,6 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         defaults.synchronize()
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        var nib = UINib(nibName: "ChatCell", bundle: nil)
-        self.tableView.registerNib(nib, forCellReuseIdentifier: "cell")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -105,7 +103,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell: ChatCell = self.tableView.dequeueReusableCellWithIdentifier("cell") as! ChatCell
+        var cell: ChatCell = self.tableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCell
 
 		// TODO: Lees eerst de TODO in LoginController.
 		// TODO: Wat hieronder outcomment staat zal waarschijnlijk wel werken, of

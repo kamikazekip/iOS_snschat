@@ -10,9 +10,11 @@ import UIKit
 
 class ChatCell: UITableViewCell {
 
+
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var message: UILabel!
+    
     var room: Room!
     
     override func awakeFromNib() {
