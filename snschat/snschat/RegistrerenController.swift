@@ -38,10 +38,6 @@ class RegistrerenController: UIViewController {
         self.view.endEditing(true)
     }
     
-    @IBAction func back(sender: UIBarButtonItem) {
-        navigationController?.popViewControllerAnimated(true)
-    }
-    
     @IBAction func register(sender: UIButton) {
         var email = emailField.text
         var password = passwordField.text

@@ -19,6 +19,18 @@ class Message {
     var dateSent: NSDate?
     var niceDate: String!
     
+    init(_id: String?, sender: String?, content: String?, type: String?, status: String?, dateSent: NSDate) {
+        self._id = _id
+        self.sender = sender
+        self.content = content
+        self.type = type
+        self.status = status
+        self.dateSent = dateSent
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        self.niceDate = dateFormatter.stringFromDate(self.dateSent!)
+    }
+    
 	init(message: JSON) {
         fillProps(message)
     }

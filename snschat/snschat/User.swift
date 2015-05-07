@@ -92,6 +92,8 @@ class User: NSObject, NSURLConnectionDelegate {
         println("Failed with error:\(error.localizedDescription)")
         if(lastOperation == "register" && error.localizedDescription == "The request timed out." ){
             registerController!.error("De server is offline, probeer het later nog eens!")
+        } else  if( lastOperation == "login" && error.localizedDescription == "The request timed out."){
+            loginController!.error("De server is offline, probeer het later nog eens!")
         }
     }
     
