@@ -31,8 +31,8 @@
 		CE30890B1AEA73D700513566 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3089081AEA73D700513566 /* PostRequest.swift */; };
 		CE30890D1AEA73ED00513566 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30890C1AEA73ED00513566 /* JSONParser.swift */; };
 		CEA371951AB9D3FD00A84CA6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */; };
-		EC0CFFE61ABC545700E264AE /* CategorieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE51ABC545700E264AE /* CategorieController.swift */; };
-		EC0CFFE81ABC5FBC00E264AE /* SubcategorieController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE71ABC5FBC00E264AE /* SubcategorieController.swift */; };
+		CEDC4AA41B00BD0F007B03B4 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4AA31B00BD0F007B03B4 /* Category.swift */; };
+		CEDC4AA61B00BDF3007B03B4 /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */; };
 		EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE91ABC669D00E264AE /* ChatController.swift */; };
 		F371D2461AEB0CE600E85BDF /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = F371D2451AEB0CE600E85BDF /* Room.swift */; };
 /* End PBXBuildFile section */
@@ -78,8 +78,8 @@
 		CE3089081AEA73D700513566 /* PostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		CE30890C1AEA73ED00513566 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		EC0CFFE51ABC545700E264AE /* CategorieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategorieController.swift; sourceTree = "<group>"; };
-		EC0CFFE71ABC5FBC00E264AE /* SubcategorieController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubcategorieController.swift; sourceTree = "<group>"; };
+		CEDC4AA31B00BD0F007B03B4 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
 		EC0CFFE91ABC669D00E264AE /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		F371D2451AEB0CE600E85BDF /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,6 +118,8 @@
 				5268AEE81AE8D50900C4BEE5 /* User.swift */,
 				5268AEEA1AE8E91C00C4BEE5 /* Reachability.swift */,
 				F371D2451AEB0CE600E85BDF /* Room.swift */,
+				CEDC4AA31B00BD0F007B03B4 /* Category.swift */,
+				CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -162,8 +164,6 @@
 				5265504A1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift */,
 				5265504C1ABAEBCC007C7CA3 /* ChatAanmakenController.swift */,
 				5265504E1ABAF0D9007C7CA3 /* FAQController.swift */,
-				EC0CFFE51ABC545700E264AE /* CategorieController.swift */,
-				EC0CFFE71ABC5FBC00E264AE /* SubcategorieController.swift */,
 				EC0CFFE91ABC669D00E264AE /* ChatController.swift */,
 				52184F8D1AD3DA84009E7F7D /* ChatBubble.swift */,
 				524A0C641AE90A95001CD22D /* AlertHelper.swift */,
@@ -382,6 +382,7 @@
 				526550561ABAFDC0007C7CA3 /* ChatCell.swift in Sources */,
 				5268AEE91AE8D50900C4BEE5 /* User.swift in Sources */,
 				CE3089091AEA73D700513566 /* GetRequest.swift in Sources */,
+				CEDC4AA41B00BD0F007B03B4 /* Category.swift in Sources */,
 				52E086331AB197CC00419BB2 /* AppDelegate.swift in Sources */,
 				524A0C651AE90A95001CD22D /* AlertHelper.swift in Sources */,
 				5265504B1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift in Sources */,
@@ -393,9 +394,8 @@
 				CE30890D1AEA73ED00513566 /* JSONParser.swift in Sources */,
 				526864531AB2F09200166FF4 /* ChatsController.swift in Sources */,
 				5268AEEB1AE8E91C00C4BEE5 /* Reachability.swift in Sources */,
-				EC0CFFE81ABC5FBC00E264AE /* SubcategorieController.swift in Sources */,
 				5265504D1ABAEBCC007C7CA3 /* ChatAanmakenController.swift in Sources */,
-				EC0CFFE61ABC545700E264AE /* CategorieController.swift in Sources */,
+				CEDC4AA61B00BDF3007B03B4 /* Subcategory.swift in Sources */,
 				52184F901AD3DD91009E7F7D /* Message.swift in Sources */,
 				5265504F1ABAF0D9007C7CA3 /* FAQController.swift in Sources */,
 			);

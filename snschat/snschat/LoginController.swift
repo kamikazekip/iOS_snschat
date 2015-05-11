@@ -2,8 +2,8 @@
 //  ViewController.swift
 //  snschat
 //
-//  Created by Erik Brandsma on 12/03/15.
-//  Copyright (c) 2015 Erik Brandsma. All rights reserved.
+//  Created by Erik Brandsma and Jip Verhoeven on 12/03/15.
+//  Copyright (c) 2015 Erik Brandsma and Jip Verhoeven. All rights reserved.
 //
 
 import UIKit

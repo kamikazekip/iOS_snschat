@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ChatAanmakenController: UIViewController, UIPickerViewDelegate {
+class ChatAanmakenController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var categoryField: UITextField!
     @IBOutlet weak var subcategoryField: UITextField!
@@ -16,11 +16,13 @@ class ChatAanmakenController: UIViewController, UIPickerViewDelegate {
     var categoryPicker: UIPickerView!
     var subcategoryPicker: UIPickerView!
     
-    var categories = ["Categorie 1", "Categorie 2", "Categorie 3", "Categorie 4", "Categorie 5", "Categorie 6", "Categorie 7"]
-    var subcategories = ["Subcategorie 1", "Subcategorie 2", "Subcategorie 3", "Subcategorie 4", "Subcategorie 5"]
+    var categories: [Category] = [Category]()
+    var selectedCategory: Category?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        categories.append(Category())
+        categories.append(Category())
         
         self.categoryPicker = UIPickerView()
         self.categoryPicker.delegate = self
@@ -31,6 +33,7 @@ class ChatAanmakenController: UIViewController, UIPickerViewDelegate {
         self.subcategoryPicker.tag = 1
         
         self.categoryField.inputView = self.categoryPicker
+        self.categoryField.delegate = self
         self.subcategoryField.inputView = self.subcategoryPicker
     }
 
@@ -42,31 +45,45 @@ class ChatAanmakenController: UIViewController, UIPickerViewDelegate {
         return 1
     }
     
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        println("HOI")
+        return true
+    }
+    
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0 {
             return self.categories.count
         }
         else if pickerView.tag == 1 {
-            return self.subcategories.count
+            if(self.selectedCategory != nil && self.categoryField.text != ""){
+                return self.selectedCategory!.subCategories.count
+            } else{
+                return 0
+            }
         }
         return 1
     }
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         if pickerView.tag == 0 {
-            return self.categories[row]
+            return self.categories[row].category
         }
         else if pickerView.tag == 1 {
-            return self.subcategories[row]
+            if(self.selectedCategory != nil && self.categoryField.text != ""){
+                return self.selectedCategory!.subCategories[row].subcategory
+            }
         }
         return ""
     }
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)  {
         if pickerView.tag == 0 {
-            self.categoryField.text = self.categories[row]
+            self.categoryField.text = self.categories[row].category
+            self.selectedCategory = self.categories[row]
         } else if pickerView.tag == 1 {
-            self.subcategoryField.text = self.subcategories[row]
+            if(self.selectedCategory != nil && self.categoryField.text != ""){
+                self.subcategoryField.text = self.selectedCategory!.subCategories[row].subcategory
+            }
         }
     }
     
