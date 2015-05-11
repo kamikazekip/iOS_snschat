@@ -9,6 +9,8 @@
 import Foundation
 
 class Category {
+    
+    var _id: String?
     var category: String?
     var subCategories: [Subcategory] = [Subcategory]()
     

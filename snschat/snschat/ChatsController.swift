@@ -18,9 +18,13 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
 	var user: User?
     var filteredRooms = [Room]()
     var resultSearchController = UISearchController()
+    var overlay: UIView?
+    let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tapRec.addTarget(self, action: "tappedOverlay")
         
         self.resultSearchController = ({
             let controller = UISearchController(searchResultsController: nil)
@@ -29,11 +33,10 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             controller.searchBar.sizeToFit()
             controller.searchBar.backgroundColor = UIColor.clearColor()
             controller.searchBar.barTintColor = UIColor.whiteColor()
-            //controller.searchBar.layer.borderColor = UIColor.lightGrayColor().CGColor
-            controller.searchBar.clipsToBounds = true
-            controller.searchBar.layer.borderWidth = 0.5
             controller.searchBar.placeholder = "Zoeken"
             self.tableView.tableHeaderView = controller.searchBar
+            self.tableView.layer.borderWidth = 0.3
+            self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
             
             return controller
         })()
@@ -139,13 +142,44 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         if(searchController.searchBar.text == ""){
             self.filteredRooms = self.user!.rooms
+            overlay = UIView(frame: view.frame)
+            overlay!.frame.origin.x += 1
+            overlay!.alpha = 0.0
+            overlay!.backgroundColor = UIColor.blackColor()
+            overlay!.addGestureRecognizer(tapRec)
+            self.view.addSubview(overlay!)
+            
+            UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.overlay!.alpha = 0.5
+                }, completion: { ( finished: Bool) -> Void in
+            })
         } else {
+            UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+                self.overlay!.alpha = 0.0
+                }, completion: { ( finished: Bool) -> Void in
+                    overlay?.removeFromSuperview()
+            })
             self.filteredRooms.removeAll(keepCapacity: false)
             let searchPredicate = NSPredicate(format: "self.employee._id contains[c] %@", searchController.searchBar.text)
             let array = (self.user!.rooms as NSArray).filteredArrayUsingPredicate(searchPredicate)
             self.filteredRooms = array as! [Room]
         }
         self.tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        tappedOverlay()
+    }
+    
+    func tappedOverlay() {
+        self.view.endEditing(true)
+        self.resultSearchController.active = false
+        navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
+        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.overlay!.alpha = 0.0
+            }, completion: { ( finished: Bool) -> Void in
+                overlay?.removeFromSuperview()
+        })
     }
 
     @IBAction func logOut(sender: UIButton) {
@@ -166,6 +200,9 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             var loginNavController: UINavigationController = segue.destinationViewController as! UINavigationController
             var loginController: LoginController = loginNavController.viewControllers.first as! LoginController
             loginController.chatsController = self
+        } else if(segue.identifier == "toCreateChat") {
+            var createChatController: CreateChatController = segue.destinationViewController as! CreateChatController
+            createChatController.user = self.user!
         }
     }
 

@@ -9,6 +9,8 @@
 import Foundation
 
 class Subcategory {
+    
+    var _id: String?
     var subcategory: String?
     
     init(){

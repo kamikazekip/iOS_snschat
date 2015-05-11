@@ -17,6 +17,8 @@ class LoginController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var rememberSwitch: UISwitch!
     
+    
+    
     var text: String?
     var chatsController: ChatsController!
 
