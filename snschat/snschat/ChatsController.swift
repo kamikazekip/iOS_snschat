@@ -9,36 +9,46 @@
 import UIKit
 import SwiftyJSON
 
-class ChatsController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate {
+class ChatsController: UIViewController, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchResultsUpdating {
 
     @IBOutlet weak var tableView: UITableView!
     var selectedIndex: NSIndexPath?
     var defaults = NSUserDefaults.standardUserDefaults()
-    @IBOutlet weak var chatSearch: UISearchBar!
-    
-    var overlay: UIView?
-    let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
 
 	var user: User?
+    var filteredRooms = [Room]()
+    var resultSearchController = UISearchController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tapRec.addTarget(self, action: "tappedOverlay")
+        self.resultSearchController = ({
+            let controller = UISearchController(searchResultsController: nil)
+            controller.searchResultsUpdater = self
+            controller.dimsBackgroundDuringPresentation = false
+            controller.searchBar.sizeToFit()
+            controller.searchBar.backgroundColor = UIColor.clearColor()
+            controller.searchBar.barTintColor = UIColor.whiteColor()
+            //controller.searchBar.layer.borderColor = UIColor.lightGrayColor().CGColor
+            controller.searchBar.clipsToBounds = true
+            controller.searchBar.layer.borderWidth = 0.5
+            controller.searchBar.placeholder = "Zoeken"
+            self.tableView.tableHeaderView = controller.searchBar
+            
+            return controller
+        })()
         
         self.performSegueWithIdentifier("toLogin", sender: self)
         defaults.setBool(false, forKey: "fromLogin");
         defaults.synchronize()
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        
         self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.tableView.layer.borderWidth = 0.5
         
         var backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
         self.tableView.backgroundColor = UIColor.clearColor()
-        self.chatSearch.backgroundColor = UIColor.clearColor()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -49,8 +59,6 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     override func viewDidAppear(animated: Bool) {
-        self.chatSearch.layer.borderColor = UIColor.whiteColor().CGColor
-        self.chatSearch.layer.borderWidth = 1
         if(defaults.boolForKey("fromLogin") == true){
             var type = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound
             var setting = UIUserNotificationSettings(forTypes: type, categories: nil)
@@ -70,41 +78,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.view.endEditing(true)
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar)
-    {
-        navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
-        
-        searchBar.setShowsCancelButton(true, animated: true)
-    
-        overlay = UIView(frame: view.frame)
-        overlay!.frame.origin.x += 1
-        overlay!.alpha = 0.0
-        overlay!.backgroundColor = UIColor.blackColor()
-        overlay!.addGestureRecognizer(tapRec)
-        self.tableView.addSubview(overlay!)
-        
-        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-            self.overlay!.alpha = 0.5
-            }, completion: { ( finished: Bool) -> Void in
-        })
-    }
-    
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        tappedOverlay()
-    }
-    
-    func tappedOverlay() {
-        self.view.endEditing(true)
-        chatSearch.setShowsCancelButton(false, animated: true);
-        navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
-        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
-            self.overlay!.alpha = 0.0
-            }, completion: { ( finished: Bool) -> Void in
-                overlay?.removeFromSuperview()
-        })
-        
-        
-        
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -117,8 +92,18 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             self.tableView.backgroundView = label
             return 0
         }
-        self.tableView.backgroundView = nil
-        return self.user != nil ? self.user!.rooms.count : 0
+        else {
+            self.tableView.backgroundView = nil
+            if (self.user != nil) {
+                if( self.resultSearchController.active){
+                    return self.filteredRooms.count
+                } else {
+                    return self.user!.rooms.count
+                }
+            } else {
+                return  0
+            }
+        }
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -129,37 +114,39 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         selectedIndex = indexPath
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         navigationController?.setNavigationBarHidden(false, animated: false)
+        self.resultSearchController.active = false
         self.performSegueWithIdentifier("toChat", sender: tableView.cellForRowAtIndexPath(indexPath))
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell: ChatCell = self.tableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCell
-
-		// TODO: Lees eerst de TODO in LoginController.
-		// TODO: Wat hieronder outcomment staat zal waarschijnlijk wel werken, of
-		//		 in ieder geval bijna. Dit moet ook gedaan worden voor de andere
-		//		 velden. Raak je in de war dan kan je spieken in functies zoals
-		//		 init(jsonRoom room: JSON) van Room (model) en nog wat andere
-		//		 modellen. In de numberOfRowsInSection functie (paar regels hierboven)
-		//		 staat al een werkende counter.
-
-		let room = self.user?.rooms[indexPath.row]
-        
-//		Titel is 'on hold' wanneer nog geen employee gekoppeld is.
-		if let employee_id = room!.employee!._id {
-			cell.title.text = employee_id
-		} else {
-            cell.title.text = "In de wachtrij"
-		}
+        let room: Room!
+        if(self.resultSearchController.active){
+            room = self.filteredRooms[indexPath.row]
+        } else {
+            room = self.user?.rooms[indexPath.row]
+        }
+    
+        cell.title.text = room!.employee?._id
         cell.room = room!
 		cell.message.text = room!.messages![room!.messages!.count - 1].content
-        println(room!.messages![room!.messages!.count - 1])
 		cell.date.text = room!.messages![room!.messages!.count - 1].niceDate
 
         return cell
     }
     
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if(searchController.searchBar.text == ""){
+            self.filteredRooms = self.user!.rooms
+        } else {
+            self.filteredRooms.removeAll(keepCapacity: false)
+            let searchPredicate = NSPredicate(format: "self.employee._id contains[c] %@", searchController.searchBar.text)
+            let array = (self.user!.rooms as NSArray).filteredArrayUsingPredicate(searchPredicate)
+            self.filteredRooms = array as! [Room]
+        }
+        self.tableView.reloadData()
+    }
 
     @IBAction func logOut(sender: UIButton) {
         defaults.removeObjectForKey("userID")

@@ -18,7 +18,8 @@ class Room: NSObject {
 	var employee: User?
 	var messages: [Message]?
 	var status: String?
-
+    var hasEmployee: Bool
+    
 	init(jsonRoom room: JSON) {
 
 		self.messages = [Message]()
@@ -42,7 +43,14 @@ class Room: NSObject {
 		if let employee = room["employee"] as JSON? {
 			self.employee = User(jsonUser: employee)
 		}
-
+        
+        if(self.employee?._id != nil){
+            self.hasEmployee = true
+        } else {
+            self.hasEmployee = false
+            self.employee?._id = "In de wachtrij"
+        }
+        
 		// Vul messages
 		for message: JSON in room["messages"].arrayValue {
 			self.messages?.append(Message(message: message))

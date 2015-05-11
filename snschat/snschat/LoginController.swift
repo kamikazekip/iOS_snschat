@@ -15,6 +15,8 @@ class LoginController: UIViewController {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var rememberSwitch: UISwitch!
+    
     var text: String?
     var chatsController: ChatsController!
 
