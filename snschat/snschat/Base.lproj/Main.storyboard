@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ymC-Gv-7Vl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ymC-Gv-7Vl">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -487,7 +487,7 @@
                     <connections>
                         <outlet property="searchDisplayController" destination="TZA-ip-0gn" id="Oil-TP-XCR"/>
                         <outlet property="tableView" destination="Go1-fj-eGM" id="HxO-sv-OO8"/>
-                        <segue destination="OSl-Ws-w7e" kind="presentation" identifier="toLogin" modalTransitionStyle="coverVertical" animates="NO" id="yTt-g9-8TH"/>
+                        <segue destination="OSl-Ws-w7e" kind="presentation" identifier="toLogin" modalTransitionStyle="coverVertical" id="yTt-g9-8TH"/>
                         <segue destination="twD-ts-KjH" kind="show" identifier="toChat" id="987-LR-KBa"/>
                     </connections>
                 </viewController>

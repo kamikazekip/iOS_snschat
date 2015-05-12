@@ -217,10 +217,19 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
 
     @IBAction func logOut(sender: UIButton) {
-        defaults.removeObjectForKey("userID")
-        self.user = nil
-        self.tableView.reloadData()
-        self.performSegueWithIdentifier("toLogin", sender: self)
+        var confirmAlert = UIAlertController(title: "Uitloggen", message: "Weet u zeker dat u wilt uitloggen?", preferredStyle: UIAlertControllerStyle.Alert)
+        confirmAlert.addAction(UIAlertAction(title: "Ja", style: .Default, handler: { (action: UIAlertAction!) in
+            println("Handle Ok logic here")
+            self.defaults.removeObjectForKey("userID")
+            self.user = nil
+            self.tableView.reloadData()
+            self.performSegueWithIdentifier("toLogin", sender: self)
+        }))
+        
+        confirmAlert.addAction(UIAlertAction(title: "Nee", style: .Default, handler: { (action: UIAlertAction!) in
+            println("Handle Cancel Logic here")
+        }))
+        self.presentViewController(confirmAlert, animated: true, completion: nil)
     }
     
     
