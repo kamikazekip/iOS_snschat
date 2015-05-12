@@ -15,7 +15,7 @@ class Category {
     var subCategories: [Subcategory] = [Subcategory]()
     
     init(){
-        category = "hurrdurr"
+        category = "Categorie"
         subCategories.append(Subcategory())
         subCategories.append(Subcategory())
     }

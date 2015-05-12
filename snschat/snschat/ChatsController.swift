@@ -20,10 +20,13 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     var resultSearchController = UISearchController()
     var overlay: UIView?
     let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
+    var overlayDissapearing: Bool!
+    var overlayAppearing: Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        overlayDissapearing = false
+        overlayAppearing = false
         tapRec.addTarget(self, action: "tappedOverlay")
         
         self.resultSearchController = ({
@@ -33,6 +36,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             controller.searchBar.sizeToFit()
             controller.searchBar.backgroundColor = UIColor.whiteColor()
             controller.searchBar.barTintColor = UIColor.whiteColor()
+            controller.searchBar.tintColor = UIColor(red: 103/255, green: 58/255, blue: 183/255, alpha: 1)
             controller.searchBar.placeholder = "Zoeken"
             controller.searchBar.delegate = self
             self.tableView.tableHeaderView = controller.searchBar
@@ -47,8 +51,6 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         defaults.synchronize()
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        //self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        //self.tableView.layer.borderWidth = 0.5
         
         var backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
@@ -100,7 +102,16 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             self.tableView.backgroundView = nil
             if (self.user != nil) {
                 if( self.resultSearchController.active){
-                    return self.filteredRooms.count
+                    if (self.filteredRooms.count == 0) {
+                        label.text = "Geen resultaten gevonden."
+                        label.textAlignment = NSTextAlignment.Center
+                        label.numberOfLines = 0
+                        self.tableView.backgroundView = label
+                        return 0
+                    } else {
+                        self.tableView.backgroundView = nil
+                        return self.filteredRooms.count
+                    }
                 } else {
                     return self.user!.rooms.count
                 }
@@ -141,30 +152,19 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        if(searchController.searchBar.text == "" && self.resultSearchController.active == true){
-            println("FADE IN")
-            searchController.searchBar.layer.borderColor = UIColor.whiteColor().CGColor
-            self.filteredRooms = self.user!.rooms
-            overlay = UIView(frame: view.frame)
-            overlay!.frame.origin.x += 1
-            overlay!.alpha = 0.0
-            overlay!.backgroundColor = UIColor.blackColor()
-            overlay!.addGestureRecognizer(tapRec)
-            self.tableView.addSubview(overlay!)
-            
-            UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
-                self.overlay!.alpha = 0.5
-                }, completion: { ( finished: Bool) -> Void in
-                    self.overlay!.alpha = 0.5
-            })
+        if(self.resultSearchController.active == true){
+            if(self.resultSearchController.searchBar.text != ""){
+                self.overlayOff()
+                self.filteredRooms.removeAll(keepCapacity: false)
+                let searchPredicate = NSPredicate(format: "self.employee._id contains[c] %@", searchController.searchBar.text)
+                let array = (self.user!.rooms as NSArray).filteredArrayUsingPredicate(searchPredicate)
+                self.filteredRooms = array as! [Room]
+            } else {
+                self.filteredRooms = self.user!.rooms
+                self.overlayOn()
+            }
         } else {
-            println("FADE OUT")
-            searchController.searchBar.layer.borderColor = UIColor.lightGrayColor().CGColor
-            UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
-                self.overlay!.alpha = 0.0
-                }, completion: { ( finished: Bool) -> Void in
-                    overlay?.removeFromSuperview()
-            })
+            self.overlayOff()
             self.filteredRooms.removeAll(keepCapacity: false)
             let searchPredicate = NSPredicate(format: "self.employee._id contains[c] %@", searchController.searchBar.text)
             let array = (self.user!.rooms as NSArray).filteredArrayUsingPredicate(searchPredicate)
@@ -173,21 +173,47 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         self.tableView.reloadData()
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        println("HALLO")
-        //tappedOverlay()
+    func tappedOverlay(){
+        self.resultSearchController.active = false
     }
     
-    func tappedOverlay() {
-        self.view.endEditing(true)
-        self.resultSearchController.active = false
-        //navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
-        self.resultSearchController.searchBar.layer.borderColor = UIColor.lightGrayColor().CGColor
-        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
-            self.overlay!.alpha = 0.0
-            }, completion: { ( finished: Bool) -> Void in
-                overlay?.removeFromSuperview()
-        })
+    func overlayOn(){
+        self.resultSearchController.searchBar.layer.borderColor = UIColor.whiteColor().CGColor
+        if(self.overlay == nil){
+            overlay = UIView(frame: view.frame)
+            overlay!.alpha = 0.0
+            overlay!.frame.origin.x += 1
+            overlay!.backgroundColor = UIColor.blackColor()
+            overlay!.addGestureRecognizer(tapRec)
+            self.tableView.addSubview(overlay!)
+        }
+        if(self.overlay != nil){
+            self.overlayAppearing = true
+            self.overlayDissapearing = false
+            UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
+                self.overlay!.alpha = 0.4
+                }, completion: { ( finished: Bool) -> Void in
+                    self.overlayAppearing = false
+            })
+        }
+    }
+    
+    func overlayOff(){
+        if(self.overlay != nil){
+            if(self.overlayDissapearing == false){
+                self.overlayDissapearing = true
+                self.resultSearchController.searchBar.layer.borderColor = UIColor.lightGrayColor().CGColor
+                UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
+                    self.overlay!.alpha = 0.0
+                    }, completion: { ( finished: Bool) -> Void in
+                        if(self.overlayAppearing != true){
+                            self.overlay?.removeFromSuperview()
+                            self.overlay = nil
+                            self.overlayDissapearing = false
+                        }
+                })
+            }
+        }
     }
 
     @IBAction func logOut(sender: UIButton) {

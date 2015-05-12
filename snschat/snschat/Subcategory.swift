@@ -14,6 +14,6 @@ class Subcategory {
     var subcategory: String?
     
     init(){
-        subcategory = "LOLOLOL"
+        subcategory = "Subcategorie"
     }
 }
