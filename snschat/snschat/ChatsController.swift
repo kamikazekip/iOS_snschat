@@ -31,12 +31,13 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             controller.searchResultsUpdater = self
             controller.dimsBackgroundDuringPresentation = false
             controller.searchBar.sizeToFit()
-            controller.searchBar.backgroundColor = UIColor.clearColor()
+            controller.searchBar.backgroundColor = UIColor.whiteColor()
             controller.searchBar.barTintColor = UIColor.whiteColor()
             controller.searchBar.placeholder = "Zoeken"
+            controller.searchBar.delegate = self
             self.tableView.tableHeaderView = controller.searchBar
-            self.tableView.layer.borderWidth = 0.3
-            self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
+            self.tableView.layer.borderWidth = 1
+            self.tableView.layer.borderColor = UIColor.blackColor().CGColor
             
             return controller
         })()
@@ -46,8 +47,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         defaults.synchronize()
         
         self.tableView.rowHeight = UITableViewAutomaticDimension
-        self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
-        self.tableView.layer.borderWidth = 0.5
+        //self.tableView.layer.borderColor = UIColor.lightGrayColor().CGColor
+        //self.tableView.layer.borderWidth = 0.5
         
         var backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
@@ -140,21 +141,26 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        if(searchController.searchBar.text == ""){
+        if(searchController.searchBar.text == "" && self.resultSearchController.active == true){
+            println("FADE IN")
+            searchController.searchBar.layer.borderColor = UIColor.whiteColor().CGColor
             self.filteredRooms = self.user!.rooms
             overlay = UIView(frame: view.frame)
             overlay!.frame.origin.x += 1
             overlay!.alpha = 0.0
             overlay!.backgroundColor = UIColor.blackColor()
             overlay!.addGestureRecognizer(tapRec)
-            self.view.addSubview(overlay!)
+            self.tableView.addSubview(overlay!)
             
-            UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
                 self.overlay!.alpha = 0.5
                 }, completion: { ( finished: Bool) -> Void in
+                    self.overlay!.alpha = 0.5
             })
         } else {
-            UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            println("FADE OUT")
+            searchController.searchBar.layer.borderColor = UIColor.lightGrayColor().CGColor
+            UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
                 self.overlay!.alpha = 0.0
                 }, completion: { ( finished: Bool) -> Void in
                     overlay?.removeFromSuperview()
@@ -168,14 +174,16 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        tappedOverlay()
+        println("HALLO")
+        //tappedOverlay()
     }
     
     func tappedOverlay() {
         self.view.endEditing(true)
         self.resultSearchController.active = false
-        navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
-        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+        //navigationController?.setNavigationBarHidden(navigationController?.navigationBarHidden == false, animated: true)
+        self.resultSearchController.searchBar.layer.borderColor = UIColor.lightGrayColor().CGColor
+        UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
             self.overlay!.alpha = 0.0
             }, completion: { ( finished: Bool) -> Void in
                 overlay?.removeFromSuperview()
