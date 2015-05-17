@@ -30,7 +30,6 @@
 		CE30890A1AEA73D700513566 /* HttpsendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3089071AEA73D700513566 /* HttpsendRequest.swift */; };
 		CE30890B1AEA73D700513566 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3089081AEA73D700513566 /* PostRequest.swift */; };
 		CE30890D1AEA73ED00513566 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30890C1AEA73ED00513566 /* JSONParser.swift */; };
-		CEA371951AB9D3FD00A84CA6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */; };
 		CEDC4AA41B00BD0F007B03B4 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4AA31B00BD0F007B03B4 /* Category.swift */; };
 		CEDC4AA61B00BDF3007B03B4 /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */; };
 		EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE91ABC669D00E264AE /* ChatController.swift */; };
@@ -77,7 +76,6 @@
 		CE3089071AEA73D700513566 /* HttpsendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpsendRequest.swift; sourceTree = "<group>"; };
 		CE3089081AEA73D700513566 /* PostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		CE30890C1AEA73ED00513566 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
-		CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		CEDC4AA31B00BD0F007B03B4 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
 		EC0CFFE91ABC669D00E264AE /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
@@ -151,7 +149,6 @@
 				ECA8C16A1AEA686700A8CD46 /* Communication */,
 				5268AEE71AE8D4EB00C4BEE5 /* model */,
 				526550541ABAFDC0007C7CA3 /* ChatCell.swift */,
-				CEA371941AB9D3FD00A84CA6 /* Default-568h@2x.png */,
 				52E086321AB197CC00419BB2 /* AppDelegate.swift */,
 				52E086341AB197CC00419BB2 /* LoginController.swift */,
 				52E086361AB197CC00419BB2 /* Main.storyboard */,
@@ -308,7 +305,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				52E0863D1AB197CC00419BB2 /* LaunchScreen.xib in Resources */,
-				CEA371951AB9D3FD00A84CA6 /* Default-568h@2x.png in Resources */,
 				52E0863A1AB197CC00419BB2 /* Images.xcassets in Resources */,
 				526864541AB2F24D00166FF4 /* Main.storyboard in Resources */,
 			);

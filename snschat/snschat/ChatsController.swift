@@ -39,10 +39,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             controller.searchBar.tintColor = UIColor(red: 103/255, green: 58/255, blue: 183/255, alpha: 1)
             controller.searchBar.placeholder = "Zoeken"
             controller.searchBar.delegate = self
+            self.navigationController?.navigationBar.layer.borderColor = UIColor.clearColor().CGColor
             self.tableView.tableHeaderView = controller.searchBar
-            self.tableView.layer.borderWidth = 1
-            self.tableView.layer.borderColor = UIColor.blackColor().CGColor
-            
             return controller
         })()
         
@@ -54,7 +52,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         
         var backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
-        self.tableView.backgroundColor = UIColor.clearColor()
+        self.tableView.backgroundColor = UIColor.whiteColor()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -65,7 +63,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     override func viewDidAppear(animated: Bool) {
-        if(defaults.boolForKey("fromLogin") == true){
+        if(defaults.boolForKey("fromLogin")){
             var type = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound
             var setting = UIUserNotificationSettings(forTypes: type, categories: nil)
             UIApplication.sharedApplication().registerUserNotificationSettings(setting)
@@ -178,11 +176,11 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     }
     
     func overlayOn(){
-        self.resultSearchController.searchBar.layer.borderColor = UIColor.whiteColor().CGColor
         if(self.overlay == nil){
             overlay = UIView(frame: view.frame)
             overlay!.alpha = 0.0
             overlay!.frame.origin.x += 1
+            overlay!.frame.origin.y += 10
             overlay!.backgroundColor = UIColor.blackColor()
             overlay!.addGestureRecognizer(tapRec)
             self.tableView.addSubview(overlay!)
@@ -202,7 +200,6 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         if(self.overlay != nil){
             if(self.overlayDissapearing == false){
                 self.overlayDissapearing = true
-                self.resultSearchController.searchBar.layer.borderColor = UIColor.lightGrayColor().CGColor
                 UIView.animateWithDuration(0.4, delay: 0.0, options: UIViewAnimationOptions.AllowUserInteraction, animations: {
                     self.overlay!.alpha = 0.0
                     }, completion: { ( finished: Bool) -> Void in

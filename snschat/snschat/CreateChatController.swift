@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldDelegate {
 
@@ -28,14 +29,16 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     var categoryPicker: UIPickerView!
     var subcategoryPicker: UIPickerView!
     
+    var allCategories: [Category] = [Category]()
     var categories: [Category] = [Category]()
     var selectedCategory: Category?
     var selectedSubCategory: Subcategory?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        categories.append(Category())
-        categories.append(Category())
+        
+        getCategorieen()
+        
         
         alertHelper = AlertHelper(viewController: self)
         server = defaults.valueForKey("server") as! String
@@ -60,7 +63,6 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         self.categoryField.becomeFirstResponder()
-        self.categoryField.text = self.categories[0].category
         self.categoryPicker.selectedRowInComponent(0)
         self.selectedCategory = self.categories[0]
         self.subcategoryField.enabled = true
@@ -68,6 +70,22 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func getCategorieen() {
+        activityIndicator.hidden = false
+        
+        // create the request
+        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/catgories")!)
+        request.HTTPMethod = "GET"
+    
+        lastOperation = "getCategories"
+        
+        if(Reachability.isConnectedToNetwork()){
+            let urlConnection = NSURLConnection(request: request, delegate: self)
+        } else {
+            alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+        }
     }
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int  {
@@ -140,7 +158,7 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
             let postString = "user=" + self.user!._id + "&category=" + self.selectedCategory._id + "&subcategory=" + self.selectedSubCategory._id + "message=" + self.messageField.text
             request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
             
-            lastOperation = "chatAanmaken"
+            lastOperation = "createChat"
             
             if(Reachability.isConnectedToNetwork()){
                 let urlConnection = NSURLConnection(request: request, delegate: self)
@@ -179,7 +197,9 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         
         if(self.lastStatusCode == 200){
             switch(lastOperation){
-            case "chatAanmaken":
+            case "getCategories":
+                afterGetCategorieen()
+            case "createChat":
                 afterCreateChat()
             default:
                 println("Default case called in lastOperation switch")
@@ -189,6 +209,14 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
             println(lastStatusCode)
             println("Something went wrong, statusCode wasn't 200")
         }
+    }
+    
+    func afterGetCategorieen() {
+        let json = JSON(data: self.data)
+        for category: JSON in json.arrayValue {
+            self.allCategories.append(Category(jsonCategory: category))
+        }
+        activityIndicator.hidden = false
     }
     
     func afterCreateChat() {
