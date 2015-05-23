@@ -31,17 +31,17 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     var allCategories: [Category] = [Category]()
     var categories: [Category] = [Category]()
+    
     var selectedCategory: Category?
-    var selectedSubCategory: Subcategory?
+    var selectedSubCategory: Category?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getCategorieen()
-        
-        
         alertHelper = AlertHelper(viewController: self)
         server = defaults.valueForKey("server") as! String
+        
+        getAllCategories()
         
         self.categoryPicker = UIPickerView()
         self.categoryPicker.delegate = self
@@ -53,7 +53,9 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         
         self.categoryField.inputView = self.categoryPicker
         self.categoryField.delegate = self
+        
         self.subcategoryField.inputView = self.subcategoryPicker
+        self.subcategoryField.enabled = false
         
         self.messageField.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.messageField.layer.borderWidth = 0.3
@@ -62,24 +64,24 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.categoryField.becomeFirstResponder()
+        //self.categoryField.becomeFirstResponder()
         self.categoryPicker.selectedRowInComponent(0)
-        self.selectedCategory = self.categories[0]
-        self.subcategoryField.enabled = true
+        ////self.selectedCategory = self.categories[0]
+        //self.subcategoryField.enabled = true
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func getCategorieen() {
+    func getAllCategories() {
         activityIndicator.hidden = false
         
         // create the request
-        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/catgories")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/categories")!)
         request.HTTPMethod = "GET"
     
-        lastOperation = "getCategories"
+        lastOperation = "getAllCategories"
         
         if(Reachability.isConnectedToNetwork()){
             let urlConnection = NSURLConnection(request: request, delegate: self)
@@ -103,8 +105,8 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
             return self.categories.count
         }
         else if pickerView.tag == 1 {
-            if(self.selectedCategory != nil && self.categoryField.text != ""){
-                return self.selectedCategory!.subCategories.count
+            if(self.selectedCategory != nil && self.selectedCategory!.subcategories != nil && self.categoryField.text != ""){
+                return self.selectedCategory!.subcategories!.count
             } else{
                 return 0
             }
@@ -114,11 +116,11 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         if pickerView.tag == 0 {
-            return self.categories[row].category
+            return self.categories[row].title
         }
         else if pickerView.tag == 1 {
-            if(self.selectedCategory != nil && self.categoryField.text != ""){
-                return self.selectedCategory!.subCategories[row].subcategory
+            if(self.selectedCategory != nil && self.selectedCategory!.subcategories != nil && self.categoryField.text != ""){
+                return self.selectedCategory!.subcategories![row].title
             }
         }
         return ""
@@ -126,13 +128,14 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)  {
         if pickerView.tag == 0 {
-            self.categoryField.text = self.categories[row].category
+            self.categoryField.text = self.categories[row].title
             self.selectedCategory = self.categories[row]
             self.subcategoryField.enabled = true
+            self.subcategoryPicker.reloadAllComponents()
         } else if pickerView.tag == 1 {
-            if(self.selectedCategory != nil && self.categoryField.text != ""){
-                self.subcategoryField.text = self.selectedCategory!.subCategories[row].subcategory
-                self.selectedSubCategory = self.selectedCategory?.subCategories[row]
+            if(self.selectedCategory != nil && self.selectedCategory!.subcategories != nil && self.categoryField.text != ""){
+                self.subcategoryField.text = self.selectedCategory!.subcategories![row].title
+                self.selectedSubCategory = self.selectedCategory!.subcategories![row]
             }
         }
     }
@@ -194,11 +197,10 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     //NSURLConnection delegate method
     func connectionDidFinishLoading(connection: NSURLConnection!) {
-        
         if(self.lastStatusCode == 200){
             switch(lastOperation){
-            case "getCategories":
-                afterGetCategorieen()
+            case "getAllCategories":
+                afterGetAllCategories()
             case "createChat":
                 afterCreateChat()
             default:
@@ -211,12 +213,31 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         }
     }
     
-    func afterGetCategorieen() {
+    func afterGetAllCategories() {
         let json = JSON(data: self.data)
         for category: JSON in json.arrayValue {
             self.allCategories.append(Category(jsonCategory: category))
         }
-        activityIndicator.hidden = false
+        activityIndicator.hidden = true
+        
+        getCategories()
+    }
+    
+    func getCategories() {
+        for category in self.allCategories {
+            if (category.parent == nil) { // Als het een hoofdcategorie is
+                var subcategories: [Category] = [Category]()
+                for c in self.allCategories {
+                    if (c.parent != nil && c.parent == category._id) { // Als het een subcategorie is van de hoofdcategorie
+                        subcategories.append(c)
+                    }
+                }
+                category.subcategories = subcategories
+                self.categories.append(category)
+            }
+        }
+        
+        self.selectedCategory = self.categories[0]
     }
     
     func afterCreateChat() {
