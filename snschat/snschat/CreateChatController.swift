@@ -35,6 +35,8 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     var selectedCategory: Category?
     var selectedSubCategory: Category?
     
+    var createdRoom: Room?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -64,9 +66,9 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        //self.categoryField.becomeFirstResponder()
+        self.categoryField.becomeFirstResponder()
         self.categoryPicker.selectedRowInComponent(0)
-        ////self.selectedCategory = self.categories[0]
+        //self.selectedCategory = self.categories[0]
         //self.subcategoryField.enabled = true
     }
     
@@ -92,12 +94,6 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int  {
         return 1
-    }
-    
-    func textFieldShouldClear(textField: UITextField) -> Bool {
-        self.subcategoryField.enabled = false
-        self.subcategoryField.text = ""
-        return true
     }
     
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -130,8 +126,14 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         if pickerView.tag == 0 {
             self.categoryField.text = self.categories[row].title
             self.selectedCategory = self.categories[row]
-            self.subcategoryField.enabled = true
-            self.subcategoryPicker.reloadAllComponents()
+            self.subcategoryField.text = ""
+            if (self.categories[row].subcategories != nil) {
+                self.subcategoryField.enabled = true
+                self.subcategoryPicker.reloadAllComponents()
+            }
+            else {
+                self.subcategoryField.enabled = false
+            }
         } else if pickerView.tag == 1 {
             if(self.selectedCategory != nil && self.selectedCategory!.subcategories != nil && self.categoryField.text != ""){
                 self.subcategoryField.text = self.selectedCategory!.subcategories![row].title
@@ -154,21 +156,21 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
             activityIndicator.hidden = false
             
             /*// create the request
-            let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/rooms")!)
+            let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/rooms")!)
             
             // Set data
             request.HTTPMethod = "POST"
-            let postString = "user=" + self.user!._id + "&category=" + self.selectedCategory._id + "&subcategory=" + self.selectedSubCategory._id + "message=" + self.messageField.text
+            //let postString = "user=" + self.user!._id + "&category=" + self.selectedCategory._id + "&subcategory=" + self.selectedSubCategory._id + "message=" + self.messageField.text
+            let postString = "customer=" + self.user!._id!
             request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
             
-            lastOperation = "createChat"
+            lastOperation = "createRoom"
             
             if(Reachability.isConnectedToNetwork()){
                 let urlConnection = NSURLConnection(request: request, delegate: self)
             } else {
                 alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
             }*/
-            
             
             sender.enabled = true
         }
@@ -201,8 +203,10 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
             switch(lastOperation){
             case "getAllCategories":
                 afterGetAllCategories()
-            case "createChat":
-                afterCreateChat()
+            case "createRoom":
+                afterCreateRoom()
+            case "createMessage":
+                afterCreateMessage()
             default:
                 println("Default case called in lastOperation switch")
             }
@@ -240,8 +244,37 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         self.selectedCategory = self.categories[0]
     }
     
-    func afterCreateChat() {
+    func afterCreateRoom() {
+        let json = JSON(data: self.data)
+        self.createdRoom = Room(jsonRoom: json)
         
+        // create the request
+        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/rooms/\(self.createdRoom!._id!)/messages")!)
+        
+        // Set data
+        request.HTTPMethod = "POST"
+        let postString = "sender=" + self.user!._id! + "&content=" + self.messageField.text
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        lastOperation = "createMessage"
+        
+        if(Reachability.isConnectedToNetwork()){
+            let urlConnection = NSURLConnection(request: request, delegate: self)
+        } else {
+            alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+        }
+    }
+    
+    func afterCreateMessage() {
+        let json = JSON(data: self.data)
+        var createdMessage = Message(message: json)
+        
+        self.createdRoom!.messages?.append(createdMessage)
+        user!.rooms.append(self.createdRoom!)
+        
+        activityIndicator.hidden = true
+        
+        navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func onTapMainView(sender: AnyObject) {
