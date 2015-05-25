@@ -27,9 +27,15 @@ class ChatController: UIViewController {
     var socket: SocketIOClient!
     
     var room: Room!
+
+	var customerTyping: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+		// Functie registreren op het DidChange event (voor 'is typing')
+		textField.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
+
         self.textField.autoresizingMask = UIViewAutoresizing.FlexibleWidth
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
@@ -60,6 +66,24 @@ class ChatController: UIViewController {
                 self.room!.messages!.append(newMessage)
                 self.scrollToBottom()
             }
+
+			self.socket.on("startTyping") { userId, ack in
+
+				let username = (userId as! [String])[0]
+
+				if (username == self.room.employee!._id!) {
+					println("Employee begint met typen")
+				}
+			}
+
+			self.socket.on("stopTyping") { userId, ack in
+
+				let username = (userId as! [String])[0]
+
+				if (username == self.room.employee!._id!) {
+					println("Employee stopt met typen")
+				}
+			}
 		}
 		socket.connect()
     }
@@ -143,4 +167,17 @@ class ChatController: UIViewController {
                 animated: true)
         });
     }
+
+	func textFieldDidChange(textField: UITextField) {
+
+		if (!self.customerTyping && count(textField.text) > 0) {
+			self.customerTyping = true
+			self.socket.emit("startTyping", room.customer!._id!)
+		}
+
+		if (self.customerTyping && count(textField.text) == 0) {
+			self.customerTyping = false
+			self.socket.emit("stopTyping", room.customer!._id!)
+		}
+	}
 }
