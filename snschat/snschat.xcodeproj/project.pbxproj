@@ -26,6 +26,7 @@
 		52E0863D1AB197CC00419BB2 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E0863B1AB197CC00419BB2 /* LaunchScreen.xib */; };
 		52E086491AB197CC00419BB2 /* snschatTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086481AB197CC00419BB2 /* snschatTests.swift */; };
 		52E086531AB1DBBE00419BB2 /* RegistrerenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E086521AB1DBBE00419BB2 /* RegistrerenController.swift */; };
+		CE05880E1B13E3E200315F13 /* IsTypingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE05880D1B13E3E200315F13 /* IsTypingCell.swift */; };
 		CE3089091AEA73D700513566 /* GetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3089061AEA73D700513566 /* GetRequest.swift */; };
 		CE30890A1AEA73D700513566 /* HttpsendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3089071AEA73D700513566 /* HttpsendRequest.swift */; };
 		CE30890B1AEA73D700513566 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3089081AEA73D700513566 /* PostRequest.swift */; };
@@ -72,6 +73,7 @@
 		52E086521AB1DBBE00419BB2 /* RegistrerenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrerenController.swift; sourceTree = "<group>"; };
 		7418B6B78800AB9359E0AA68 /* Pods-snschat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-snschat.release.xcconfig"; path = "Pods/Target Support Files/Pods-snschat/Pods-snschat.release.xcconfig"; sourceTree = "<group>"; };
 		91EE125091CBAF59E389F5AE /* Pods-snschat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-snschat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-snschat/Pods-snschat.debug.xcconfig"; sourceTree = "<group>"; };
+		CE05880D1B13E3E200315F13 /* IsTypingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IsTypingCell.swift; sourceTree = "<group>"; };
 		CE3089061AEA73D700513566 /* GetRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetRequest.swift; sourceTree = "<group>"; };
 		CE3089071AEA73D700513566 /* HttpsendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpsendRequest.swift; sourceTree = "<group>"; };
 		CE3089081AEA73D700513566 /* PostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				EC0CFFE91ABC669D00E264AE /* ChatController.swift */,
 				52184F8D1AD3DA84009E7F7D /* ChatBubble.swift */,
 				524A0C641AE90A95001CD22D /* AlertHelper.swift */,
+				CE05880D1B13E3E200315F13 /* IsTypingCell.swift */,
 			);
 			path = snschat;
 			sourceTree = "<group>";
@@ -394,6 +397,7 @@
 				CEDC4AA61B00BDF3007B03B4 /* Subcategory.swift in Sources */,
 				52184F901AD3DD91009E7F7D /* Message.swift in Sources */,
 				5265504F1ABAF0D9007C7CA3 /* FAQController.swift in Sources */,
+				CE05880E1B13E3E200315F13 /* IsTypingCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

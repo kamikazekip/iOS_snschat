@@ -62,7 +62,7 @@ class ChatController: UIViewController {
                 let dateSent = NSDate(timeIntervalSince1970: timeInterval)
                 
                 var newMessage = Message(_id: _id, sender: sender, content: content, type: type, status: status, dateSent: dateSent)
-                
+                self.customerTyping = false
                 self.room!.messages!.append(newMessage)
                 self.scrollToBottom()
             }
@@ -72,8 +72,9 @@ class ChatController: UIViewController {
 				let username = (userId as! [String])[0]
 
 				if (username == self.room.employee!._id!) {
-					println("Employee begint met typen")
-				}
+                    self.customerTyping = true
+                    self.scrollToBottom()
+                }
 			}
 
 			self.socket.on("stopTyping") { userId, ack in
@@ -81,7 +82,8 @@ class ChatController: UIViewController {
 				let username = (userId as! [String])[0]
 
 				if (username == self.room.employee!._id!) {
-					println("Employee stopt met typen")
+                    self.customerTyping = false
+                    self.scrollToBottom()
 				}
 			}
 		}
@@ -90,6 +92,7 @@ class ChatController: UIViewController {
     
     override func viewDidAppear(animated: Bool) {
         scrollToBottom()
+        self.navigationController?.navigationItem.title = self.room!.employee?._id
     }
     
     override func viewWillDisappear(animated : Bool) {
@@ -117,7 +120,12 @@ class ChatController: UIViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.room.messages!.count
+        if(self.customerTyping){
+            return self.room.messages!.count + 1
+        } else {
+            return self.room.messages!.count
+        }
+        
     }
     
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
@@ -127,7 +135,13 @@ class ChatController: UIViewController {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell: ChatBubble
-        if (self.room.messages![indexPath.row].sender == defaults.stringForKey("userID")) {
+        var isTyping: IsTypingCell
+        if(indexPath.row == self.room.messages!.count){
+            isTyping = self.tableView.dequeueReusableCellWithIdentifier("isTypingCell") as! IsTypingCell
+            isTyping.isTypingLabel.text = "Aan het typen..."
+            return isTyping
+        }
+        else if (self.room.messages![indexPath.row].sender == defaults.stringForKey("userID")) {
             cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleRight") as! ChatBubble
         }
         else {
