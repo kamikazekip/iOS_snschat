@@ -31,17 +31,19 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     var allCategories: [Category] = [Category]()
     var categories: [Category] = [Category]()
+    
     var selectedCategory: Category?
-    var selectedSubCategory: Subcategory?
+    var selectedSubCategory: Category?
+    
+    var createdRoom: Room?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getCategorieen()
-        
-        
         alertHelper = AlertHelper(viewController: self)
         server = defaults.valueForKey("server") as! String
+        
+        getAllCategories()
         
         self.categoryPicker = UIPickerView()
         self.categoryPicker.delegate = self
@@ -53,7 +55,9 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         
         self.categoryField.inputView = self.categoryPicker
         self.categoryField.delegate = self
+        
         self.subcategoryField.inputView = self.subcategoryPicker
+        self.subcategoryField.enabled = false
         
         self.messageField.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.messageField.layer.borderWidth = 0.3
@@ -64,22 +68,22 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         super.viewDidAppear(animated)
         self.categoryField.becomeFirstResponder()
         self.categoryPicker.selectedRowInComponent(0)
-        self.selectedCategory = self.categories[0]
-        self.subcategoryField.enabled = true
+        //self.selectedCategory = self.categories[0]
+        //self.subcategoryField.enabled = true
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func getCategorieen() {
+    func getAllCategories() {
         activityIndicator.hidden = false
         
         // create the request
-        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/catgories")!)
+        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/categories")!)
         request.HTTPMethod = "GET"
     
-        lastOperation = "getCategories"
+        lastOperation = "getAllCategories"
         
         if(Reachability.isConnectedToNetwork()){
             let urlConnection = NSURLConnection(request: request, delegate: self)
@@ -92,19 +96,13 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         return 1
     }
     
-    func textFieldShouldClear(textField: UITextField) -> Bool {
-        self.subcategoryField.enabled = false
-        self.subcategoryField.text = ""
-        return true
-    }
-    
     func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView.tag == 0 {
             return self.categories.count
         }
         else if pickerView.tag == 1 {
-            if(self.selectedCategory != nil && self.categoryField.text != ""){
-                return self.selectedCategory!.subCategories.count
+            if(self.selectedCategory != nil && self.selectedCategory!.subcategories != nil && self.categoryField.text != ""){
+                return self.selectedCategory!.subcategories!.count
             } else{
                 return 0
             }
@@ -114,11 +112,11 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String! {
         if pickerView.tag == 0 {
-            return self.categories[row].category
+            return self.categories[row].title
         }
         else if pickerView.tag == 1 {
-            if(self.selectedCategory != nil && self.categoryField.text != ""){
-                return self.selectedCategory!.subCategories[row].subcategory
+            if(self.selectedCategory != nil && self.selectedCategory!.subcategories != nil && self.categoryField.text != ""){
+                return self.selectedCategory!.subcategories![row].title
             }
         }
         return ""
@@ -126,13 +124,20 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int)  {
         if pickerView.tag == 0 {
-            self.categoryField.text = self.categories[row].category
+            self.categoryField.text = self.categories[row].title
             self.selectedCategory = self.categories[row]
-            self.subcategoryField.enabled = true
+            self.subcategoryField.text = ""
+            if (self.categories[row].subcategories != nil) {
+                self.subcategoryField.enabled = true
+                self.subcategoryPicker.reloadAllComponents()
+            }
+            else {
+                self.subcategoryField.enabled = false
+            }
         } else if pickerView.tag == 1 {
-            if(self.selectedCategory != nil && self.categoryField.text != ""){
-                self.subcategoryField.text = self.selectedCategory!.subCategories[row].subcategory
-                self.selectedSubCategory = self.selectedCategory?.subCategories[row]
+            if(self.selectedCategory != nil && self.selectedCategory!.subcategories != nil && self.categoryField.text != ""){
+                self.subcategoryField.text = self.selectedCategory!.subcategories![row].title
+                self.selectedSubCategory = self.selectedCategory!.subcategories![row]
             }
         }
     }
@@ -151,21 +156,21 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
             activityIndicator.hidden = false
             
             /*// create the request
-            let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/rooms")!)
+            let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/rooms")!)
             
             // Set data
             request.HTTPMethod = "POST"
-            let postString = "user=" + self.user!._id + "&category=" + self.selectedCategory._id + "&subcategory=" + self.selectedSubCategory._id + "message=" + self.messageField.text
+            //let postString = "user=" + self.user!._id + "&category=" + self.selectedCategory._id + "&subcategory=" + self.selectedSubCategory._id + "message=" + self.messageField.text
+            let postString = "customer=" + self.user!._id!
             request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
             
-            lastOperation = "createChat"
+            lastOperation = "createRoom"
             
             if(Reachability.isConnectedToNetwork()){
                 let urlConnection = NSURLConnection(request: request, delegate: self)
             } else {
                 alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
             }*/
-            
             
             sender.enabled = true
         }
@@ -194,13 +199,14 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
     
     //NSURLConnection delegate method
     func connectionDidFinishLoading(connection: NSURLConnection!) {
-        
         if(self.lastStatusCode == 200){
             switch(lastOperation){
-            case "getCategories":
-                afterGetCategorieen()
-            case "createChat":
-                afterCreateChat()
+            case "getAllCategories":
+                afterGetAllCategories()
+            case "createRoom":
+                afterCreateRoom()
+            case "createMessage":
+                afterCreateMessage()
             default:
                 println("Default case called in lastOperation switch")
             }
@@ -211,16 +217,64 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         }
     }
     
-    func afterGetCategorieen() {
+    func afterGetAllCategories() {
         let json = JSON(data: self.data)
         for category: JSON in json.arrayValue {
             self.allCategories.append(Category(jsonCategory: category))
         }
-        activityIndicator.hidden = false
+        activityIndicator.hidden = true
+        
+        getCategories()
     }
     
-    func afterCreateChat() {
+    func getCategories() {
+        for category in self.allCategories {
+            if (category.parent == nil) { // Als het een hoofdcategorie is
+                var subcategories: [Category] = [Category]()
+                for c in self.allCategories {
+                    if (c.parent != nil && c.parent == category._id) { // Als het een subcategorie is van de hoofdcategorie
+                        subcategories.append(c)
+                    }
+                }
+                category.subcategories = subcategories
+                self.categories.append(category)
+            }
+        }
         
+        self.selectedCategory = self.categories[0]
+    }
+    
+    func afterCreateRoom() {
+        let json = JSON(data: self.data)
+        self.createdRoom = Room(jsonRoom: json)
+        
+        // create the request
+        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/rooms/\(self.createdRoom!._id!)/messages")!)
+        
+        // Set data
+        request.HTTPMethod = "POST"
+        let postString = "sender=" + self.user!._id! + "&content=" + self.messageField.text
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
+        
+        lastOperation = "createMessage"
+        
+        if(Reachability.isConnectedToNetwork()){
+            let urlConnection = NSURLConnection(request: request, delegate: self)
+        } else {
+            alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+        }
+    }
+    
+    func afterCreateMessage() {
+        let json = JSON(data: self.data)
+        var createdMessage = Message(message: json)
+        
+        self.createdRoom!.messages?.append(createdMessage)
+        user!.rooms.append(self.createdRoom!)
+        
+        activityIndicator.hidden = true
+        
+        navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func onTapMainView(sender: AnyObject) {

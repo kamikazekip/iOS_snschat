@@ -14,7 +14,7 @@ class Category {
     var _id: String?
     var title: String?
     var description: String?
-    var parent: Category?
+    var parent: String?
     var subcategories: [Category]?
     
     init(jsonCategory category: JSON) {
@@ -34,9 +34,16 @@ class Category {
             self.description = description
         }
         
-        // Vul parent
+        /*// Vul parent
         if let parent = category["parent"] as JSON? {
-            self.parent = Category(jsonCategory: parent)
+            //self.parent = Category(jsonCategory: parent)
+            println("Parent:")
+            println(parent)
+        }*/
+        
+        // Vul parent
+        if let parent = category["parent"].string {
+            self.parent = parent
         }
     }
     
