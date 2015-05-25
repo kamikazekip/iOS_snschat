@@ -154,32 +154,29 @@ class User: NSObject, NSURLConnectionDelegate {
         // voor deze functie is omdat hij op meerdere plekken gebruikt
         // wordt. Na het opruimen van deze class is het misschien niet
         // meer nodig.
-        fillProps(json)
+        fillProps(json["user"])
         self.loginController?.afterLogin()
     }
 
 	func fillProps(json: JSON) {
 
-		let token = json["token"]
-		let user = json["user"]
-
 		// Vul _id
-		if let username = user["_id"].string {
+		if let username = json["_id"].string {
 			self._id = username
 		}
 
 		// Vul lastlogin
-		if let lastLogin = user["lastLogin"].string {
+		if let lastLogin = json["lastLogin"].string {
 			self.lastLogin = lastLogin
 		}
 
 		// Vul rooms
-		for room: JSON in user["rooms"].arrayValue {
+		for room: JSON in json["rooms"].arrayValue {
 			self.rooms.append(Room(jsonRoom: room))
 		}
 
 		// Vul roles
-		for role: JSON in user["roles"].arrayValue {
+		for role: JSON in json["roles"].arrayValue {
 			self.roles.append(role.stringValue)
 		}
         
