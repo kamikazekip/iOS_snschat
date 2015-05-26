@@ -14,6 +14,7 @@ class ChatCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var message: UILabel!
+    @IBOutlet weak var unreadMessages: UILabel!
     
     var room: Room!
     
@@ -21,6 +22,7 @@ class ChatCell: UITableViewCell {
         super.awakeFromNib()
         message.numberOfLines = 0
         message.sizeToFit()
+        unreadMessages.clipsToBounds = true
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

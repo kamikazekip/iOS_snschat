@@ -145,6 +145,13 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         cell.room = room!
 		cell.message.text = room!.messages![room!.messages!.count - 1].content
 		cell.date.text = room!.messages![room!.messages!.count - 1].niceDate
+        
+        if (room!.unreadMessages == 0) {
+            cell.unreadMessages.text = String(room!.unreadMessages)
+        }
+        else {
+            cell.unreadMessages.hidden = true
+        }
 
         return cell
     }
