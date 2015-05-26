@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ymC-Gv-7Vl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ymC-Gv-7Vl">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -211,7 +211,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MwG-lK-WR5">
-                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <rect key="frame" x="-1" y="556" width="602" height="44"/>
                                 <gestureRecognizers/>
                                 <items>
                                     <barButtonItem style="plain" id="bPX-rX-BGw">
@@ -249,53 +249,43 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatBubbleLeft" rowHeight="87" id="waF-HJ-Rah" customClass="ChatBubble" customModule="snschat" customModuleProvider="target">
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatBubbleLeft" rowHeight="63" id="waF-HJ-Rah" customClass="ChatBubble" customModule="snschat" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="waF-HJ-Rah" id="vPM-UE-szC">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bericht" lineBreakMode="clip" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gRi-Wb-3Ff">
-                                                    <rect key="frame" x="8" y="34" width="584" height="24"/>
+                                                    <rect key="frame" x="8" y="8" width="584" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="24" id="X6V-a4-XHm"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tijd" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fsh-XD-aWF">
-                                                    <rect key="frame" x="8" y="65" width="99" height="12"/>
+                                                    <rect key="frame" x="8" y="40" width="99" height="12"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="12" id="1bc-nU-QLT"/>
-                                                        <constraint firstAttribute="width" constant="99" id="qCO-HV-zCR"/>
+                                                        <constraint firstAttribute="width" constant="99" id="HNI-03-i8f"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Naam" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7kh-KU-kbc">
-                                                    <rect key="frame" x="8" y="8" width="380" height="21"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="380" id="bFj-id-vWV"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                    <color key="textColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="7kh-KU-kbc" firstAttribute="top" secondItem="vPM-UE-szC" secondAttribute="topMargin" id="0kz-vm-gew"/>
-                                                <constraint firstItem="fsh-XD-aWF" firstAttribute="bottom" secondItem="vPM-UE-szC" secondAttribute="bottomMargin" constant="-2" id="1jz-d6-uUP"/>
-                                                <constraint firstItem="gRi-Wb-3Ff" firstAttribute="top" secondItem="vPM-UE-szC" secondAttribute="topMargin" constant="26" id="975-ke-Uv0"/>
-                                                <constraint firstItem="fsh-XD-aWF" firstAttribute="top" secondItem="gRi-Wb-3Ff" secondAttribute="bottom" constant="7" id="Ajw-SR-mDg"/>
-                                                <constraint firstItem="fsh-XD-aWF" firstAttribute="leading" secondItem="gRi-Wb-3Ff" secondAttribute="leading" id="SnX-8B-v0v"/>
-                                                <constraint firstItem="gRi-Wb-3Ff" firstAttribute="trailing" secondItem="vPM-UE-szC" secondAttribute="trailingMargin" id="YKm-S2-dtu"/>
-                                                <constraint firstItem="7kh-KU-kbc" firstAttribute="leading" secondItem="vPM-UE-szC" secondAttribute="leadingMargin" id="YY8-19-ybF"/>
-                                                <constraint firstItem="gRi-Wb-3Ff" firstAttribute="leading" secondItem="7kh-KU-kbc" secondAttribute="leading" id="ww5-P9-PNc"/>
+                                                <constraint firstItem="gRi-Wb-3Ff" firstAttribute="top" secondItem="vPM-UE-szC" secondAttribute="topMargin" id="Mtv-mE-071"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="fsh-XD-aWF" secondAttribute="bottom" constant="3" id="f9S-E5-ufw"/>
+                                                <constraint firstItem="gRi-Wb-3Ff" firstAttribute="leading" secondItem="fsh-XD-aWF" secondAttribute="leading" id="gZ6-xD-zI5"/>
+                                                <constraint firstItem="fsh-XD-aWF" firstAttribute="top" secondItem="gRi-Wb-3Ff" secondAttribute="bottom" constant="8" symbolic="YES" id="jr4-R3-Wxc"/>
+                                                <constraint firstItem="gRi-Wb-3Ff" firstAttribute="leading" secondItem="vPM-UE-szC" secondAttribute="leadingMargin" id="ra7-S1-VkB"/>
+                                                <constraint firstItem="gRi-Wb-3Ff" firstAttribute="centerX" secondItem="vPM-UE-szC" secondAttribute="centerX" id="ux7-Hb-Az0"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.94491792929292928" green="0.94491792929292928" blue="0.94491792929292928" alpha="1" colorSpace="calibratedRGB"/>
                                         <connections>
                                             <outlet property="date" destination="fsh-XD-aWF" id="hMX-kx-6Zt"/>
                                             <outlet property="message" destination="gRi-Wb-3Ff" id="Wq8-i8-YvI"/>
-                                            <outlet property="name" destination="7kh-KU-kbc" id="gRy-Do-U4u"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="chatBubbleRight" rowHeight="59" id="6tb-Aj-kfJ" customClass="ChatBubble" customModule="snschat" customModuleProvider="target">
@@ -378,13 +368,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="CBC-2A-Fc2" firstAttribute="leading" secondItem="MwG-lK-WR5" secondAttribute="leading" id="7Ut-CQ-jlL"/>
+                            <constraint firstItem="CBC-2A-Fc2" firstAttribute="leading" secondItem="MwG-lK-WR5" secondAttribute="leading" constant="1" id="7Ut-CQ-jlL"/>
                             <constraint firstItem="CBC-2A-Fc2" firstAttribute="bottom" secondItem="MwG-lK-WR5" secondAttribute="top" id="98K-pE-SNN"/>
                             <constraint firstItem="MwG-lK-WR5" firstAttribute="bottom" secondItem="LOc-CP-9nF" secondAttribute="top" id="D3D-8q-ZK1"/>
                             <constraint firstAttribute="trailing" secondItem="CBC-2A-Fc2" secondAttribute="trailing" id="SLy-nB-ESQ"/>
                             <constraint firstItem="CBC-2A-Fc2" firstAttribute="top" secondItem="nDq-lE-Rk9" secondAttribute="bottom" id="XwF-jR-8Kh"/>
-                            <constraint firstItem="MwG-lK-WR5" firstAttribute="leading" secondItem="IZl-t0-XoP" secondAttribute="leading" id="gNh-pA-o4t"/>
-                            <constraint firstItem="CBC-2A-Fc2" firstAttribute="trailing" secondItem="MwG-lK-WR5" secondAttribute="trailing" id="kfl-dn-Sl9"/>
+                            <constraint firstItem="MwG-lK-WR5" firstAttribute="leading" secondItem="IZl-t0-XoP" secondAttribute="leading" constant="-1" id="gNh-pA-o4t"/>
+                            <constraint firstItem="CBC-2A-Fc2" firstAttribute="trailing" secondItem="MwG-lK-WR5" secondAttribute="trailing" constant="-1" id="kfl-dn-Sl9"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="2PE-ZI-N9F" appends="YES" id="oaC-Sp-vm8"/>
@@ -396,6 +386,7 @@
                         <outlet property="tableView" destination="CBC-2A-Fc2" id="2g7-yv-nbc"/>
                         <outlet property="textField" destination="SwW-zE-FjR" id="ybE-vl-KBb"/>
                         <outlet property="titleBarTitle" destination="Ezk-LA-Dfz" id="tC8-tG-YTQ"/>
+                        <outlet property="toolBar" destination="MwG-lK-WR5" id="M3i-vU-x6m"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="igA-kl-0eO" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -14,7 +14,23 @@ class IsTypingCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        self.off()
+    }
+    
+    private func on(){
+        UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
+            self.isTypingLabel!.alpha = 1.0
+            }, completion: { ( finished: Bool) -> Void in
+                self.off()
+        })
+    }
+    
+    private func off(){
+        UIView.animateWithDuration(1.0, delay: 0.0, options: UIViewAnimationOptions.CurveEaseIn, animations: {
+            self.isTypingLabel!.alpha = 0.05
+            }, completion: { ( finished: Bool) -> Void in
+                self.on()
+        })
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

@@ -14,7 +14,7 @@ class ChatController: UIViewController {
 
     var receivedTitle: String!
     
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var titleBarTitle: UINavigationItem!
     @IBOutlet weak var sendButton: UIButton!
@@ -27,7 +27,7 @@ class ChatController: UIViewController {
     var socket: SocketIOClient!
     
     var room: Room!
-
+    //Code iPhone: 3107
 	var customerTyping: Bool = false
     
     override func viewDidLoad() {
@@ -42,6 +42,12 @@ class ChatController: UIViewController {
         self.tableView.estimatedRowHeight = 59.6
         
         self.server = defaults.valueForKey("server") as! String
+        
+        self.title = room!.employee!._id
+        self.toolBar.layer.borderWidth = 0.5
+        self.toolBar.layer.borderColor = UIColor.grayColor().CGColor
+        //self.toolBar.layer.borderColor = UIColor.blackColor().CGColor
+        //self.toolBar.layer.borderColor = UIColor(red: 103/255, green: 58/255, blue: 183/255, alpha: 1).CGColor
         
         self.socket = SocketIOClient(socketURL: "\(self.server)")
 		socket.on("connect") {data, ack in
@@ -64,6 +70,7 @@ class ChatController: UIViewController {
                 var newMessage = Message(_id: _id, sender: sender, content: content, type: type, status: status, dateSent: dateSent)
                 self.customerTyping = false
                 self.room!.messages!.append(newMessage)
+                println("Message ontvangen")
                 self.scrollToBottom()
             }
 
@@ -72,6 +79,7 @@ class ChatController: UIViewController {
 				let username = (userId as! [String])[0]
 
 				if (username == self.room.employee!._id!) {
+                    println("StartTyping")
                     self.customerTyping = true
                     self.scrollToBottom()
                 }
@@ -82,6 +90,7 @@ class ChatController: UIViewController {
 				let username = (userId as! [String])[0]
 
 				if (username == self.room.employee!._id!) {
+                    println("StopTyping")
                     self.customerTyping = false
                     self.scrollToBottom()
 				}
@@ -146,7 +155,6 @@ class ChatController: UIViewController {
         }
         else {
             cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleLeft") as! ChatBubble
-            cell.name.text = self.room.messages![indexPath.row].sender
         }
         cell.message.text = self.room.messages![indexPath.row].content
         cell.date.text = self.room.messages![indexPath.row].niceDate

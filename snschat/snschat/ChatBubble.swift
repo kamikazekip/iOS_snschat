@@ -10,7 +10,6 @@ import UIKit
 
 class ChatBubble: UITableViewCell {
     
-    @IBOutlet weak var name: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var message: UILabel!
     
