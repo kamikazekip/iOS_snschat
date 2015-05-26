@@ -81,6 +81,7 @@ class User: NSObject, NSURLConnectionDelegate {
         lastOperation = "login"
 
         if(Reachability.isConnectedToNetwork()){
+            println("NMNMNMNMNNM")
             let urlConnection = NSURLConnection(request: request, delegate: self)
         } else {
             loginController.error("U bent niet verbonden met het internet!")
@@ -159,7 +160,6 @@ class User: NSObject, NSURLConnectionDelegate {
     }
 
 	func fillProps(json: JSON) {
-
 		// Vul _id
 		if let username = json["_id"].string {
 			self._id = username

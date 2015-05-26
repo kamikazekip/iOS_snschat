@@ -18,10 +18,11 @@ class Room: NSObject {
 	var employee: User?
 	var messages: [Message]?
 	var status: String?
-    var hasEmployee: Bool
+    var hasEmployee: Bool?
+    var unreadMessages: Int = 0
     
 	init(jsonRoom room: JSON) {
-
+        super.init()
 		self.messages = [Message]()
         
         // Vul id
@@ -53,7 +54,11 @@ class Room: NSObject {
         
 		// Vul messages
 		for message: JSON in room["messages"].arrayValue {
-			self.messages?.append(Message(message: message))
+            var newMessage = Message(message: message)
+            if (newMessage.status == "unread" && newMessage.sender != self.customer!._id) {
+                self.unreadMessages = self.unreadMessages + 1
+            }
+            self.messages?.append(newMessage)
         }
         self.messages!.sort({ $0.dateSent!.timeIntervalSinceNow < $1.dateSent!.timeIntervalSinceNow })
         
@@ -61,5 +66,5 @@ class Room: NSObject {
 		if let status = room["status"].string {
 			self.status = status
 		}
-	}
+    }
 }

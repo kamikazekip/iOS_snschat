@@ -68,8 +68,8 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         super.viewDidAppear(animated)
         self.categoryField.becomeFirstResponder()
         self.categoryPicker.selectedRowInComponent(0)
-        //self.selectedCategory = self.categories[0]
-        //self.subcategoryField.enabled = true
+        self.selectedCategory = self.categories[0]
+        self.subcategoryField.enabled = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -155,7 +155,7 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         else {
             activityIndicator.hidden = false
             
-            /*// create the request
+            // create the request
             let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/rooms")!)
             
             // Set data
@@ -170,7 +170,7 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
                 let urlConnection = NSURLConnection(request: request, delegate: self)
             } else {
                 alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
-            }*/
+            }
             
             sender.enabled = true
         }
