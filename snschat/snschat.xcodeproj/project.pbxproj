@@ -10,6 +10,8 @@
 		2BFD188844461A94EBE468E7 /* Pods_snschat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D521CE5AF8891F6335E9A3F /* Pods_snschat.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		52184F8E1AD3DA84009E7F7D /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52184F8D1AD3DA84009E7F7D /* ChatBubble.swift */; };
 		52184F901AD3DD91009E7F7D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52184F8F1AD3DD91009E7F7D /* Message.swift */; };
+		521D18DC1B15E28C005D134A /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D18DB1B15E28C005D134A /* FAQ.swift */; };
+		521D18DE1B15E5F3005D134A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D18DD1B15E5F3005D134A /* CategoryCell.swift */; };
 		524A0C651AE90A95001CD22D /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A0C641AE90A95001CD22D /* AlertHelper.swift */; };
 		5265504B1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265504A1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift */; };
 		5265504D1ABAEBCC007C7CA3 /* CreateChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265504C1ABAEBCC007C7CA3 /* CreateChatController.swift */; };
@@ -51,6 +53,8 @@
 		1D521CE5AF8891F6335E9A3F /* Pods_snschat.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_snschat.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52184F8D1AD3DA84009E7F7D /* ChatBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
 		52184F8F1AD3DD91009E7F7D /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		521D18DB1B15E28C005D134A /* FAQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
+		521D18DD1B15E5F3005D134A /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		524A0C641AE90A95001CD22D /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		5265504A1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WachtwoordWijzigenController.swift; sourceTree = "<group>"; };
 		5265504C1ABAEBCC007C7CA3 /* CreateChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChatController.swift; sourceTree = "<group>"; };
@@ -120,6 +124,7 @@
 				F371D2451AEB0CE600E85BDF /* Room.swift */,
 				CEDC4AA31B00BD0F007B03B4 /* Category.swift */,
 				CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */,
+				521D18DB1B15E28C005D134A /* FAQ.swift */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -167,6 +172,7 @@
 				52184F8D1AD3DA84009E7F7D /* ChatBubble.swift */,
 				524A0C641AE90A95001CD22D /* AlertHelper.swift */,
 				CE05880D1B13E3E200315F13 /* IsTypingCell.swift */,
+				521D18DD1B15E5F3005D134A /* CategoryCell.swift */,
 			);
 			path = snschat;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				CE30890A1AEA73D700513566 /* HttpsendRequest.swift in Sources */,
 				52E086531AB1DBBE00419BB2 /* RegistrerenController.swift in Sources */,
 				526550561ABAFDC0007C7CA3 /* ChatCell.swift in Sources */,
+				521D18DE1B15E5F3005D134A /* CategoryCell.swift in Sources */,
 				5268AEE91AE8D50900C4BEE5 /* User.swift in Sources */,
 				CE3089091AEA73D700513566 /* GetRequest.swift in Sources */,
 				CEDC4AA41B00BD0F007B03B4 /* Category.swift in Sources */,
@@ -395,6 +402,7 @@
 				5268AEEB1AE8E91C00C4BEE5 /* Reachability.swift in Sources */,
 				5265504D1ABAEBCC007C7CA3 /* CreateChatController.swift in Sources */,
 				CEDC4AA61B00BDF3007B03B4 /* Subcategory.swift in Sources */,
+				521D18DC1B15E28C005D134A /* FAQ.swift in Sources */,
 				52184F901AD3DD91009E7F7D /* Message.swift in Sources */,
 				5265504F1ABAF0D9007C7CA3 /* FAQController.swift in Sources */,
 				CE05880E1B13E3E200315F13 /* IsTypingCell.swift in Sources */,
