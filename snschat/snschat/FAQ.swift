@@ -31,6 +31,7 @@ class FAQ {
         // Vul category
         if let category = faq["category"] as JSON? {
             self.category = Category(jsonCategory: category)
+            println("FAQ \(self.category!.title)")
         }
         
         // Vul answer

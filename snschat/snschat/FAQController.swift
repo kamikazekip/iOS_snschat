@@ -28,37 +28,51 @@ class FAQController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        alertHelper = AlertHelper(viewController: self)
-        server = defaults.valueForKey("server") as! String
+        self.alertHelper = AlertHelper(viewController: self)
+        self.server = defaults.valueForKey("server") as! String
         
         getFAQ()
+        
+        var backgroundView = UIView(frame: CGRectZero)
+        self.tableView.tableFooterView = backgroundView
+        self.tableView.backgroundColor = UIColor.whiteColor()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-    func getFAQ() {
-        activityIndicator.hidden = false
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.allFAQ.count
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 44.0
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        // Create the request
-        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/faqs")!)
-        request.HTTPMethod = "GET"
-        
-        lastOperation = "getFAQ"
-        
-        if(Reachability.isConnectedToNetwork()){
-            let urlConnection = NSURLConnection(request: request, delegate: self)
-        } else {
-            alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        var cell = self.tableView.dequeueReusableCellWithIdentifier("categoryCell") as! CategoryCell
+        if (self.allFAQ[indexPath.row].category!.parent == nil) {
+            cell.category.text = self.allFAQ[indexPath.row].category!.title
         }
+        
+        return cell
     }
     
     // NSURLConnection delegate method
     func connection(connection: NSURLConnection, didFailWithError error: NSError) {
         println("Failed with error:\(error.localizedDescription)")
         if (error.localizedDescription == "The request timed out."){
-            alertHelper.message("Oeps", message: "De server is offline, probeer het later nog eens!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+            self.alertHelper.message("Oeps", message: "De server is offline, probeer het later nog eens!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
         }
     }
     
@@ -84,9 +98,25 @@ class FAQController: UIViewController {
                 println("Default case called in lastOperation switch")
             }
         } else {
-            alertHelper.message("Oeps", message: "Er is iets misgegaan op de server, probeer het later nog eens!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
-            println(lastStatusCode)
+            self.alertHelper.message("Oeps", message: "Er is iets misgegaan op de server, probeer het later nog eens!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+            println(self.lastStatusCode)
             println("Something went wrong, statusCode wasn't 200")
+        }
+    }
+    
+    func getFAQ() {
+        self.activityIndicator.hidden = false
+        
+        // Create the request
+        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/faqs")!)
+        request.HTTPMethod = "GET"
+        
+        self.lastOperation = "getFAQ"
+        
+        if(Reachability.isConnectedToNetwork()){
+            let urlConnection = NSURLConnection(request: request, delegate: self)
+        } else {
+            self.alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
         }
     }
     
@@ -95,33 +125,9 @@ class FAQController: UIViewController {
         for faq: JSON in json.arrayValue {
             self.allFAQ.append(FAQ(jsonFAQ: faq))
         }
-        activityIndicator.hidden = true
+        self.activityIndicator.hidden = true
+        self.tableView.reloadData()
     }
-
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.allFAQ.count
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 44.0
-    }
-    
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
-    {
-        var cell = self.tableView.dequeueReusableCellWithIdentifier("categoryCell") as! CategoryCell
-        cell.title.text = self.allFAQ[indexPath].title
-        
-        return cell
-    }
-
 
 }
 

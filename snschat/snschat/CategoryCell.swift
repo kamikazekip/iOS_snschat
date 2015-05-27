@@ -6,12 +6,18 @@
 //  Copyright (c) 2015 nl.avans. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-class CategoryCell {
+class CategoryCell: UITableViewCell {
     
+    @IBOutlet weak var category: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
     
-    
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
     
 }
