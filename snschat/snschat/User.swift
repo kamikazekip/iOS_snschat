@@ -81,7 +81,6 @@ class User: NSObject, NSURLConnectionDelegate {
         lastOperation = "login"
 
         if(Reachability.isConnectedToNetwork()){
-            println("NMNMNMNMNNM")
             let urlConnection = NSURLConnection(request: request, delegate: self)
         } else {
             loginController.error("U bent niet verbonden met het internet!")
@@ -91,10 +90,10 @@ class User: NSObject, NSURLConnectionDelegate {
     //NSURLConnection delegate method
     func connection(connection: NSURLConnection, didFailWithError error: NSError) {
         println("Failed with error:\(error.localizedDescription)")
-        if(lastOperation == "register" && error.localizedDescription == "The request timed out." ){
-            registerController!.error("De server is offline, probeer het later nog eens!")
-        } else  if( lastOperation == "login" && error.localizedDescription == "The request timed out."){
-            loginController!.error("De server is offline, probeer het later nog eens!")
+        if(lastOperation == "register"){
+            registerController!.error("Kan geen verbinding maken met de server! Controleer uw internetconnectie")
+        } else  if( lastOperation == "login"){
+            loginController!.error("Kan geen verbinding maken met de server! Controleer uw internetconnectie")
         }
     }
     

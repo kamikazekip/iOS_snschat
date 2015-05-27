@@ -22,7 +22,10 @@ class ChatCell: UITableViewCell {
         super.awakeFromNib()
         message.numberOfLines = 0
         message.sizeToFit()
-        unreadMessages.clipsToBounds = true
+        if(unreadMessages != nil){
+            unreadMessages.clipsToBounds = true
+        }
+        
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

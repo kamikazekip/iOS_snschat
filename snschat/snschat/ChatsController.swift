@@ -133,12 +133,20 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell: ChatCell = self.tableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCell
+        var cell : ChatCell
+        
         let room: Room!
         if(self.resultSearchController.active){
             room = self.filteredRooms[indexPath.row]
         } else {
             room = self.user?.rooms[indexPath.row]
+        }
+        if(room!.unreadMessages > 0){
+            cell = self.tableView.dequeueReusableCellWithIdentifier("chatCellUnread") as! ChatCell
+            cell.unreadMessages.text = String(room!.unreadMessages)
+        } else {
+            cell = self.tableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCell
+            
         }
     
         cell.title.text = room!.employee?._id
@@ -146,13 +154,6 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
 		cell.message.text = room!.messages![room!.messages!.count - 1].content
 		cell.date.text = room!.messages![room!.messages!.count - 1].niceDate
         
-        if (room!.unreadMessages == 0) {
-            cell.unreadMessages.text = String(room!.unreadMessages)
-        }
-        else {
-            cell.unreadMessages.hidden = true
-        }
-
         return cell
     }
     
@@ -241,6 +242,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         if(segue.identifier == "toChat"){
             var chatc = segue.destinationViewController as! ChatController
             var chatCell = sender as! ChatCell
+            chatCell.room!.setRead()
+            self.tableView.reloadData()
             chatc.room = chatCell.room
             chatc.hidesBottomBarWhenPushed = true;
         } else if(segue.identifier == "toLogin"){

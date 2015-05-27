@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ymC-Gv-7Vl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ymC-Gv-7Vl">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -415,7 +415,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatCell" rowHeight="66" id="Xsg-bq-c6p" customClass="ChatCell" customModule="snschat" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatCellUnread" rowHeight="66" id="Xsg-bq-c6p" customClass="ChatCell" customModule="snschat" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xsg-bq-c6p" id="tbi-jS-ocf">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -434,7 +434,7 @@
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unread" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySp-LB-YXY">
                                                     <rect key="frame" x="520" y="36" width="41" height="21"/>
-                                                    <color key="backgroundColor" red="0.18823529410000001" green="0.2470588235" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -478,6 +478,54 @@
                                             <outlet property="message" destination="pzG-dK-A1s" id="Gbc-pL-L3e"/>
                                             <outlet property="title" destination="jAC-iY-R7v" id="4dB-i8-uo3"/>
                                             <outlet property="unreadMessages" destination="ySp-LB-YXY" id="1tm-lO-G5d"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="chatCell" rowHeight="66" id="f94-de-krH" customClass="ChatCell" customModule="snschat" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f94-de-krH" id="o5t-vb-YlU">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Datum" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9D3-fd-OEX">
+                                                    <rect key="frame" x="61" y="8" width="498" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CxD-6x-Qbl">
+                                                    <rect key="frame" x="15" y="8" width="485" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bericht" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jah-03-GVa">
+                                                    <rect key="frame" x="15" y="28" width="554" height="37"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="554" id="m0g-OE-HEd"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9D3-fd-OEX" firstAttribute="bottom" secondItem="CxD-6x-Qbl" secondAttribute="bottom" id="6i1-p0-b1U"/>
+                                                <constraint firstItem="jah-03-GVa" firstAttribute="trailing" secondItem="CxD-6x-Qbl" secondAttribute="trailing" constant="69" id="BXG-TF-sA5"/>
+                                                <constraint firstItem="9D3-fd-OEX" firstAttribute="top" secondItem="CxD-6x-Qbl" secondAttribute="top" id="C2c-5f-CQ5"/>
+                                                <constraint firstItem="CxD-6x-Qbl" firstAttribute="leading" secondItem="o5t-vb-YlU" secondAttribute="leadingMargin" constant="7" id="OzV-0l-Mw5"/>
+                                                <constraint firstItem="9D3-fd-OEX" firstAttribute="leading" secondItem="o5t-vb-YlU" secondAttribute="leadingMargin" constant="53" id="PuP-kA-XrH"/>
+                                                <constraint firstItem="9D3-fd-OEX" firstAttribute="trailing" secondItem="o5t-vb-YlU" secondAttribute="trailingMargin" constant="-2" id="Vzt-8n-cMX"/>
+                                                <constraint firstItem="jah-03-GVa" firstAttribute="leading" secondItem="o5t-vb-YlU" secondAttribute="leadingMargin" constant="7" id="XL6-vO-E2o"/>
+                                                <constraint firstItem="CxD-6x-Qbl" firstAttribute="top" secondItem="o5t-vb-YlU" secondAttribute="topMargin" id="ZvU-ao-bN1"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CxD-6x-Qbl" secondAttribute="trailing" constant="61" id="epO-mO-RDo"/>
+                                                <constraint firstItem="jah-03-GVa" firstAttribute="leading" secondItem="CxD-6x-Qbl" secondAttribute="leading" id="pDG-69-8ep"/>
+                                                <constraint firstAttribute="bottom" secondItem="jah-03-GVa" secondAttribute="bottom" id="qY9-nD-ISu"/>
+                                                <constraint firstItem="jah-03-GVa" firstAttribute="top" secondItem="o5t-vb-YlU" secondAttribute="topMargin" constant="20" id="xbP-Ra-aOJ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="date" destination="9D3-fd-OEX" id="ugA-oi-Q0m"/>
+                                            <outlet property="message" destination="jah-03-GVa" id="9EA-6h-8MD"/>
+                                            <outlet property="title" destination="CxD-6x-Qbl" id="Tdj-6V-rBg"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

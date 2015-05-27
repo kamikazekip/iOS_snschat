@@ -21,9 +21,16 @@ class Room: NSObject {
     var hasEmployee: Bool?
     var unreadMessages: Int = 0
     
+    var lastOperation: String!
+    var lastStatusCode = 1
+    var data: NSMutableData! = NSMutableData()
+    var defaults: NSUserDefaults! = NSUserDefaults.standardUserDefaults()
+    var server: String!
+    
 	init(jsonRoom room: JSON) {
         super.init()
 		self.messages = [Message]()
+        server = defaults.valueForKey("server") as! String
         
         // Vul id
         if let _id = room["_id"].string {
@@ -66,5 +73,85 @@ class Room: NSObject {
 		if let status = room["status"].string {
 			self.status = status
 		}
+    }
+    
+    func setRead(){
+        var updatedMessages: [Message] = [Message]()
+        self.unreadMessages = 0
+        for message: Message in self.messages! {
+            if(message.status! != "read" && message.sender != self.customer!._id){
+                message.status = "read"
+                updatedMessages.append(message)
+            }
+        }
+        if(updatedMessages.count > 0){
+            changeUnread(updatedMessages)
+        }
+    }
+    
+    func changeUnread(updatedMessages: [Message]){
+        // create the request
+        let url = NSURL(string: "\(server)/api/messages")
+        let request = NSMutableURLRequest(URL: url!)
+        request.HTTPMethod = "PUT"
+        var postString = "["
+        for (var x = 0; x < updatedMessages.count; x++){
+            var message: Message = updatedMessages[x]
+            var jsonString = "{ \"_id\": \"\(message._id!)\", \"content\": \"\(message.content!)\", \"dateSent\": \(message.oldDate!), \"sender\": \"\(message.sender!)\", \"status\": \"\(message.status!)\", \"type\": \"\(message.type!)\"}"
+            if(x != updatedMessages.count - 1){
+                postString = "\(postString) \(jsonString),"
+            } else {
+                postString = "\(postString) \(jsonString)"
+            }
+        }
+        postString = "\(postString)]"
+        println(postString)
+        request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        lastOperation = "changeUnread"
+        if(Reachability.isConnectedToNetwork()){
+            let urlConnection = NSURLConnection(request: request, delegate: self)
+        } else {
+            println("Kan niet connecten naar het internet, ")
+        }
+    }
+    
+    //NSURLConnection delegate method
+    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+        println("Failed with error:\(error.localizedDescription)")
+    }
+    
+    //NSURLConnection delegate method
+    func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSHTTPURLResponse!) {
+        //New request so we need to clear the data object
+        self.lastStatusCode = response.statusCode;
+        self.data = NSMutableData()
+    }
+    
+    //NSURLConnection delegate method
+    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
+        self.data.appendData(data)
+    }
+    
+    //NSURLConnection delegate method
+    func connectionDidFinishLoading(connection: NSURLConnection!) {
+        
+        if(self.lastStatusCode == 200){
+            switch(lastOperation){
+            case "changeUnread":
+                afterChangeUnread()
+            default:
+                println("Default case called in lastOperation switch")
+            }
+        } else {
+            println("Er is iets misgegaan op de server, probeer het later nog eens!")
+            println(lastStatusCode)
+            println("Something went wrong, statusCode wasn't 200")
+        }
+    }
+    
+    func afterChangeUnread(){
+        
     }
 }

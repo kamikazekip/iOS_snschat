@@ -51,11 +51,9 @@ class ChatController: UIViewController {
         
         self.socket = SocketIOClient(socketURL: "\(self.server)")
 		socket.on("connect") {data, ack in
-			println("socket connected")
             self.socket.emit("join", self.room._id)
             
             self.socket.on("message") { message, ack in
-                println(message)
                 var swiftMessage = message as! [AnyObject]
                 let swiftDictionary = swiftMessage[0] as! [String: AnyObject]
                 
@@ -70,7 +68,6 @@ class ChatController: UIViewController {
                 var newMessage = Message(_id: _id, sender: sender, content: content, type: type, status: status, dateSent: dateSent)
                 self.customerTyping = false
                 self.room!.messages!.append(newMessage)
-                println("Message ontvangen")
                 self.scrollToBottom()
             }
 
@@ -79,7 +76,6 @@ class ChatController: UIViewController {
 				let username = (userId as! [String])[0]
 
 				if (username == self.room.employee!._id!) {
-                    println("StartTyping")
                     self.customerTyping = true
                     self.scrollToBottom()
                 }
@@ -90,7 +86,6 @@ class ChatController: UIViewController {
 				let username = (userId as! [String])[0]
 
 				if (username == self.room.employee!._id!) {
-                    println("StopTyping")
                     self.customerTyping = false
                     self.scrollToBottom()
 				}

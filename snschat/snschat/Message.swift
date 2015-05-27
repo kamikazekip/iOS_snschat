@@ -9,17 +9,25 @@
 import Foundation
 import SwiftyJSON
 
-class Message {
+class Message: NSObject, NSURLConnectionDelegate {
     
     var _id: String?
     var sender: String?
     var content: String?
     var type: String?
     var status: String?
+    var oldDate: Int?
     var dateSent: NSDate?
     var niceDate: String!
     
+    var lastStatusCode = 1
+    var data: NSMutableData! = NSMutableData()
+    var lastOperation: String!
+    var defaults: NSUserDefaults! = NSUserDefaults.standardUserDefaults()
+    var server: String!
+    
     init(_id: String?, sender: String?, content: String?, type: String?, status: String?, dateSent: NSDate) {
+        super.init()
         self._id = _id
         self.sender = sender
         self.content = content
@@ -32,6 +40,7 @@ class Message {
     }
     
 	init(message: JSON) {
+        super.init()
         fillProps(message)
     }
     
@@ -52,6 +61,7 @@ class Message {
             self.status = status
         }
         if let dateSent = message["dateSent"].int {
+            self.oldDate = dateSent
             self.dateSent = NSDate(timeIntervalSince1970: NSTimeInterval((dateSent / 1000)))
         }
         let dateFormatter = NSDateFormatter()

@@ -46,5 +46,4 @@ class Category {
             self.parent = parent
         }
     }
-    
 }

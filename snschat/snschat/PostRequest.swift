@@ -15,7 +15,6 @@ struct PostRequest{
             request.HTTPMethod = "POST";
             request.addValue("application/json", forHTTPHeaderField: "Content-Type");
             let jsonString = JSONParser.JSONStringify(jsonObj)
-            println(jsonString)
             let data: NSData = jsonString.dataUsingEncoding(NSUTF8StringEncoding)!
             request.HTTPBody = data
             HTTPsendRequest(request) {
