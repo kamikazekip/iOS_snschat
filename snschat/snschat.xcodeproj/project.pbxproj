@@ -33,6 +33,7 @@
 		CE30890A1AEA73D700513566 /* HttpsendRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3089071AEA73D700513566 /* HttpsendRequest.swift */; };
 		CE30890B1AEA73D700513566 /* PostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3089081AEA73D700513566 /* PostRequest.swift */; };
 		CE30890D1AEA73ED00513566 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30890C1AEA73ED00513566 /* JSONParser.swift */; };
+		CE7DE8791B1CC53C005A646D /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DE8781B1CC53C005A646D /* AccountController.swift */; };
 		CEDC4AA41B00BD0F007B03B4 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4AA31B00BD0F007B03B4 /* Category.swift */; };
 		CEDC4AA61B00BDF3007B03B4 /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */; };
 		EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE91ABC669D00E264AE /* ChatController.swift */; };
@@ -82,6 +83,7 @@
 		CE3089071AEA73D700513566 /* HttpsendRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HttpsendRequest.swift; sourceTree = "<group>"; };
 		CE3089081AEA73D700513566 /* PostRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostRequest.swift; sourceTree = "<group>"; };
 		CE30890C1AEA73ED00513566 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
+		CE7DE8781B1CC53C005A646D /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		CEDC4AA31B00BD0F007B03B4 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
 		EC0CFFE91ABC669D00E264AE /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
@@ -173,6 +175,7 @@
 				524A0C641AE90A95001CD22D /* AlertHelper.swift */,
 				CE05880D1B13E3E200315F13 /* IsTypingCell.swift */,
 				521D18DD1B15E5F3005D134A /* CategoryCell.swift */,
+				CE7DE8781B1CC53C005A646D /* AccountController.swift */,
 			);
 			path = snschat;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				52E086331AB197CC00419BB2 /* AppDelegate.swift in Sources */,
 				524A0C651AE90A95001CD22D /* AlertHelper.swift in Sources */,
 				5265504B1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift in Sources */,
+				CE7DE8791B1CC53C005A646D /* AccountController.swift in Sources */,
 				526864511AB2EA4B00166FF4 /* WachtwoordVergetenController.swift in Sources */,
 				CE30890B1AEA73D700513566 /* PostRequest.swift in Sources */,
 				F371D2461AEB0CE600E85BDF /* Room.swift in Sources */,

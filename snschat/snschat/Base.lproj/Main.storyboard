@@ -68,26 +68,6 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ZO-cX-RJr">
-                                        <rect key="frame" x="8" y="223" width="584" height="41"/>
-                                        <color key="backgroundColor" red="0.40392156862745099" green="0.22745098039215686" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="41" id="tLL-R7-R0n"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                        <state key="normal" title="Inloggen">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="inloggen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ns9-VF-9uG"/>
-                                        </connections>
-                                    </button>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q0I-hY-lMY">
                                         <rect key="frame" x="8" y="364" width="584" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -119,6 +99,26 @@
                                         <rect key="frame" x="8" y="174" width="51" height="31"/>
                                         <color key="onTintColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </switch>
+                                    <button contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ZO-cX-RJr">
+                                        <rect key="frame" x="8" y="223" width="584" height="41"/>
+                                        <color key="backgroundColor" red="0.40392156862745099" green="0.22745098039215686" blue="0.71764705882352942" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="41" id="tLL-R7-R0n"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="Inloggen">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="inloggen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ns9-VF-9uG"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -970,7 +970,7 @@
         <!--Account-->
         <scene sceneID="K7V-ha-Ade">
             <objects>
-                <viewController id="jn7-PX-yaS" sceneMemberID="viewController">
+                <viewController id="jn7-PX-yaS" customClass="AccountController" customModule="snschat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EjL-pJ-0cb"/>
                         <viewControllerLayoutGuide type="bottom" id="gSs-dJ-aG1"/>
@@ -991,29 +991,65 @@
                                             <segue destination="Azb-hE-SN6" kind="show" id="DAb-MN-Cs3"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDj-AV-Wee">
+                                        <rect key="frame" x="8" y="166" width="584" height="40"/>
+                                        <color key="backgroundColor" red="0.4039215686" green="0.2274509804" blue="0.71764705880000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Ue0-fb-yHd"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                        <state key="normal" title="Afbeelding wijzigen">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="changeImage:" destination="jn7-PX-yaS" eventType="touchUpInside" id="arE-C5-Fg1"/>
+                                        </connections>
+                                    </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ci9-ia-d8l">
+                                        <rect key="frame" x="225" y="8" width="150" height="150"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="150" id="0Bj-LB-rpB"/>
+                                            <constraint firstAttribute="height" constant="150" id="uqp-To-1X5"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="b5p-C7-YoC" firstAttribute="top" secondItem="rUD-Nj-7Ua" secondAttribute="top" constant="261" id="3Pm-X6-DeW"/>
-                                    <constraint firstAttribute="bottom" secondItem="b5p-C7-YoC" secondAttribute="bottom" constant="228" id="8Ek-ho-fYy"/>
-                                    <constraint firstAttribute="trailing" secondItem="b5p-C7-YoC" secondAttribute="trailing" constant="87" id="CVd-cf-d1y"/>
-                                    <constraint firstItem="b5p-C7-YoC" firstAttribute="centerX" secondItem="rUD-Nj-7Ua" secondAttribute="centerX" id="NBm-CW-7Hl"/>
+                                    <constraint firstItem="cDj-AV-Wee" firstAttribute="centerX" secondItem="ci9-ia-d8l" secondAttribute="centerX" id="9mB-1O-Bbc"/>
+                                    <constraint firstItem="cDj-AV-Wee" firstAttribute="trailing" secondItem="rUD-Nj-7Ua" secondAttribute="trailingMargin" id="J4G-lZ-2EC"/>
+                                    <constraint firstItem="b5p-C7-YoC" firstAttribute="top" secondItem="cDj-AV-Wee" secondAttribute="bottom" constant="55" id="Pc6-CB-Lzr"/>
+                                    <constraint firstAttribute="bottom" secondItem="b5p-C7-YoC" secondAttribute="bottom" constant="260" id="SBA-Ja-2rr"/>
+                                    <constraint firstItem="cDj-AV-Wee" firstAttribute="top" secondItem="ci9-ia-d8l" secondAttribute="bottom" constant="8" symbolic="YES" id="Vef-nv-vbH"/>
+                                    <constraint firstItem="b5p-C7-YoC" firstAttribute="centerX" secondItem="rUD-Nj-7Ua" secondAttribute="centerX" id="ZuM-IO-d5W"/>
+                                    <constraint firstItem="cDj-AV-Wee" firstAttribute="centerX" secondItem="b5p-C7-YoC" secondAttribute="centerX" id="sRN-v8-AQm"/>
+                                    <constraint firstItem="cDj-AV-Wee" firstAttribute="leading" secondItem="rUD-Nj-7Ua" secondAttribute="leadingMargin" id="tMe-TX-hNO"/>
+                                    <constraint firstItem="ci9-ia-d8l" firstAttribute="top" secondItem="rUD-Nj-7Ua" secondAttribute="topMargin" id="wMj-CT-I0w"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="rUD-Nj-7Ua" firstAttribute="leading" secondItem="5eC-MU-Wy8" secondAttribute="leading" id="I0H-cb-BgL"/>
-                            <constraint firstAttribute="trailing" secondItem="rUD-Nj-7Ua" secondAttribute="trailing" id="XbS-0D-BBW"/>
-                            <constraint firstItem="rUD-Nj-7Ua" firstAttribute="top" secondItem="5eC-MU-Wy8" secondAttribute="top" id="cOd-81-8F8"/>
-                            <constraint firstItem="rUD-Nj-7Ua" firstAttribute="bottom" secondItem="gSs-dJ-aG1" secondAttribute="top" id="vgF-Ji-ggd"/>
+                            <constraint firstItem="rUD-Nj-7Ua" firstAttribute="bottom" secondItem="gSs-dJ-aG1" secondAttribute="top" id="FuO-gX-yAa"/>
+                            <constraint firstAttribute="trailing" secondItem="rUD-Nj-7Ua" secondAttribute="trailing" id="Mda-B6-p7a"/>
+                            <constraint firstItem="rUD-Nj-7Ua" firstAttribute="top" secondItem="5eC-MU-Wy8" secondAttribute="top" id="lbj-ZR-vMt"/>
+                            <constraint firstItem="rUD-Nj-7Ua" firstAttribute="leading" secondItem="5eC-MU-Wy8" secondAttribute="leading" id="mav-Oi-TWZ"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Account" image="AccountIcon" id="28v-bG-K6K"/>
                     <navigationItem key="navigationItem" title="Account" id="YkR-z9-b8D"/>
+                    <connections>
+                        <outlet property="btnAfbeeldingWijzigen" destination="cDj-AV-Wee" id="emp-Bx-CMB"/>
+                        <outlet property="imageView" destination="ci9-ia-d8l" id="YGG-re-Foe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KxH-BZ-Tib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2257" y="1164.9999999999998"/>
+            <point key="canvasLocation" x="2257" y="1164"/>
         </scene>
         <!--Wachtwoord vergeten-->
         <scene sceneID="JRR-qZ-h3s">
