@@ -12,13 +12,27 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     @IBOutlet weak var btnAfbeeldingWijzigen: UIButton!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var picker: UIImagePickerController? = UIImagePickerController()
     var popover: UIPopoverController? = nil
     
+    var defaults = NSUserDefaults.standardUserDefaults()
+    var alertHelper: AlertHelper!
+    
+    var lastStatusCode = 1
+    var data: NSMutableData = NSMutableData()
+    var lastOperation: String!
+    
+    var server: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.picker!.delegate = self
+        
+        alertHelper = AlertHelper(viewController: self)
+        server = defaults.valueForKey("server") as! String
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,12 +104,74 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         picker .dismissViewControllerAnimated(true, completion: nil)
-        self.imageView.image = info[UIImagePickerControllerOriginalImage] as! UIImage!
-        //sets the selected image to image view
+        
+        var image = info[UIImagePickerControllerOriginalImage] as! UIImage!
+        self.imageView.image = image
+        
+        /*activityIndicator.hidden = false
+        
+        // Create the request
+        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/avatar")!)
+        request.HTTPMethod = "POST"
+        
+        //var imageData = UIImageJPEGRepresentation(image, 0.9)
+        //var base64String = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.fromRaw(0)!) // encode the image
+        
+        //var err: NSError? = nil
+        //var params = ["image":[ "content_type": "image/jpeg", "filename":"test.jpg", "file_data": base64String]]
+        
+        //request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions(0), error: &err)!
+            
+        lastOperation = "uploadImage"
+        
+        if(Reachability.isConnectedToNetwork()){
+            let urlConnection = NSURLConnection(request: request, delegate: self)
+        } else {
+            alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+        }*/
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         println("picker cancel.")
     }
     
+    // NSURLConnection delegate method
+    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+        println("Failed with error:\(error.localizedDescription)")
+        if (error.localizedDescription == "The request timed out."){
+            alertHelper.message("Oeps", message: "De server is offline, probeer het later nog eens!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+        }
+    }
+    
+    // NSURLConnection delegate method
+    func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSHTTPURLResponse!) {
+        //New request so we need to clear the data object
+        self.lastStatusCode = response.statusCode;
+        self.data = NSMutableData()
+    }
+    
+    // NSURLConnection delegate method
+    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
+        self.data.appendData(data)
+    }
+    
+    // NSURLConnection delegate method
+    func connectionDidFinishLoading(connection: NSURLConnection!) {
+        if(self.lastStatusCode == 200){
+            switch(lastOperation){
+            case "uploadImage":
+                afterUploadImage()
+            default:
+                println("Default case called in lastOperation switch")
+            }
+        } else {
+            alertHelper.message("Oeps", message: "Er is iets misgegaan op de server, probeer het later nog eens!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+            println(lastStatusCode)
+            println("Something went wrong, statusCode wasn't 200")
+        }
+    }
+    
+    func afterUploadImage() {
+        activityIndicator.hidden = true
+    }
 }
