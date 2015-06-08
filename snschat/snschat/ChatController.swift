@@ -137,22 +137,64 @@ class ChatController: UIViewController {
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
-        var cell: ChatBubble
-        var isTyping: IsTypingCell
         if(indexPath.row == self.room.messages!.count){
+
+			var isTyping: IsTypingCell
+
             isTyping = self.tableView.dequeueReusableCellWithIdentifier("isTypingCell") as! IsTypingCell
             isTyping.isTypingLabel.text = "Aan het typen..."
-            return isTyping
-        }
-        else if (self.room.messages![indexPath.row].sender == defaults.stringForKey("userID")) {
-            cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleRight") as! ChatBubble
-        }
-        else {
-            cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleLeft") as! ChatBubble
-        }
-        cell.message.text = self.room.messages![indexPath.row].content
-        cell.date.text = self.room.messages![indexPath.row].niceDate
-        return cell
+
+			return isTyping
+		} else {
+
+			var cell: ChatBubble
+
+			// Checken of het een message of een attachment is
+			if (self.room.messages![indexPath.row].type == "message") {
+
+				// Links of rechts?
+				if (self.room.messages![indexPath.row].sender == defaults.stringForKey("userID")) {
+					cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleRight") as! ChatBubble
+				}
+				else {
+					cell = self.tableView.dequeueReusableCellWithIdentifier("chatBubbleLeft") as! ChatBubble
+				}
+
+				cell.message.text = self.room.messages![indexPath.row].content
+				cell.date.text = self.room.messages![indexPath.row].niceDate
+
+				return cell
+
+			} else {
+
+				var imageCell: ImageBubble
+
+				// Links of rechts?
+				if (self.room.messages![indexPath.row].sender == defaults.stringForKey("userID")) {
+					imageCell = self.tableView.dequeueReusableCellWithIdentifier("imageBubbleRight") as! ImageBubble
+				}
+				else {
+					imageCell = self.tableView.dequeueReusableCellWithIdentifier("imageBubbleLeft") as! ImageBubble
+				}
+
+				imageCell.date.text = self.room.messages![indexPath.row].niceDate
+
+				// Resize opties
+				imageCell.imageView!.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
+				imageCell.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
+
+				// Download de image
+				if let url = NSURL(string: "\(self.server)/\(self.room.messages![indexPath.row].content!)") {
+					if let data = NSData(contentsOfURL: url){
+						if let imageFromUrl = UIImage(data: data) {
+							imageCell.imageView!.image = imageFromUrl
+						}
+					}
+				}
+
+				return imageCell
+			}
+		}
     }
     
     @IBAction func onTapMainView(sender: UITapGestureRecognizer) {

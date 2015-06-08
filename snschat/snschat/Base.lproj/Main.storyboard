@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ymC-Gv-7Vl">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -334,6 +335,78 @@
                                         <connections>
                                             <outlet property="date" destination="R6B-ce-GGk" id="d4A-CE-rWN"/>
                                             <outlet property="message" destination="R5i-jn-S8e" id="D6B-pE-pTs"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="imageBubbleLeft" rowHeight="292" id="an1-ME-I1P" customClass="ImageBubble" customModule="snschat" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="an1-ME-I1P" id="JP3-kg-9nu">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nlq-bN-kXK">
+                                                    <rect key="frame" x="8" y="8" width="256" height="256"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="256" id="B6f-1M-SMx"/>
+                                                        <constraint firstAttribute="width" secondItem="nlq-bN-kXK" secondAttribute="height" multiplier="1:1" id="hwo-LO-XIa"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tijd" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHO-Q4-wbi">
+                                                    <rect key="frame" x="8" y="272" width="99" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="99" id="lSf-ge-fXb"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="nlq-bN-kXK" secondAttribute="trailing" constant="328" id="2l7-vC-4eQ"/>
+                                                <constraint firstItem="DHO-Q4-wbi" firstAttribute="leading" secondItem="JP3-kg-9nu" secondAttribute="leadingMargin" id="VQs-X8-5a7"/>
+                                                <constraint firstItem="nlq-bN-kXK" firstAttribute="leading" secondItem="JP3-kg-9nu" secondAttribute="leadingMargin" id="cZu-4d-PdK"/>
+                                                <constraint firstItem="DHO-Q4-wbi" firstAttribute="bottom" secondItem="JP3-kg-9nu" secondAttribute="bottomMargin" id="fiG-OP-uCr"/>
+                                                <constraint firstItem="nlq-bN-kXK" firstAttribute="top" secondItem="JP3-kg-9nu" secondAttribute="topMargin" id="vAw-iE-sAm"/>
+                                                <constraint firstItem="DHO-Q4-wbi" firstAttribute="top" secondItem="nlq-bN-kXK" secondAttribute="bottom" constant="8" id="xnb-mh-tr4"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="_imageView" destination="nlq-bN-kXK" id="Cvj-sR-GPg"/>
+                                            <outlet property="date" destination="DHO-Q4-wbi" id="uF8-FR-691"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="imageBubbleRight" rowHeight="292" id="x4S-Xx-qPa" customClass="ImageBubble" customModule="snschat" customModuleProvider="target">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x4S-Xx-qPa" id="7I4-2C-FTz">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="InR-h2-yrq">
+                                                    <rect key="frame" x="336" y="8" width="256" height="256"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="256" id="6EQ-xW-WAh"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tijd" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzZ-ok-auo">
+                                                    <rect key="frame" x="493" y="272" width="99" height="12"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="99" id="aNJ-GM-3qe"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="InR-h2-yrq" firstAttribute="top" secondItem="7I4-2C-FTz" secondAttribute="topMargin" id="9fG-Ax-Y3y"/>
+                                                <constraint firstItem="EzZ-ok-auo" firstAttribute="bottom" secondItem="7I4-2C-FTz" secondAttribute="bottomMargin" id="E7e-2z-G33"/>
+                                                <constraint firstItem="EzZ-ok-auo" firstAttribute="trailing" secondItem="7I4-2C-FTz" secondAttribute="trailingMargin" id="EbC-Fg-6SA"/>
+                                                <constraint firstItem="InR-h2-yrq" firstAttribute="trailing" secondItem="7I4-2C-FTz" secondAttribute="trailingMargin" id="cNv-2v-7Nz"/>
+                                                <constraint firstItem="EzZ-ok-auo" firstAttribute="top" secondItem="InR-h2-yrq" secondAttribute="bottom" constant="8" id="u4D-Zn-6vN"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <connections>
+                                            <outlet property="_imageView" destination="InR-h2-yrq" id="re7-ch-SNP"/>
+                                            <outlet property="date" destination="EzZ-ok-auo" id="tmC-2Y-dXr"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" shouldIndentWhileEditing="NO" reuseIdentifier="isTypingCell" rowHeight="59" id="rmD-r6-eSg" customClass="IsTypingCell" customModule="snschat" customModuleProvider="target">

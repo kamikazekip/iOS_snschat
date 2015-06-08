@@ -39,6 +39,7 @@
 		CEDC4AA61B00BDF3007B03B4 /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */; };
 		EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE91ABC669D00E264AE /* ChatController.swift */; };
 		F371D2461AEB0CE600E85BDF /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = F371D2451AEB0CE600E85BDF /* Room.swift */; };
+		F3BBC96B1B26266900B30861 /* ImageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BBC96A1B26266900B30861 /* ImageBubble.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
 		EC0CFFE91ABC669D00E264AE /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		F371D2451AEB0CE600E85BDF /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
+		F3BBC96A1B26266900B30861 /* ImageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBubble.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 				CE05880D1B13E3E200315F13 /* IsTypingCell.swift */,
 				521D18DD1B15E5F3005D134A /* CategoryCell.swift */,
 				CE7DE8781B1CC53C005A646D /* AccountController.swift */,
+				F3BBC96A1B26266900B30861 /* ImageBubble.swift */,
 			);
 			path = snschat;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */,
 				52184F8E1AD3DA84009E7F7D /* ChatBubble.swift in Sources */,
 				CE30890D1AEA73ED00513566 /* JSONParser.swift in Sources */,
+				F3BBC96B1B26266900B30861 /* ImageBubble.swift in Sources */,
 				526864531AB2F09200166FF4 /* ChatsController.swift in Sources */,
 				5268AEEB1AE8E91C00C4BEE5 /* Reachability.swift in Sources */,
 				5265504D1ABAEBCC007C7CA3 /* CreateChatController.swift in Sources */,
