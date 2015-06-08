@@ -12,7 +12,6 @@ import SwiftyJSON
 class FAQController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var defaults = NSUserDefaults.standardUserDefaults()
     var alertHelper: AlertHelper!
@@ -20,6 +19,10 @@ class FAQController: UIViewController {
     var lastStatusCode = 1
     var data: NSMutableData = NSMutableData()
     var lastOperation: String!
+    var loaded: Bool! = false
+    
+    var noFAQsLabel: UILabel!
+    var activityIndicator: UIActivityIndicatorView!
     
     var server: String!
     
@@ -31,11 +34,19 @@ class FAQController: UIViewController {
         self.alertHelper = AlertHelper(viewController: self)
         self.server = defaults.valueForKey("server") as! String
         
+        if(!loaded){
+            startActivityIndicator()
+        }
+        
         getFAQ()
         
         var backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
         self.tableView.backgroundColor = UIColor.whiteColor()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        self.activityIndicator.removeFromSuperview()
     }
 
     override func didReceiveMemoryWarning() {
@@ -114,10 +125,51 @@ class FAQController: UIViewController {
         self.lastOperation = "getFAQ"
         
         if(Reachability.isConnectedToNetwork()){
-            let urlConnection = NSURLConnection(request: request, delegate: self)
+            if(!loaded){
+                let urlConnection = NSURLConnection(request: request, delegate: self)
+            }
+            else {
+                decideToShowTableViewOrNot()
+            }
+            loaded = true
         } else {
             self.alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
         }
+    }
+    
+    func noFAQsYet(){
+        noFAQsLabel = UILabel(frame: CGRectMake(0, 0, 200, 21))
+        noFAQsLabel!.frame = self.view.frame
+        noFAQsLabel!.center = self.view.center
+        noFAQsLabel!.textAlignment = NSTextAlignment.Center
+        noFAQsLabel!.text = "Er zijn nog geen FAQ's!"
+        noFAQsLabel!.textColor = UIColor.blackColor()
+        
+        self.view.addSubview(noFAQsLabel!)
+    }
+    
+    func decideToShowTableViewOrNot(){
+        if(allFAQ.count == 0 && noFAQsLabel == nil){
+            noFAQsYet()
+        }
+        else if (allFAQ.count != 0 && noFAQsLabel != nil){
+            noFAQsLabel?.removeFromSuperview()
+            tableView.hidden = false
+            tableView.reloadData()
+        } else {
+            tableView.hidden = false
+            tableView.reloadData()
+        }
+    }
+    
+    func startActivityIndicator(){
+        activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.WhiteLarge)
+        activityIndicator.frame = self.view.frame
+        activityIndicator.center = self.view.center
+        activityIndicator.color = UIColor(red: 103/255, green: 58/255, blue: 183/255, alpha: 1)
+        activityIndicator.startAnimating()
+        self.view.addSubview( activityIndicator )
+        tableView.hidden = true
     }
     
     func afterGetFAQ() {

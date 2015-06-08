@@ -26,7 +26,7 @@ class Message: NSObject, NSURLConnectionDelegate {
     var defaults: NSUserDefaults! = NSUserDefaults.standardUserDefaults()
     var server: String!
     
-    init(_id: String?, sender: String?, content: String?, type: String?, status: String?, dateSent: NSDate) {
+    init(_id: String?, sender: String?, content: String?, type: String?, status: String?, dateSent: NSDate, oldDate: Int) {
         super.init()
         self._id = _id
         self.sender = sender
@@ -37,6 +37,7 @@ class Message: NSObject, NSURLConnectionDelegate {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         self.niceDate = dateFormatter.stringFromDate(self.dateSent!)
+        self.oldDate = oldDate
     }
     
 	init(message: JSON) {

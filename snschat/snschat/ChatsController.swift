@@ -22,9 +22,11 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     let tapRec: UITapGestureRecognizer = UITapGestureRecognizer()
     var overlayDissapearing: Bool!
     var overlayAppearing: Bool!
+    var server: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        server = defaults.valueForKey("server") as! String
         overlayDissapearing = false
         overlayAppearing = false
         tapRec.addTarget(self, action: "tappedOverlay")
@@ -62,12 +64,15 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
     }
     
+   
+    
     override func viewDidAppear(animated: Bool) {
         if(defaults.boolForKey("fromLogin")){
             var type = UIUserNotificationType.Badge | UIUserNotificationType.Alert | UIUserNotificationType.Sound
             var setting = UIUserNotificationSettings(forTypes: type, categories: nil)
             UIApplication.sharedApplication().registerUserNotificationSettings(setting)
             UIApplication.sharedApplication().registerForRemoteNotifications()
+            defaults.setBool(false, forKey: "fromLogin")
         }
         if (self.user != nil) {
             tableView.reloadData()
@@ -150,10 +155,11 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
     
         cell.title.text = room!.employee?._id
+        cell.tableView = self.tableView
         cell.room = room!
 		cell.message.text = room!.messages![room!.messages!.count - 1].content
 		cell.date.text = room!.messages![room!.messages!.count - 1].niceDate
-        
+        cell.room.socketDelegate.chatCell = cell
         return cell
     }
     
@@ -224,15 +230,17 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     @IBAction func logOut(sender: UIButton) {
         var confirmAlert = UIAlertController(title: "Uitloggen", message: "Weet u zeker dat u wilt uitloggen?", preferredStyle: UIAlertControllerStyle.Alert)
         confirmAlert.addAction(UIAlertAction(title: "Ja", style: .Default, handler: { (action: UIAlertAction!) in
-            println("Handle Ok logic here")
             self.defaults.removeObjectForKey("userID")
+            for room: Room in self.user!.rooms {
+                room.disconnectSocket()
+            }
             self.user = nil
             self.tableView.reloadData()
             self.performSegueWithIdentifier("toLogin", sender: self)
         }))
         
         confirmAlert.addAction(UIAlertAction(title: "Nee", style: .Default, handler: { (action: UIAlertAction!) in
-            println("Handle Cancel Logic here")
+            //Cancel logout
         }))
         self.presentViewController(confirmAlert, animated: true, completion: nil)
     }
@@ -245,6 +253,8 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             chatCell.room!.setRead()
             self.tableView.reloadData()
             chatc.room = chatCell.room
+            chatc.room!.socketDelegate.chatController = chatc
+            chatc.room!.socketDelegate.switchToController()
             chatc.hidesBottomBarWhenPushed = true;
         } else if(segue.identifier == "toLogin"){
             var loginNavController: UINavigationController = segue.destinationViewController as! UINavigationController

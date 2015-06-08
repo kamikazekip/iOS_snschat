@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import Socket_IO_Client_Swift
 
 class Room: NSObject {
 
@@ -26,6 +27,9 @@ class Room: NSObject {
     var data: NSMutableData! = NSMutableData()
     var defaults: NSUserDefaults! = NSUserDefaults.standardUserDefaults()
     var server: String!
+    var socket: SocketIOClient!
+    
+    var socketDelegate: SocketDelegate!
     
 	init(jsonRoom room: JSON) {
         super.init()
@@ -73,6 +77,12 @@ class Room: NSObject {
 		if let status = room["status"].string {
 			self.status = status
 		}
+
+        if(self._id != nil){
+            self.socketDelegate = SocketDelegate()
+            self.initiateSockets()
+            self.startSocket()
+        }
     }
     
     func setRead(){
@@ -105,7 +115,6 @@ class Room: NSObject {
             }
         }
         postString = "\(postString)]"
-        println(postString)
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
@@ -153,5 +162,54 @@ class Room: NSObject {
     
     func afterChangeUnread(){
         
+    }
+    
+    func initiateSockets(){
+        self.socket = SocketIOClient(socketURL: "\(self.server)")
+        socket.on("connect") {data, ack in
+            self.socket.emit("join", self._id)
+            println("\(self.employee!._id) connected")
+            
+            self.socket.on("message") { message, ack in
+                var swiftMessage = message as! [AnyObject]
+                self.socketDelegate.receiveMessage(swiftMessage)
+            }
+            
+            self.socket.on("startTyping") { userId, ack in
+                let username = (userId as! [String])[0]
+                
+                if (username == self.employee!._id!) {
+                    self.socketDelegate.receiveIsTyping()
+                }
+            }
+            
+            self.socket.on("stopTyping") { userId, ack in
+                let username = (userId as! [String])[0]
+                
+                if (username == self.employee!._id!) {
+                    self.socketDelegate.receiveStoppedTyping()
+                }
+            }
+        }
+    }
+    
+    func startSocket(){
+        socket.connect()
+    }
+    
+    func disconnectSocket(){
+        socket.disconnect(fast: true)
+    }
+    
+    func sendMessage(message: [String: String!]){
+        self.socket.emit("message", message)
+    }
+    
+    func sendIsTypingEvent(){
+        self.socket.emit("startTyping", self.customer!._id!)
+    }
+    
+    func sendStoppedTypingEvent(){
+        self.socket.emit("stopTyping", self.customer!._id!)
     }
 }

@@ -24,7 +24,6 @@ class ChatController: UIViewController {
     let defaults = NSUserDefaults.standardUserDefaults()
     
     var server: String!
-    var socket: SocketIOClient!
     
     var room: Room!
     //Code iPhone: 3107
@@ -49,6 +48,7 @@ class ChatController: UIViewController {
         //self.toolBar.layer.borderColor = UIColor.blackColor().CGColor
         //self.toolBar.layer.borderColor = UIColor(red: 103/255, green: 58/255, blue: 183/255, alpha: 1).CGColor
         
+        /*
         self.socket = SocketIOClient(socketURL: "\(self.server)")
 		socket.on("connect") {data, ack in
             self.socket.emit("join", self.room._id)
@@ -62,10 +62,11 @@ class ChatController: UIViewController {
                 let content = swiftDictionary["content"] as! String
                 let type = swiftDictionary["type"]! as! String
                 let status = swiftDictionary["status"] as! String
+                let oldDate = swiftDictionary["dateSent"] as! Int
                 let timeInterval = NSTimeInterval((swiftDictionary["dateSent"] as! Int / 1000))
                 let dateSent = NSDate(timeIntervalSince1970: timeInterval)
                 
-                var newMessage = Message(_id: _id, sender: sender, content: content, type: type, status: status, dateSent: dateSent)
+                var newMessage = Message(_id: _id, sender: sender, content: content, type: type, status: status, dateSent: dateSent, oldDate: oldDate)
                 self.customerTyping = false
                 self.room!.messages!.append(newMessage)
                 self.scrollToBottom()
@@ -91,7 +92,7 @@ class ChatController: UIViewController {
 				}
 			}
 		}
-		socket.connect()
+		socket.connect() */
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -101,10 +102,8 @@ class ChatController: UIViewController {
     
     override func viewWillDisappear(animated : Bool) {
         super.viewWillDisappear(animated)
-        
         if (self.isMovingFromParentViewController() == true){
-            self.socket.disconnect(fast: true);
-            self.socket.emit("disconnect", self.room._id)
+            self.room!.socketDelegate.switchToChatCell()
         }
     }
     
@@ -166,7 +165,8 @@ class ChatController: UIViewController {
             
             var data = ["content": textField.text, "sender": user, "room_id": self.room._id]
             
-            self.socket.emit("message", data)
+            self.room.sendMessage(data)
+            //socket.emit("message", data)
             
             textField.text = ""
         }
@@ -189,12 +189,42 @@ class ChatController: UIViewController {
 
 		if (!self.customerTyping && count(textField.text) > 0) {
 			self.customerTyping = true
-			self.socket.emit("startTyping", room.customer!._id!)
+            self.room.sendIsTypingEvent()
+			//self.socket.emit("startTyping", room.customer!._id!)
 		}
 
 		if (self.customerTyping && count(textField.text) == 0) {
 			self.customerTyping = false
-			self.socket.emit("stopTyping", room.customer!._id!)
+			self.room.sendStoppedTypingEvent()
+            //self.socket.emit("stopTyping", room.customer!._id!)
 		}
 	}
+    
+    func receiveMessage(message: [AnyObject]){
+        let swiftDictionary = message[0] as! [String: AnyObject]
+        
+        let _id = swiftDictionary["_id"]! as! String
+        let sender = swiftDictionary["sender"] as! String
+        let content = swiftDictionary["content"] as! String
+        let type = swiftDictionary["type"]! as! String
+        let status = swiftDictionary["status"] as! String
+        let oldDate = swiftDictionary["dateSent"] as! Int
+        let timeInterval = NSTimeInterval((swiftDictionary["dateSent"] as! Int / 1000))
+        let dateSent = NSDate(timeIntervalSince1970: timeInterval)
+        
+        var newMessage = Message(_id: _id, sender: sender, content: content, type: type, status: status, dateSent: dateSent, oldDate: oldDate)
+        self.customerTyping = false
+        self.room!.messages!.append(newMessage)
+        self.scrollToBottom()
+    }
+    
+    func receiveIsTypingEvent(){
+        self.customerTyping = true
+        self.scrollToBottom()
+    }
+    
+    func receiveStoppedTypingEvent(){
+        self.customerTyping = false
+        self.scrollToBottom()
+    }
 }

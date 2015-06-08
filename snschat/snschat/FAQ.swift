@@ -26,6 +26,7 @@ class FAQ {
         // Vul question
         if let question = faq["question"].string {
             self.question = question
+            println("Question: \(self.question)")
         }
         
         // Vul category
