@@ -199,7 +199,7 @@
             </objects>
             <point key="canvasLocation" x="3854" y="-1331"/>
         </scene>
-        <!--Chat-->
+        <!--Title-->
         <scene sceneID="7L2-Ke-pKb">
             <objects>
                 <viewController id="twD-ts-KjH" customClass="ChatController" customModule="snschat" customModuleProvider="target" sceneMemberID="viewController">
@@ -215,9 +215,14 @@
                                 <rect key="frame" x="-1" y="556" width="602" height="44"/>
                                 <gestureRecognizers/>
                                 <items>
+                                    <barButtonItem systemItem="camera" id="x6h-cZ-l7o">
+                                        <connections>
+                                            <action selector="cameraButtonClicked:" destination="twD-ts-KjH" id="5wF-Wd-Riv"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" id="bPX-rX-BGw">
                                         <textField key="customView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" id="SwW-zE-FjR">
-                                            <rect key="frame" x="16" y="7" width="485" height="30"/>
+                                            <rect key="frame" x="51" y="7" width="454" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <gestureRecognizers/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -453,12 +458,12 @@
                             <outletCollection property="gestureRecognizers" destination="2PE-ZI-N9F" appends="YES" id="oaC-Sp-vm8"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Chat" id="Ezk-LA-Dfz"/>
+                    <navigationItem key="navigationItem" title="Title" id="W3S-BM-MOE"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="cameraButton" destination="x6h-cZ-l7o" id="h47-M3-ckE"/>
                         <outlet property="tableView" destination="CBC-2A-Fc2" id="2g7-yv-nbc"/>
                         <outlet property="textField" destination="SwW-zE-FjR" id="ybE-vl-KBb"/>
-                        <outlet property="titleBarTitle" destination="Ezk-LA-Dfz" id="tC8-tG-YTQ"/>
                         <outlet property="toolBar" destination="MwG-lK-WR5" id="M3i-vU-x6m"/>
                     </connections>
                 </viewController>

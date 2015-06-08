@@ -10,7 +10,7 @@ import UIKit
 import Socket_IO_Client_Swift
 import SwiftyJSON
 
-class ChatController: UIViewController {
+class ChatController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
     var receivedTitle: String!
     
@@ -18,6 +18,7 @@ class ChatController: UIViewController {
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var titleBarTitle: UINavigationItem!
     @IBOutlet weak var sendButton: UIButton!
+	@IBOutlet weak var cameraButton: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -269,4 +270,46 @@ class ChatController: UIViewController {
         self.customerTyping = false
         self.scrollToBottom()
     }
+
+	@IBAction func cameraButtonClicked(sender: UIBarButtonItem) {
+
+		let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+
+		// Maak foto
+		let photoAction = UIAlertAction(title: "Maak foto", style: .Default, handler: {(alert: UIAlertAction!) -> Void in
+			var imageController = UIImagePickerController()
+			imageController.delegate = self
+			imageController.sourceType = .Camera
+			imageController.allowsEditing = true
+			self.presentViewController(imageController, animated: true, completion: nil)
+		})
+
+		// Laat fotobibliotheek zien
+		let libraryAction = UIAlertAction(title: "Fotobibliotheek", style: .Default, handler: {(alert: UIAlertAction!) -> Void in
+			var imageController = UIImagePickerController()
+			imageController.delegate = self
+			imageController.sourceType = .PhotoLibrary
+			imageController.allowsEditing = true
+			self.presentViewController(imageController, animated: true, completion: nil)
+		})
+
+		// Annuleer
+		let cancelAction = UIAlertAction(title: "Annuleer", style: .Cancel, handler: {(alert: UIAlertAction!) -> Void in
+			// Shh!
+		})
+
+		optionMenu.addAction(photoAction)
+		optionMenu.addAction(libraryAction)
+		optionMenu.addAction(cancelAction)
+
+		self.presentViewController(optionMenu, animated: true, completion: nil)
+	}
+
+	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
+
+		// Verstuur die shit
+		// Check dit: https://gist.github.com/janporu-san/e832cdee51974fc55660
+
+		self.dismissViewControllerAnimated(false, completion: nil)
+	}
 }
