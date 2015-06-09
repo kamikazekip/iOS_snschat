@@ -157,8 +157,10 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         cell.title.text = room!.employee?._id
         cell.tableView = self.tableView
         cell.room = room!
-		cell.message.text = room!.messages![room!.messages!.count - 1].content
-		cell.date.text = room!.messages![room!.messages!.count - 1].niceDate
+        if(room!.messages!.count != 0){
+            cell.message.text = room!.messages![room!.messages!.count - 1].content
+            cell.date.text = room!.messages![room!.messages!.count - 1].niceDate
+        }
         cell.room.socketDelegate.chatCell = cell
         return cell
     }

@@ -17,6 +17,7 @@ class Room: NSObject {
 	var checked: Int?
 	var customer: User?
 	var employee: User?
+    var category: String!
 	var messages: [Message]?
 	var status: String?
     var hasEmployee: Bool?
@@ -55,6 +56,10 @@ class Room: NSObject {
 		if let employee = room["employee"] as JSON? {
 			self.employee = User(jsonUser: employee)
 		}
+        
+        if let category = room["category"].string {
+            self.category = category
+        }
         
         if(self.employee?._id != nil){
             self.hasEmployee = true
@@ -168,8 +173,7 @@ class Room: NSObject {
         self.socket = SocketIOClient(socketURL: "\(self.server)")
         socket.on("connect") {data, ack in
             self.socket.emit("join", self._id)
-            println("\(self.employee!._id) connected")
-            
+
             self.socket.on("message") { message, ack in
                 var swiftMessage = message as! [AnyObject]
                 self.socketDelegate.receiveMessage(swiftMessage)

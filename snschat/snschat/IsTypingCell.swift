@@ -14,7 +14,8 @@ class IsTypingCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.off()
+        self.alpha = 0.0
+        self.on()
     }
     
     private func on(){

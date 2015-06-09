@@ -55,9 +55,11 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
         
         self.categoryField.inputView = self.categoryPicker
         self.categoryField.delegate = self
+        self.categoryField.tag = 2
         
         self.subcategoryField.inputView = self.subcategoryPicker
         self.subcategoryField.enabled = false
+        self.subcategoryField.tag = 3
         
         self.messageField.layer.borderColor = UIColor.lightGrayColor().CGColor
         self.messageField.layer.borderWidth = 0.3
@@ -66,14 +68,19 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        self.categoryField.becomeFirstResponder()
-        self.categoryPicker.selectedRowInComponent(0)
-        self.selectedCategory = self.categories[0]
-        self.subcategoryField.enabled = true
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func textFieldShouldClear(textField: UITextField) -> Bool {
+        if (textField.tag == 2) {
+            self.subcategoryField.enabled = false;
+            self.subcategoryField.text = ""
+            self.selectedSubCategory = nil
+        }
+        return true
     }
     
     func getAllCategories() {
@@ -127,7 +134,7 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
             self.categoryField.text = self.categories[row].title
             self.selectedCategory = self.categories[row]
             self.subcategoryField.text = ""
-            if (self.categories[row].subcategories != nil) {
+            if (self.categories[row].subcategories != nil && self.categories[row].subcategories!.count > 0) {
                 self.subcategoryField.enabled = true
                 self.subcategoryPicker.reloadAllComponents()
             }
@@ -135,7 +142,7 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
                 self.subcategoryField.enabled = false
             }
         } else if pickerView.tag == 1 {
-            if(self.selectedCategory != nil && self.selectedCategory!.subcategories != nil && self.categoryField.text != ""){
+            if(self.selectedCategory != nil && self.selectedCategory!.subcategories!.count > 0 && self.categoryField.text != ""){
                 self.subcategoryField.text = self.selectedCategory!.subcategories![row].title
                 self.selectedSubCategory = self.selectedCategory!.subcategories![row]
             }
@@ -160,8 +167,13 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
             
             // Set data
             request.HTTPMethod = "POST"
-            //let postString = "user=" + self.user!._id + "&category=" + self.selectedCategory._id + "&subcategory=" + self.selectedSubCategory._id + "message=" + self.messageField.text
-            let postString = "customer=" + self.user!._id!
+            var category_id : String = ""
+            if(self.subcategoryField.text != ""){
+                category_id = self.selectedSubCategory!._id!
+            } else {
+                category_id = self.selectedCategory!._id!
+            }
+            let postString = "customer=" + self.user!._id! + "&category=" + category_id
             request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
             
             lastOperation = "createRoom"
@@ -241,7 +253,11 @@ class CreateChatController: UIViewController, UIPickerViewDelegate, UITextFieldD
             }
         }
         
+        self.categoryField.becomeFirstResponder()
         self.selectedCategory = self.categories[0]
+        self.categoryField.text = self.categories[0].title
+        self.categoryPicker.selectedRowInComponent(0)
+        self.subcategoryField.enabled = true
     }
     
     func afterCreateRoom() {

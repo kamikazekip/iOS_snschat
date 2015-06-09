@@ -155,6 +155,7 @@ class User: NSObject, NSURLConnectionDelegate {
         // wordt. Na het opruimen van deze class is het misschien niet
         // meer nodig.
         fillProps(json["user"])
+        defaults.setObject(self._id, forKey: "userID")
         self.loginController?.afterLogin()
     }
 
@@ -178,8 +179,6 @@ class User: NSObject, NSURLConnectionDelegate {
 		for role: JSON in json["roles"].arrayValue {
 			self.roles.append(role.stringValue)
 		}
-        
-        defaults.setObject(self._id, forKey: "userID")
         
 	}
 }

@@ -27,7 +27,6 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
     var server: String!
     
     var room: Room!
-    //Code iPhone: 3107
 	var customerTyping: Bool = false
     
     override func viewDidLoad() {
@@ -97,7 +96,9 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
     }
     
     override func viewDidAppear(animated: Bool) {
-        scrollToBottom()
+        if(self.room.messages!.count != 0){
+            scrollToBottom()
+        }
         self.navigationController?.navigationItem.title = self.room!.employee?._id
     }
     
@@ -205,11 +206,10 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
     @IBAction func sendMessage(sender: UIButton) {
         if(!textField.text.isEmpty) {
             var user: String! = defaults.stringForKey("userID")
-            
+            println("Verstuur: \(textField.text)")
             var data = ["content": textField.text, "sender": user, "room_id": self.room._id]
             
             self.room.sendMessage(data)
-            //socket.emit("message", data)
             
             textField.text = ""
         }
