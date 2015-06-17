@@ -12,13 +12,15 @@
 		52184F901AD3DD91009E7F7D /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52184F8F1AD3DD91009E7F7D /* Message.swift */; };
 		521D18DC1B15E28C005D134A /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D18DB1B15E28C005D134A /* FAQ.swift */; };
 		521D18DE1B15E5F3005D134A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521D18DD1B15E5F3005D134A /* CategoryCell.swift */; };
+		523626671B317A2B00513B67 /* FAQQuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523626661B317A2B00513B67 /* FAQQuestionController.swift */; };
+		523626691B317F0800513B67 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523626681B317F0800513B67 /* QuestionCell.swift */; };
 		52379D001B25B5FC00790067 /* SocketDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52379CFF1B25B5FC00790067 /* SocketDelegate.swift */; };
+		523973D51B319C510013261B /* QuestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523973D41B319C510013261B /* QuestionController.swift */; };
 		524A0C651AE90A95001CD22D /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524A0C641AE90A95001CD22D /* AlertHelper.swift */; };
 		5265504B1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265504A1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift */; };
 		5265504D1ABAEBCC007C7CA3 /* CreateChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265504C1ABAEBCC007C7CA3 /* CreateChatController.swift */; };
 		5265504F1ABAF0D9007C7CA3 /* FAQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5265504E1ABAF0D9007C7CA3 /* FAQController.swift */; };
 		526550561ABAFDC0007C7CA3 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526550541ABAFDC0007C7CA3 /* ChatCell.swift */; };
-		526864511AB2EA4B00166FF4 /* WachtwoordVergetenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526864501AB2EA4B00166FF4 /* WachtwoordVergetenController.swift */; };
 		526864531AB2F09200166FF4 /* ChatsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526864521AB2F09200166FF4 /* ChatsController.swift */; };
 		526864541AB2F24D00166FF4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 52E086361AB197CC00419BB2 /* Main.storyboard */; };
 		5268AEE91AE8D50900C4BEE5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5268AEE81AE8D50900C4BEE5 /* User.swift */; };
@@ -36,7 +38,6 @@
 		CE30890D1AEA73ED00513566 /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE30890C1AEA73ED00513566 /* JSONParser.swift */; };
 		CE7DE8791B1CC53C005A646D /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE7DE8781B1CC53C005A646D /* AccountController.swift */; };
 		CEDC4AA41B00BD0F007B03B4 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4AA31B00BD0F007B03B4 /* Category.swift */; };
-		CEDC4AA61B00BDF3007B03B4 /* Subcategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */; };
 		EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0CFFE91ABC669D00E264AE /* ChatController.swift */; };
 		F371D2461AEB0CE600E85BDF /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = F371D2451AEB0CE600E85BDF /* Room.swift */; };
 		F3BBC96B1B26266900B30861 /* ImageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3BBC96A1B26266900B30861 /* ImageBubble.swift */; };
@@ -58,13 +59,15 @@
 		52184F8F1AD3DD91009E7F7D /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		521D18DB1B15E28C005D134A /* FAQ.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
 		521D18DD1B15E5F3005D134A /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		523626661B317A2B00513B67 /* FAQQuestionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQQuestionController.swift; sourceTree = "<group>"; };
+		523626681B317F0800513B67 /* QuestionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
 		52379CFF1B25B5FC00790067 /* SocketDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocketDelegate.swift; sourceTree = "<group>"; };
+		523973D41B319C510013261B /* QuestionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuestionController.swift; path = ../QuestionController.swift; sourceTree = "<group>"; };
 		524A0C641AE90A95001CD22D /* AlertHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
 		5265504A1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WachtwoordWijzigenController.swift; sourceTree = "<group>"; };
 		5265504C1ABAEBCC007C7CA3 /* CreateChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateChatController.swift; sourceTree = "<group>"; };
 		5265504E1ABAF0D9007C7CA3 /* FAQController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FAQController.swift; sourceTree = "<group>"; };
 		526550541ABAFDC0007C7CA3 /* ChatCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ChatCell.swift; path = ../ChatCell.swift; sourceTree = "<group>"; };
-		526864501AB2EA4B00166FF4 /* WachtwoordVergetenController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WachtwoordVergetenController.swift; sourceTree = "<group>"; };
 		526864521AB2F09200166FF4 /* ChatsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatsController.swift; sourceTree = "<group>"; };
 		5268AEE81AE8D50900C4BEE5 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5268AEEA1AE8E91C00C4BEE5 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -88,7 +91,6 @@
 		CE30890C1AEA73ED00513566 /* JSONParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		CE7DE8781B1CC53C005A646D /* AccountController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		CEDC4AA31B00BD0F007B03B4 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
-		CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Subcategory.swift; sourceTree = "<group>"; };
 		EC0CFFE91ABC669D00E264AE /* ChatController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatController.swift; sourceTree = "<group>"; };
 		F371D2451AEB0CE600E85BDF /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		F3BBC96A1B26266900B30861 /* ImageBubble.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBubble.swift; sourceTree = "<group>"; };
@@ -129,7 +131,6 @@
 				5268AEEA1AE8E91C00C4BEE5 /* Reachability.swift */,
 				F371D2451AEB0CE600E85BDF /* Room.swift */,
 				CEDC4AA31B00BD0F007B03B4 /* Category.swift */,
-				CEDC4AA51B00BDF3007B03B4 /* Subcategory.swift */,
 				521D18DB1B15E28C005D134A /* FAQ.swift */,
 				52379CFF1B25B5FC00790067 /* SocketDelegate.swift */,
 			);
@@ -170,18 +171,20 @@
 				52E0863B1AB197CC00419BB2 /* LaunchScreen.xib */,
 				52E086301AB197CC00419BB2 /* Supporting Files */,
 				52E086521AB1DBBE00419BB2 /* RegistrerenController.swift */,
-				526864501AB2EA4B00166FF4 /* WachtwoordVergetenController.swift */,
 				526864521AB2F09200166FF4 /* ChatsController.swift */,
 				5265504A1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift */,
 				5265504C1ABAEBCC007C7CA3 /* CreateChatController.swift */,
 				5265504E1ABAF0D9007C7CA3 /* FAQController.swift */,
 				EC0CFFE91ABC669D00E264AE /* ChatController.swift */,
 				52184F8D1AD3DA84009E7F7D /* ChatBubble.swift */,
+				523973D41B319C510013261B /* QuestionController.swift */,
 				524A0C641AE90A95001CD22D /* AlertHelper.swift */,
 				CE05880D1B13E3E200315F13 /* IsTypingCell.swift */,
 				521D18DD1B15E5F3005D134A /* CategoryCell.swift */,
-				CE7DE8781B1CC53C005A646D /* AccountController.swift */,
 				F3BBC96A1B26266900B30861 /* ImageBubble.swift */,
+				CE7DE8781B1CC53C005A646D /* AccountController.swift */,
+				523626661B317A2B00513B67 /* FAQQuestionController.swift */,
+				523626681B317F0800513B67 /* QuestionCell.swift */,
 			);
 			path = snschat;
 			sourceTree = "<group>";
@@ -393,17 +396,19 @@
 				52E086351AB197CC00419BB2 /* LoginController.swift in Sources */,
 				CE30890A1AEA73D700513566 /* HttpsendRequest.swift in Sources */,
 				52379D001B25B5FC00790067 /* SocketDelegate.swift in Sources */,
+				523626691B317F0800513B67 /* QuestionCell.swift in Sources */,
 				52E086531AB1DBBE00419BB2 /* RegistrerenController.swift in Sources */,
+				523973D51B319C510013261B /* QuestionController.swift in Sources */,
 				526550561ABAFDC0007C7CA3 /* ChatCell.swift in Sources */,
 				521D18DE1B15E5F3005D134A /* CategoryCell.swift in Sources */,
 				5268AEE91AE8D50900C4BEE5 /* User.swift in Sources */,
 				CE3089091AEA73D700513566 /* GetRequest.swift in Sources */,
 				CEDC4AA41B00BD0F007B03B4 /* Category.swift in Sources */,
 				52E086331AB197CC00419BB2 /* AppDelegate.swift in Sources */,
+				523626671B317A2B00513B67 /* FAQQuestionController.swift in Sources */,
 				524A0C651AE90A95001CD22D /* AlertHelper.swift in Sources */,
 				5265504B1ABADD0C007C7CA3 /* WachtwoordWijzigenController.swift in Sources */,
 				CE7DE8791B1CC53C005A646D /* AccountController.swift in Sources */,
-				526864511AB2EA4B00166FF4 /* WachtwoordVergetenController.swift in Sources */,
 				CE30890B1AEA73D700513566 /* PostRequest.swift in Sources */,
 				F371D2461AEB0CE600E85BDF /* Room.swift in Sources */,
 				EC0CFFEA1ABC669D00E264AE /* ChatController.swift in Sources */,
@@ -413,7 +418,6 @@
 				526864531AB2F09200166FF4 /* ChatsController.swift in Sources */,
 				5268AEEB1AE8E91C00C4BEE5 /* Reachability.swift in Sources */,
 				5265504D1ABAEBCC007C7CA3 /* CreateChatController.swift in Sources */,
-				CEDC4AA61B00BDF3007B03B4 /* Subcategory.swift in Sources */,
 				521D18DC1B15E28C005D134A /* FAQ.swift in Sources */,
 				52184F901AD3DD91009E7F7D /* Message.swift in Sources */,
 				5265504F1ABAF0D9007C7CA3 /* FAQController.swift in Sources */,
@@ -543,11 +547,13 @@
 			baseConfigurationReference = 91EE125091CBAF59E389F5AE /* Pods-snschat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = snschat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = snschat;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -556,6 +562,7 @@
 			baseConfigurationReference = 7418B6B78800AB9359E0AA68 /* Pods-snschat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = snschat/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

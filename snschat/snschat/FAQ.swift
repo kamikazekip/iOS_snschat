@@ -13,7 +13,7 @@ class FAQ {
     
     var _id: String?
     var question: String?
-    var category: Category?
+    var category: String?
     var answer: String?
     
     init(jsonFAQ faq: JSON) {
@@ -26,13 +26,11 @@ class FAQ {
         // Vul question
         if let question = faq["question"].string {
             self.question = question
-            println("Question: \(self.question)")
         }
         
         // Vul category
-        if let category = faq["category"] as JSON? {
-            self.category = Category(jsonCategory: category)
-            println("FAQ \(self.category!.title)")
+        if let category = faq["category"].string {
+            self.category = category
         }
         
         // Vul answer

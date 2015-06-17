@@ -13,6 +13,7 @@ class FAQController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var selectedIndex: NSIndexPath?
     var defaults = NSUserDefaults.standardUserDefaults()
     var alertHelper: AlertHelper!
     
@@ -26,7 +27,10 @@ class FAQController: UIViewController {
     
     var server: String!
     
+    var allCategories: [Category] = [Category]()
+    var categories: [Category] = [Category]()
     var allFAQ: [FAQ] = [FAQ]()
+    var categoriesWithFAQs: [Category] = [Category]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +42,7 @@ class FAQController: UIViewController {
             startActivityIndicator()
         }
         
-        getFAQ()
+        getAllCategories()
         
         var backgroundView = UIView(frame: CGRectZero)
         self.tableView.tableFooterView = backgroundView
@@ -47,6 +51,13 @@ class FAQController: UIViewController {
     
     override func viewWillDisappear(animated: Bool) {
         self.activityIndicator.removeFromSuperview()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        if(selectedIndex != nil){
+            tableView.deselectRowAtIndexPath(selectedIndex!, animated: true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,7 +69,7 @@ class FAQController: UIViewController {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.allFAQ.count
+        return self.categoriesWithFAQs.count
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -66,16 +77,15 @@ class FAQController: UIViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        selectedIndex = indexPath
+        navigationController?.setNavigationBarHidden(false, animated: false)
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell = self.tableView.dequeueReusableCellWithIdentifier("categoryCell") as! CategoryCell
-        if (self.allFAQ[indexPath.row].category!.parent == nil) {
-            cell.category.text = self.allFAQ[indexPath.row].category!.title
-        }
-        
+        cell.category.text = self.categoriesWithFAQs[indexPath.row].title
+        cell.ownCategory = self.categoriesWithFAQs[indexPath.row]
         return cell
     }
     
@@ -105,6 +115,8 @@ class FAQController: UIViewController {
             switch(lastOperation){
             case "getFAQ":
                 afterGetFAQ()
+            case "getAllCategories":
+                afterGetAllCategories()
             default:
                 println("Default case called in lastOperation switch")
             }
@@ -115,9 +127,43 @@ class FAQController: UIViewController {
         }
     }
     
-    func getFAQ() {
-        self.activityIndicator.hidden = false
+    func getAllCategories() {
         
+        // create the request
+        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/categories")!)
+        request.HTTPMethod = "GET"
+        
+        lastOperation = "getAllCategories"
+        
+        if(Reachability.isConnectedToNetwork()){
+            let urlConnection = NSURLConnection(request: request, delegate: self)
+        } else {
+            alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+        }
+    }
+    
+    func afterGetAllCategories() {
+        let json = JSON(data: self.data)
+        for category: JSON in json.arrayValue {
+            self.allCategories.append(Category(jsonCategory: category))
+        }
+        self.getFAQ()
+    }
+    
+    func linkCategories() {
+        for category in self.allCategories {
+            if (category.parent == nil) { // Als het een hoofdcategorie is
+                for c in self.allCategories {
+                    if (c.parent != nil && c.parent == category._id) { // Als het een subcategorie is van de hoofdcategorie
+                        category.subcategories.append(c)
+                    }
+                }
+                self.categories.append(category)
+            }
+        }
+    }
+    
+    func getFAQ() {
         // Create the request
         let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/faqs")!)
         request.HTTPMethod = "GET"
@@ -149,10 +195,10 @@ class FAQController: UIViewController {
     }
     
     func decideToShowTableViewOrNot(){
-        if(allFAQ.count == 0 && noFAQsLabel == nil){
+        if(self.categoriesWithFAQs.count == 0 && noFAQsLabel == nil){
             noFAQsYet()
         }
-        else if (allFAQ.count != 0 && noFAQsLabel != nil){
+        else if (self.categoriesWithFAQs.count != 0 && noFAQsLabel != nil){
             noFAQsLabel?.removeFromSuperview()
             tableView.hidden = false
             tableView.reloadData()
@@ -169,18 +215,38 @@ class FAQController: UIViewController {
         activityIndicator.color = UIColor(red: 103/255, green: 58/255, blue: 183/255, alpha: 1)
         activityIndicator.startAnimating()
         self.view.addSubview( activityIndicator )
-        tableView.hidden = true
+        tableView.hidden = false
     }
     
     func afterGetFAQ() {
         let json = JSON(data: self.data)
-        for faq: JSON in json.arrayValue {
-            self.allFAQ.append(FAQ(jsonFAQ: faq))
+        for newFaq: JSON in json.arrayValue {
+            self.allFAQ.append(FAQ(jsonFAQ: newFaq))
         }
         self.activityIndicator.hidden = true
-        self.tableView.reloadData()
+        for category: Category in self.allCategories {
+            for faq: FAQ in self.allFAQ {
+                if ( category._id! == faq.category! ){
+                    category.injectFAQ(faq)
+                }
+            }
+        }
+        self.linkCategories()
+        for category: Category in self.categories {
+            if(category.hasFAQs()){
+                self.categoriesWithFAQs.append(category)
+            }
+        }
+        self.decideToShowTableViewOrNot()
     }
-
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if(segue.identifier == "toQuestions"){
+            var faqQuestionController: FAQQuestionController = segue.destinationViewController as! FAQQuestionController
+            var categoryCell = sender as! CategoryCell
+            faqQuestionController.category = categoryCell.ownCategory
+        }
+    }
 }
 
 

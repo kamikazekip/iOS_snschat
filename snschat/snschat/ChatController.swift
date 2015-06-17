@@ -45,54 +45,8 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
         self.title = room!.employee!._id
         self.toolBar.layer.borderWidth = 0.5
         self.toolBar.layer.borderColor = UIColor.grayColor().CGColor
-        //self.toolBar.layer.borderColor = UIColor.blackColor().CGColor
-        //self.toolBar.layer.borderColor = UIColor(red: 103/255, green: 58/255, blue: 183/255, alpha: 1).CGColor
-        
-        /*
-        self.socket = SocketIOClient(socketURL: "\(self.server)")
-		socket.on("connect") {data, ack in
-            self.socket.emit("join", self.room._id)
-            
-            self.socket.on("message") { message, ack in
-                var swiftMessage = message as! [AnyObject]
-                let swiftDictionary = swiftMessage[0] as! [String: AnyObject]
-                
-                let _id = swiftDictionary["_id"]! as! String
-                let sender = swiftDictionary["sender"] as! String
-                let content = swiftDictionary["content"] as! String
-                let type = swiftDictionary["type"]! as! String
-                let status = swiftDictionary["status"] as! String
-                let oldDate = swiftDictionary["dateSent"] as! Int
-                let timeInterval = NSTimeInterval((swiftDictionary["dateSent"] as! Int / 1000))
-                let dateSent = NSDate(timeIntervalSince1970: timeInterval)
-                
-                var newMessage = Message(_id: _id, sender: sender, content: content, type: type, status: status, dateSent: dateSent, oldDate: oldDate)
-                self.customerTyping = false
-                self.room!.messages!.append(newMessage)
-                self.scrollToBottom()
-            }
 
-			self.socket.on("startTyping") { userId, ack in
-
-				let username = (userId as! [String])[0]
-
-				if (username == self.room.employee!._id!) {
-                    self.customerTyping = true
-                    self.scrollToBottom()
-                }
-			}
-
-			self.socket.on("stopTyping") { userId, ack in
-
-				let username = (userId as! [String])[0]
-
-				if (username == self.room.employee!._id!) {
-                    self.customerTyping = false
-                    self.scrollToBottom()
-				}
-			}
-		}
-		socket.connect() */
+    
     }
     
     override func viewDidAppear(animated: Bool) {

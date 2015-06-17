@@ -15,9 +15,13 @@ class Category {
     var title: String?
     var description: String?
     var parent: String?
-    var subcategories: [Category]?
+    var subcategories: [Category]!
+    var allFAQs : [FAQ]!
     
     init(jsonCategory category: JSON) {
+        
+        self.allFAQs = [FAQ]()
+        self.subcategories = [Category]()
         
         // Vul id
         if let _id = category["_id"].string {
@@ -34,16 +38,26 @@ class Category {
             self.description = description
         }
         
-        /*// Vul parent
-        if let parent = category["parent"] as JSON? {
-            //self.parent = Category(jsonCategory: parent)
-            println("Parent:")
-            println(parent)
-        }*/
-        
         // Vul parent
         if let parent = category["parent"].string {
             self.parent = parent
         }
+    }
+    
+    func injectFAQ(faq: FAQ){
+        self.allFAQs.append(faq)
+    }
+    
+    func hasFAQs() -> Bool{
+        var has = false
+        for subCategorie: Category in self.subcategories! {
+            if(subCategorie.hasFAQs()){
+                has = true
+            }
+        }
+        if(self.subcategories?.count > 0){
+            has = true
+        }
+        return has
     }
 }
