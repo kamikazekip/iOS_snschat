@@ -204,7 +204,7 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
         let sender = swiftDictionary["sender"] as! String
         let content = swiftDictionary["content"] as! String
         let type = swiftDictionary["type"]! as! String
-        let status = swiftDictionary["status"] as! String
+        let status = "read"
         let oldDate = swiftDictionary["dateSent"] as! Int
         let timeInterval = NSTimeInterval((swiftDictionary["dateSent"] as! Int / 1000))
         let dateSent = NSDate(timeIntervalSince1970: timeInterval)
@@ -212,6 +212,7 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
         var newMessage = Message(_id: _id, sender: sender, content: content, type: type, status: status, dateSent: dateSent, oldDate: oldDate)
         self.customerTyping = false
         self.room!.messages!.append(newMessage)
+        self.room!.changeUnread([newMessage])
         self.scrollToBottom()
     }
     
