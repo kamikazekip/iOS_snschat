@@ -36,7 +36,7 @@ class LoginController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.title = "Inloggen"
-        var link: String? = defaults.valueForKey("server") as! String?
+        var link: String? = defaults.stringForKey("server")
         if (link == nil ) {
             defaults.setValue("http://snschat.compuplex.nl", forKey: "server")
             link = "http://snschat.compuplex.nl"

@@ -157,6 +157,7 @@ class User: NSObject, NSURLConnectionDelegate {
         fillProps(json["user"])
         defaults.setObject(self._id, forKey: "userID")
         defaults.setObject(self.password, forKey: "password")
+        
         self.loginController?.afterLogin()
     }
 

@@ -13,6 +13,7 @@ import AudioToolbox
 class ChatCell: UITableViewCell {
 
 
+    @IBOutlet weak var avatar: UIImageView!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var message: UILabel!
@@ -28,6 +29,13 @@ class ChatCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        avatar.layer.borderWidth = 0.8
+        avatar.layer.masksToBounds = false
+        avatar.layer.borderColor = UIColor.lightGrayColor().CGColor
+        avatar.layer.cornerRadius = avatar.frame.height/2
+        avatar.clipsToBounds = true
+        
         message.numberOfLines = 0
         message.sizeToFit()
         if(unreadMessages != nil){

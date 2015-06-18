@@ -26,7 +26,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        server = defaults.valueForKey("server") as! String
+        server = defaults.stringForKey("server")
         overlayDissapearing = false
         overlayAppearing = false
         tapRec.addTarget(self, action: "tappedOverlay")
@@ -153,7 +153,16 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             cell = self.tableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCell
             
         }
-    
+        
+        // Toont avatar
+        if let url = NSURL(string: "\(server)/public/img/profile/\(room!.employee!._id!).jpg") {
+            if let data = NSData(contentsOfURL: url){
+                if let imageFromUrl = UIImage(data: data) {
+                    cell.avatar.image = imageFromUrl
+                }
+            }
+        }
+        
         cell.title.text = room!.employee?._id
         cell.tableView = self.tableView
         cell.room = room!
