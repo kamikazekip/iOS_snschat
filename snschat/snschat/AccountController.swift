@@ -20,10 +20,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
     var defaults = NSUserDefaults.standardUserDefaults()
     var alertHelper: AlertHelper!
     
-    var lastStatusCode = 1
-    var data: NSMutableData = NSMutableData()
-    var lastOperation: String!
-    
     var server: String!
     var username: String!
     
@@ -35,16 +31,20 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
         alertHelper = AlertHelper(viewController: self)
         server = defaults.valueForKey("server") as! String
         username = defaults.valueForKey("userID") as! String
-        
-        getCurrentAvatar()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated);
+        
+        getCurrentAvatar()
+    }
+    
     func getCurrentAvatar() {
-        if let url = NSURL(string: "\(server)/public/img/profile/\(username).jpg") {
+        if let url = NSURL(string: "\(self.server)/public/img/profile/\(self.username).jpg") {
             if let data = NSData(contentsOfURL: url){
                 if let imageFromUrl = UIImage(data: data) {
                     self.imageView.image = imageFromUrl
@@ -66,11 +66,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
             self.openGallary()
         }
         
-        var removeAction = UIAlertAction(title: "Verwijderen", style: UIAlertActionStyle.Default) {
-            UIAlertAction in
-            self.removeImage()
-        }
-        
         var cancelAction = UIAlertAction(title: "Sluiten", style: UIAlertActionStyle.Cancel) {
             UIAlertAction in
         }
@@ -78,7 +73,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
         // Add the actions
         alert.addAction(cameraAction)
         alert.addAction(gallaryAction)
-        alert.addAction(removeAction)
         alert.addAction(cancelAction)
         
         // Present the actionsheet
@@ -112,80 +106,54 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
         }
     }
     
-    func removeImage() {
-        println("Remove image")
-    }
-    
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
         picker .dismissViewControllerAnimated(true, completion: nil)
         
         var image = info[UIImagePickerControllerOriginalImage] as! UIImage!
         self.imageView.image = image
         
-        /*activityIndicator.hidden = false
-        
-        // Create the request
-        let request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/avatar")!)
-        request.HTTPMethod = "POST"
-        
-        //var imageData = UIImageJPEGRepresentation(image, 0.9)
-        //var base64String = imageData.base64EncodedStringWithOptions(NSDataBase64EncodingOptions.fromRaw(0)!) // encode the image
-        
-        //var err: NSError? = nil
-        //var params = ["image":[ "content_type": "image/jpeg", "filename":"test.jpg", "file_data": base64String]]
-        
-        //request.HTTPBody = NSJSONSerialization.dataWithJSONObject(params, options: NSJSONWritingOptions(0), error: &err)!
-            
-        lastOperation = "uploadImage"
+        activityIndicator.hidden = false
         
         if(Reachability.isConnectedToNetwork()){
-            let urlConnection = NSURLConnection(request: request, delegate: self)
+            uploadImageOne(image)
         } else {
             alertHelper.message("Oeps", message: "U bent niet verbonden met het internet!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
-        }*/
+        }
+        
+        activityIndicator.hidden = true
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // NSURLConnection delegate method
-    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
-        println("Failed with error:\(error.localizedDescription)")
-        if (error.localizedDescription == "The request timed out."){
-            alertHelper.message("Oeps", message: "De server is offline, probeer het later nog eens!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
-        }
-    }
-    
-    // NSURLConnection delegate method
-    func connection(didReceiveResponse: NSURLConnection!, didReceiveResponse response: NSHTTPURLResponse!) {
-        //New request so we need to clear the data object
-        self.lastStatusCode = response.statusCode;
-        self.data = NSMutableData()
-    }
-    
-    // NSURLConnection delegate method
-    func connection(connection: NSURLConnection!, didReceiveData data: NSData!) {
-        self.data.appendData(data)
-    }
-    
-    // NSURLConnection delegate method
-    func connectionDidFinishLoading(connection: NSURLConnection!) {
-        if(self.lastStatusCode == 200){
-            switch(lastOperation){
-            case "uploadImage":
-                afterUploadImage()
-            default:
-                println("Default case called in lastOperation switch")
-            }
-        } else {
-            alertHelper.message("Oeps", message: "Er is iets misgegaan op de server, probeer het later nog eens!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
-            println(lastStatusCode)
-            println("Something went wrong, statusCode wasn't 200")
-        }
-    }
-    
-    func afterUploadImage() {
-        activityIndicator.hidden = true
+    func uploadImageOne(image: UIImage) {
+        
+        var imageData = UIImagePNGRepresentation(image)
+        
+        var request = NSMutableURLRequest(URL: NSURL(string: "\(server)/api/avatar")!)
+        var session = NSURLSession.sharedSession()
+        
+        request.HTTPMethod = "POST"
+        
+        var boundary = NSString(format: "---------------------------14737809831466499882746641449")
+        var contentType = NSString(format: "multipart/form-data; boundary=%@", boundary)
+        
+        request.addValue(contentType as String, forHTTPHeaderField: "Content-Type")
+        
+        var body = NSMutableData.alloc()
+        
+        // Image
+        body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+        body.appendData(NSString(format:"Content-Disposition: filename=" + self.username + ".jpg\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+        body.appendData(NSString(format: "Content-Type: application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+        body.appendData(imageData)
+        body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+        
+        println(NSString(data: body, encoding: NSUTF8StringEncoding))
+        
+        request.HTTPBody = body
+        
+        NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
     }
 }

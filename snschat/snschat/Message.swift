@@ -63,10 +63,11 @@ class Message: NSObject, NSURLConnectionDelegate {
         }
         if let dateSent = message["dateSent"].int {
             self.oldDate = dateSent
-            self.dateSent = NSDate(timeIntervalSince1970: NSTimeInterval((dateSent / 1000)))
+            self.dateSent = NSDate(timeIntervalSince1970: NSTimeInterval((dateSent/1000)))
         }
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         self.niceDate = dateFormatter.stringFromDate(self.dateSent!)
+        println(self.niceDate)
     }
 }

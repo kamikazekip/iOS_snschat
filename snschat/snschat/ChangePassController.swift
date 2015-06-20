@@ -1,5 +1,5 @@
 //
-//  WachtwoordWijzigenController.swift
+//  ChangePassController.swift
 //  snschat
 //
 //  Created by Erik Brandsma on 19/03/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WachtwoordWijzigenController: UIViewController, NSURLConnectionDelegate {
+class ChangePassController: UIViewController, NSURLConnectionDelegate {
     
     var username: String!
     var password: String!

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ymC-Gv-7Vl">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="ymC-Gv-7Vl">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -321,13 +321,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="an1-ME-I1P" id="JP3-kg-9nu">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nlq-bN-kXK">
-                                                    <rect key="frame" x="8" y="8" width="256" height="256"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="256" id="B6f-1M-SMx"/>
-                                                        <constraint firstAttribute="width" secondItem="nlq-bN-kXK" secondAttribute="height" multiplier="1:1" id="hwo-LO-XIa"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tijd" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DHO-Q4-wbi">
                                                     <rect key="frame" x="8" y="272" width="99" height="12"/>
                                                     <constraints>
@@ -337,6 +330,13 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nlq-bN-kXK">
+                                                    <rect key="frame" x="8" y="8" width="256" height="256"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="256" id="B6f-1M-SMx"/>
+                                                        <constraint firstAttribute="width" secondItem="nlq-bN-kXK" secondAttribute="height" multiplier="1:1" id="hwo-LO-XIa"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="trailingMargin" relation="lessThanOrEqual" secondItem="nlq-bN-kXK" secondAttribute="trailing" constant="328" id="2l7-vC-4eQ"/>
@@ -358,12 +358,6 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x4S-Xx-qPa" id="7I4-2C-FTz">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="InR-h2-yrq">
-                                                    <rect key="frame" x="336" y="8" width="256" height="256"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="256" id="6EQ-xW-WAh"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tijd" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzZ-ok-auo">
                                                     <rect key="frame" x="493" y="272" width="99" height="12"/>
                                                     <constraints>
@@ -373,6 +367,12 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="InR-h2-yrq">
+                                                    <rect key="frame" x="336" y="8" width="256" height="256"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="256" id="6EQ-xW-WAh"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="InR-h2-yrq" firstAttribute="top" secondItem="7I4-2C-FTz" secondAttribute="topMargin" id="9fG-Ax-Y3y"/>
@@ -1154,7 +1154,7 @@
         <!--Wachtwoord wijzigen-->
         <scene sceneID="MsG-Cr-XY7">
             <objects>
-                <viewController id="Azb-hE-SN6" customClass="WachtwoordWijzigenController" customModule="snschat" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Azb-hE-SN6" customClass="ChangePassController" customModule="snschat" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="swn-hd-rXf"/>
                         <viewControllerLayoutGuide type="bottom" id="hvp-nd-d0E"/>
