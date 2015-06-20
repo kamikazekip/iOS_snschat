@@ -25,6 +25,7 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
     var lastOperation: String!
     
     var server: String!
+    var username: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,10 +34,23 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         alertHelper = AlertHelper(viewController: self)
         server = defaults.valueForKey("server") as! String
+        username = defaults.valueForKey("userID") as! String
+        
+        getCurrentAvatar()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func getCurrentAvatar() {
+        if let url = NSURL(string: "\(server)/public/img/profile/\(username).jpg") {
+            if let data = NSData(contentsOfURL: url){
+                if let imageFromUrl = UIImage(data: data) {
+                    self.imageView.image = imageFromUrl
+                }
+            }
+        }
     }
     
     @IBAction func changeImage(sender: UIButton) {
@@ -132,7 +146,7 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
-        println("picker cancel.")
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // NSURLConnection delegate method
