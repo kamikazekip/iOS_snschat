@@ -307,9 +307,45 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
 
 	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
 
-		// Verstuur die shit
-		// Check dit: https://gist.github.com/janporu-san/e832cdee51974fc55660
+		// Upload image
+		let filename = uploadImageOne((info[UIImagePickerControllerOriginalImage] as? UIImage)!)
+
+		// Verstuur message
+		var data = ["content": self.server + "/" + filename, "type": "attachment", "sender": defaults.stringForKey("userID"), "room_id": self.room._id]
+		self.room.sendMessage(data)
 
 		self.dismissViewControllerAnimated(false, completion: nil)
+	}
+
+	func uploadImageOne(image: UIImage) -> String {
+
+		var imageData = UIImagePNGRepresentation(image)
+
+		var request = NSMutableURLRequest(URL: NSURL(string: self.server + "/api/attachment")!)
+		var session = NSURLSession.sharedSession()
+
+		request.HTTPMethod = "POST"
+
+		var boundary = NSString(format: "---------------------------14737809831466499882746641449")
+		var contentType = NSString(format: "multipart/form-data; boundary=%@", boundary)
+
+		request.addValue(contentType as String, forHTTPHeaderField: "Content-Type")
+
+		var body = NSMutableData.alloc()
+
+		// Image
+		body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+		body.appendData(NSString(format:"Content-Disposition: form-data; name=\"attachment\"; filename=\"img.jpg\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+		body.appendData(NSString(format: "Content-Type: application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+		body.appendData(imageData)
+		body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
+
+		println(NSString(data: body, encoding: NSUTF8StringEncoding))
+
+		request.HTTPBody = body
+
+		var returnData = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
+
+		return NSString(data: returnData!, encoding: NSUTF8StringEncoding) as! String
 	}
 }
