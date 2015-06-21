@@ -274,6 +274,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         } else if(segue.identifier == "toCreateChat") {
             var createChatController: CreateChatController = segue.destinationViewController as! CreateChatController
             createChatController.user = self.user!
+            createChatController.hidesBottomBarWhenPushed = true;
         }
     }
 
