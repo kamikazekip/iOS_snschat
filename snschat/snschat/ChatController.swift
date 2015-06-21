@@ -265,7 +265,7 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
 		let filename = uploadImageOne((info[UIImagePickerControllerOriginalImage] as? UIImage)!)
 
 		// Verstuur message
-		var data = ["content": self.server + "/" + filename, "type": "attachment", "sender": defaults.stringForKey("userID"), "room_id": self.room._id]
+		var data = ["content": filename, "type": "attachment", "sender": defaults.stringForKey("userID"), "room_id": self.room._id]
 		self.room.sendMessage(data)
 
 		self.dismissViewControllerAnimated(false, completion: nil)
@@ -293,8 +293,6 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
 		body.appendData(NSString(format: "Content-Type: application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
 		body.appendData(imageData)
 		body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
-
-		println(NSString(data: body, encoding: NSUTF8StringEncoding))
 
 		request.HTTPBody = body
 
