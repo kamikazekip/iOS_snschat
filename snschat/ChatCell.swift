@@ -56,7 +56,7 @@ class ChatCell: UITableViewCell {
         let content = swiftDictionary["content"] as! String
         let type = swiftDictionary["type"]! as! String
         let status = swiftDictionary["status"] as! String
-        let oldDate = swiftDictionary["dateSent"] as! Int
+        let oldDate = swiftDictionary["dateSent"] as! NSNumber
         let timeInterval = NSTimeInterval((swiftDictionary["dateSent"] as! Int / 1000))
         let dateSent = NSDate(timeIntervalSince1970: timeInterval)
         

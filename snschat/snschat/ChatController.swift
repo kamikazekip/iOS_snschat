@@ -205,10 +205,9 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
         let content = swiftDictionary["content"] as! String
         let type = swiftDictionary["type"]! as! String
         let status = "read"
-        let oldDate = swiftDictionary["dateSent"] as! Int
+        let oldDate = swiftDictionary["dateSent"] as! NSNumber
         let timeInterval = NSTimeInterval((swiftDictionary["dateSent"] as! Int / 1000))
         let dateSent = NSDate(timeIntervalSince1970: timeInterval)
-        
         var newMessage = Message(_id: _id, sender: sender, content: content, type: type, status: status, dateSent: dateSent, oldDate: oldDate)
         self.customerTyping = false
         self.room!.messages!.append(newMessage)

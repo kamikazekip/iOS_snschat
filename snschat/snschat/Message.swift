@@ -16,7 +16,7 @@ class Message: NSObject, NSURLConnectionDelegate {
     var content: String?
     var type: String?
     var status: String?
-    var oldDate: Int?
+    var oldDate: NSNumber?
     var dateSent: NSDate?
     var niceDate: String!
     
@@ -26,7 +26,7 @@ class Message: NSObject, NSURLConnectionDelegate {
     var defaults: NSUserDefaults! = NSUserDefaults.standardUserDefaults()
     var server: String!
     
-    init(_id: String?, sender: String?, content: String?, type: String?, status: String?, dateSent: NSDate, oldDate: Int) {
+    init(_id: String?, sender: String?, content: String?, type: String?, status: String?, dateSent: NSDate, oldDate: NSNumber) {
         super.init()
         self._id = _id
         self.sender = sender
@@ -61,9 +61,9 @@ class Message: NSObject, NSURLConnectionDelegate {
         if let status = message["status"].string {
             self.status = status
         }
-        if let dateSent = message["dateSent"].int {
+        if let dateSent = message["dateSent"].number {
             self.oldDate = dateSent
-            self.dateSent = NSDate(timeIntervalSince1970: NSTimeInterval((dateSent / 1000)))
+            self.dateSent = NSDate(timeIntervalSince1970: NSTimeInterval((dateSent.longLongValue / 1000)))
         }
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
