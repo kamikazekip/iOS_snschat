@@ -155,7 +155,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         }
         
         // Toont avatar
-        if let url = NSURL(string: "\(server)/public/img/profile/\(room!.employee!._id!).jpg") {
+        if let url = NSURL(string: "\(self.server)/public/img/profile/\(room!.employee?._id).jpg") {
             if let data = NSData(contentsOfURL: url){
                 if let imageFromUrl = UIImage(data: data) {
                     cell.avatar.image = imageFromUrl
@@ -274,6 +274,7 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
         } else if(segue.identifier == "toCreateChat") {
             var createChatController: CreateChatController = segue.destinationViewController as! CreateChatController
             createChatController.user = self.user!
+            createChatController.hidesBottomBarWhenPushed = true;
         }
     }
 
