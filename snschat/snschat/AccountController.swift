@@ -145,7 +145,7 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         // Image
         body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
-        body.appendData(NSString(format:"Content-Disposition: filename=" + self.username + ".jpg\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+        body.appendData(NSString(format:"Content-Disposition: form-data; name=\"profile\"; filename=\"" + self.username + ".jpg\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
         body.appendData(NSString(format: "Content-Type: application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
         body.appendData(imageData)
         body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)

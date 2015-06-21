@@ -68,6 +68,5 @@ class Message: NSObject, NSURLConnectionDelegate {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         self.niceDate = dateFormatter.stringFromDate(self.dateSent!)
-        println(self.niceDate)
     }
 }
