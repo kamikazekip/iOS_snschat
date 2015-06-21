@@ -30,7 +30,6 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         alertHelper = AlertHelper(viewController: self)
         server = defaults.valueForKey("server") as! String
-        username = defaults.valueForKey("userID") as! String
     }
 
     override func didReceiveMemoryWarning() {
@@ -40,6 +39,7 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated);
         
+        username = defaults.valueForKey("userID") as! String
         getCurrentAvatar()
     }
     
@@ -145,7 +145,7 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
         
         // Image
         body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
-        body.appendData(NSString(format:"Content-Disposition: form-data; name=\"profile\"; filename=\"" + self.username + ".jpg\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
+        body.appendData(NSString(format:"Content-Disposition: form-data; name=\"" + self.username + "\"; filename=\"" + self.username + ".jpg\"\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
         body.appendData(NSString(format: "Content-Type: application/octet-stream\r\n\r\n").dataUsingEncoding(NSUTF8StringEncoding)!)
         body.appendData(imageData)
         body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
