@@ -83,7 +83,7 @@ class LoginController: UIViewController {
             passwordField.text = ""
         }
         else if(count(password) < 3 || count(email) < 3){
-            alertHelper.message("Oeps", message: "Email en wachtwoord moeten beide 3 of meer karakters bevatten!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+            alertHelper.message("Oeps", message: "Gebruikersnaam en wachtwoord moeten beide 3 of meer karakters bevatten!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
         }
         else {
             self.loginButton.enabled = false

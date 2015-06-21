@@ -123,12 +123,12 @@ class User: NSObject, NSURLConnectionDelegate {
             }
         } else if (self.lastStatusCode == 409) {
             if(lastOperation == "register"){
-                registerController!.error("Het e-mailadres is al in gebruik!")
+                registerController!.error("De gebruikersnaam is al in gebruik!")
                 registerController!.clearInputs()
             }
         } else if (self.lastStatusCode == 403) {
             if(lastOperation == "login"){
-                loginController!.error("Foute e-mail en wachtwoord combinatie!")
+                loginController!.error("Foute gebruikersnaam en wachtwoord combinatie!")
             }
         } else {
             var errorMessage = "Er is iets misgegaan op de server, probeer het later nog eens!"

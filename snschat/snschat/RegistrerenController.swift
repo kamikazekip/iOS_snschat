@@ -53,10 +53,7 @@ class RegistrerenController: UIViewController {
             passwordField2.text = ""
         }
         else if(count(password) < 3 || count(email) < 3){
-            alertHelper.message("Oeps", message: "Email en wachtwoord moeten beide 3 of meer karakters bevatten!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
-        }
-        else if(!isValidEmail(email)){
-            alertHelper.message("Oeps", message: "Het opgegeven e-mailadres moet geldig zijn!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
+            alertHelper.message("Oeps", message: "Gebruikersnaam en wachtwoord moeten beide 3 of meer karakters bevatten!", style: UIAlertActionStyle.Destructive, buttonMessage: "OK")
         }
         else {
             self.registerButton.enabled = false
@@ -89,12 +86,6 @@ class RegistrerenController: UIViewController {
     func goToLogin(){
         loginController.emailField.text = lastEmail
         self.navigationController?.popToRootViewControllerAnimated(true)
-    }
-    
-    func isValidEmail(email:String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluateWithObject(email)
     }
     
     func clearInputs() {
