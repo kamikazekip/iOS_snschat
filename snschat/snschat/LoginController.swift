@@ -10,7 +10,6 @@ import UIKit
 
 class LoginController: UIViewController {
     
-    @IBOutlet weak var debugField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -27,6 +26,7 @@ class LoginController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        defaults.setValue("http://snschat.compuplex.nl", forKey: "server")
         alertHelper = AlertHelper(viewController: self)
     }
 
@@ -36,12 +36,6 @@ class LoginController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.navigationItem.title = "Inloggen"
-        var link: String? = defaults.stringForKey("server")
-        if (link == nil ) {
-            defaults.setValue("http://snschat.compuplex.nl", forKey: "server")
-            link = "http://snschat.compuplex.nl"
-        }
-        debugField.text = link
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -115,10 +109,6 @@ class LoginController: UIViewController {
         
         
         self.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    @IBAction func save(sender: UIButton) {
-        defaults.setValue(debugField.text, forKey: "server")
     }
 }
 

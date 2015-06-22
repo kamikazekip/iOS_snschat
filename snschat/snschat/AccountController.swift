@@ -36,21 +36,32 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
         super.didReceiveMemoryWarning()
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated);
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated);
         
         username = defaults.valueForKey("userID") as! String
         getCurrentAvatar()
     }
     
     func getCurrentAvatar() {
-        if let url = NSURL(string: "\(self.server)/public/img/profile/\(self.username).jpg") {
-            if let data = NSData(contentsOfURL: url){
-                if let imageFromUrl = UIImage(data: data) {
-                    self.imageView.image = imageFromUrl
+        let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+            var newUrl = "\(self.server)/public/img/profile/\(self.username).jpg".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+            if let url = NSURL(string: newUrl) {
+                if let data = NSData(contentsOfURL: url){
+                    if let imageFromUrl = UIImage(data: data) {
+                        var imageFromUrl2:UIImage = UIImage(CGImage: imageFromUrl.CGImage, scale: 1.0, orientation: UIImageOrientation.Right)!
+                        self.imageView!.image = imageFromUrl2
+                        self.activityIndicator.hidden = true
+                    }
                 }
             }
+            // do some task
+            dispatch_async(dispatch_get_main_queue()) {
+                // update some UI
+            }
         }
+       
     }
     
     @IBAction func changeImage(sender: UIButton) {
@@ -150,7 +161,9 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
         body.appendData(imageData)
         body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
         
+        println("voor request")
         println(NSString(data: body, encoding: NSUTF8StringEncoding))
+        println("na request")
         
         request.HTTPBody = body
         

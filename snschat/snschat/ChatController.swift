@@ -137,16 +137,29 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
 
 				// Resize opties
 				imageCell.imageView!.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
-				imageCell.imageView!.contentMode = UIViewContentMode.ScaleAspectFit
+                imageCell.clipsToBounds = true
 
-				// Download de image
-				if let url = NSURL(string: "\(self.server)/\(self.room.messages![indexPath.row].content!)") {
-					if let data = NSData(contentsOfURL: url){
-						if let imageFromUrl = UIImage(data: data) {
-							imageCell.imageView!.image = imageFromUrl
-						}
-					}
-				}
+                let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
+                dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                    // Download de image
+                    if let url = NSURL(string: "\(self.server)/\(self.room.messages![indexPath.row].content!)") {
+                        if let data = NSData(contentsOfURL: url){
+                            if let imageFromUrl = UIImage(data: data) {
+                                var user: String! = self.defaults.stringForKey("userID")
+                                if(self.room.messages![indexPath.row].sender == user){
+                                    var imageFromUrl2:UIImage = UIImage(CGImage: imageFromUrl.CGImage, scale: 1.0, orientation: UIImageOrientation.Right)!
+                                    imageCell.imageView!.image = imageFromUrl2
+                                } else {
+                                    imageCell.imageView!.image = imageFromUrl
+                                }
+                            }
+                        }
+                    }
+                    dispatch_async(dispatch_get_main_queue()) {
+                        // update some UI
+                    }
+                }
+				
 
 				return imageCell
 			}
@@ -261,6 +274,7 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
 
 	func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject]) {
 
+        
 		// Upload image
 		let filename = uploadImageOne((info[UIImagePickerControllerOriginalImage] as? UIImage)!)
 
@@ -295,6 +309,8 @@ class ChatController: UIViewController, UINavigationControllerDelegate, UIImageP
 		body.appendData(NSString(format: "\r\n--%@\r\n", boundary).dataUsingEncoding(NSUTF8StringEncoding)!)
 
 		request.HTTPBody = body
+        
+        
 
 		var returnData = NSURLConnection.sendSynchronousRequest(request, returningResponse: nil, error: nil)
 

@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let userID = NSUserDefaults.standardUserDefaults().stringForKey("userID")
         
         var subscribeDictionary : [String:String!] = ["user":"\(userID!)","type":"ios","token":"\(myDeviceToken)"]
+        println(myDeviceToken)
         PostRequest.HTTPPostJSON("http://snspush.compuplex.nl/subscribe", jsonObj: subscribeDictionary, callback: { (data, error) -> Void in
             
         })

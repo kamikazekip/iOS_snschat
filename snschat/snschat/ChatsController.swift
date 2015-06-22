@@ -151,11 +151,11 @@ class ChatsController: UIViewController, UITableViewDataSource, UITableViewDeleg
             cell.unreadMessages.text = String(room!.unreadMessages)
         } else {
             cell = self.tableView.dequeueReusableCellWithIdentifier("chatCell") as! ChatCell
-            
         }
         
         // Toont avatar
-        if let url = NSURL(string: "\(self.server)/public/img/profile/\(room!.employee?._id).jpg") {
+        var newUrl = "\(self.server)/public/img/profile/\(room!.employee!._id!).jpg".stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!
+        if let url = NSURL(string: newUrl) {
             if let data = NSData(contentsOfURL: url){
                 if let imageFromUrl = UIImage(data: data) {
                     cell.avatar.image = imageFromUrl
