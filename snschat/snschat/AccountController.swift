@@ -50,8 +50,7 @@ class AccountController: UIViewController, UIImagePickerControllerDelegate, UINa
             if let url = NSURL(string: newUrl) {
                 if let data = NSData(contentsOfURL: url){
                     if let imageFromUrl = UIImage(data: data) {
-                        var imageFromUrl2:UIImage = UIImage(CGImage: imageFromUrl.CGImage, scale: 1.0, orientation: UIImageOrientation.Right)!
-                        self.imageView!.image = imageFromUrl2
+                        self.imageView!.image = imageFromUrl
                         self.activityIndicator.hidden = true
                     }
                 }
