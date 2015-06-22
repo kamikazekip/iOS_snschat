@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "loading.png"
+      "filename" : "SNS laden.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "loading-1.png"
+      "filename" : "SNS laden-1.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "loading-2.png"
+      "filename" : "SNS laden-2.png"
     }
   ],
   "info" : {
